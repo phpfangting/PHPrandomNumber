@@ -31,8 +31,6 @@ function deepSlashes($data)
 
 
 //调用案例
-
-
 $arr = array('username' => '张三<div></div>', 'age' => "18'#", 'desc' => '<script>alert("hello")</script>');
 
 
