@@ -14,3 +14,7 @@ function uuid()
         return $uuid;
     }
 }
+
+
+//开始调用
+echo uuid();//8384AD12CBAF76362CA60F820153184A
