@@ -9,4 +9,3 @@
 
 echo 'hello';
 echo 'A';
-echo 'B';
