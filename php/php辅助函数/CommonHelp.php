@@ -291,5 +291,18 @@ class CommonHelp
         return is_array($param) ? array_map([__CLASS__, 'deepFilter'], $param) : strip_tags(addslashes($param));
     }
 
+    /*
+     *唯一单号生产 总过22位
+     * ***/
+    public static function onlyNo()
+    {
+        $dateStr = date("YmdHis");  //20160710125226  14 位
+        list($tmp1, $tmp2) = explode(' ', microtime());
+        $microsecond = mb_substr($tmp1, 2, 3, "utf8");  //3位
+        $rand = random_int(10000, 99999);//5
+        $onlyNo = $dateStr . $microsecond . $rand;
+        return $onlyNo;
+    }
+
 
 }
