@@ -199,5 +199,97 @@ class CommonHelp
         return $date_array;
     }
 
+    /**
+     * 返回输入数组中某个单一列的值
+     * @param $searchArr [必须! 规定要使用的多维数组]
+     * @param string $searchField [必须! 需要返回值的列]
+     * @param string $indexKey [可选 用作返回数组的索引/键的列]
+     * @param array $result [不需要!存储返回值的列] 注意:不必给参数
+     * @param array $result2 [不需要!存储返回数组的索引] 注意:不必给参数
+     * @return array [返回键值对结果]
+     */
+    public static function arrColumn($searchArr, $searchField = '', $indexKey = '', & $result = [], & $result2 = [])
+    {
+
+        if (empty($searchArr) || empty($searchField)) {
+            return $result;
+        }
+
+        foreach ($searchArr as $key => $val) {
+            if (is_array($val)) {
+                self::arrColumn($val, $searchField, $indexKey, $result, $result2);
+            } else {
+                if ($key == $searchField) {
+                    $result[] = $val;
+                }
+                if ($key == $indexKey) {
+                    $result2[] = $val;
+                }
+            }
+        }
+        return empty($indexKey) ? $result : array_combine($result2, $result);//用一个数组的值作为其键名，另一个数组的值作为其值
+
+    }
+
+    /**
+     * 数组筛选
+     * @param array $haystack = [] 需筛选的数组
+     * @param array $retain = [] 需保留的字段
+     * @return array
+     * @author LianDa
+     * @remark 从数组中筛选出需要保留的字段并组成新的数组返回
+     */
+    public static function filterArr($haystack = [], $retain = [])
+    {
+        // 验证参数
+        if (empty($haystack) || empty($retain)) {
+            return $haystack;
+        }
+
+        // 开始筛选
+        $result = [];
+        foreach ($haystack as $key => $val) {
+            // 如键是数组，则递归
+            if (is_array($val)) {
+                $result[$key] = self::filterArr($val, $retain);
+            } else {
+                // 是否在需保留的字段中
+                if (in_array($key, $retain) || is_numeric($key)) {
+                    $result[$key] = $val;
+                }
+            }
+        }
+
+        // 释放并返回
+        unset($haystack);
+        return $result;
+    }
+
+    /**
+     * 把预定义的字符批量转化为HTML实体,支持多维数组
+     * @param $param [要转义的参数]
+     * @return array [返回转义后的数组]
+     */
+    public static function deepHtmlSpecilChars($param)
+    {
+        if (empty($param)) {
+            return array();
+        }
+        return is_array($param) ? array_map([__CLASS__, 'deepHtmlSpecilChars'], $param) : htmlspecialchars($param);
+    }
+
+    /**
+     * 过滤参数防XSS跨站脚本攻击和sql注入,支持多维数组
+     * @param string $param [要过滤的参数]
+     * @return array [返回过滤后的参数]
+     */
+    public static function deepFilter($param = '')
+    {
+        if (empty($param)) {
+            return $param;
+        }
+        return is_array($param) ? array_map([__CLASS__, 'deepFilter'], $param) : strip_tags(addslashes($param));
+    }
+
 
 }
