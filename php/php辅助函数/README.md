@@ -9,7 +9,6 @@ CommonHelp.php   公共函数<br>
     CommonHelp::deepHtmlSpecilChars($data);//过滤HTML标签<br>
     CommonHelp::deepFilter($data);//字符串转义<br>
     CommonHelp::onlyNo();//生成唯一单号<br>
-
 GetFileExtension.php 获取文件的后缀<br>
 
 
