@@ -66,8 +66,10 @@ $teSeParty = [
 
 ];
 //测试数据结束
-$data = $_GET;
 
+
+$data = $_GET;
+//定义参数类型,用于区分不同的查询类型
 $types = [
     1, //国家
     2,//城市
@@ -76,6 +78,7 @@ $types = [
     5,//开拍时间
     6,//特色拍卖
 ];
+//定义参数值
 $searchParam = [
 
     'contry',
@@ -156,6 +159,10 @@ $paramConfig = array_combine($types, $searchParam);
             background: lightblue;
         }
 
+        .search .label{background: limegreen;position: relative;}
+        .search .label:hover{background: red;}
+        .search .label:hover::after{content:'X';position: absolute;left:190px;height: 20px;top:-8px; width:20px;padding-bottom: 10px;}
+
 
     </style>
 </head>
@@ -165,7 +172,7 @@ $paramConfig = array_combine($types, $searchParam);
     <li style="width:100px;height: 30px;line-height: 30px;float: left">所在地区:</li>
     <?php foreach ($area as $contryId => $item): ?>
         <li class="contury">
-
+            <!--type=1-->
             <span type="1"><?= $item['contryName'] ?></span>
 
             <ul class="city">
@@ -233,8 +240,8 @@ $paramConfig = array_combine($types, $searchParam);
     <?php foreach ($data as $k => $val): ?>
         <?php if (in_array($k, $paramConfig)): ?>
             <?php $type = array_search($k, $paramConfig); ?>
-            <li type='<?= $type ?>' onclick='searchObj.delLabel(this,<?= $type ?>)'>
-                <?= str_replace('and', '&', $data[$k . 'Name']) ?></li>
+            <li class="label" type='<?= $type ?>' onclick='searchObj.delLabel(this,<?= $type ?>)'>
+                <?= str_replace('-', '&', $data[$k . 'Name']) ?></li>
         <?php endif; ?>
     <?php endforeach; ?>
 
@@ -333,28 +340,27 @@ $paramConfig = array_combine($types, $searchParam);
     //拍行公司查询
     $('.company .comp').click(function () {
         _json.company = $(this).attr('companyId');
-        _json.companyName = $(this).html().replace('&', '-');
+        _json.companyName = $(this).html().replace('&', "-");
         window.location.href = searchObj.getUrl();
     });
     //专场分类查询
     $('.partyCategory .party').click(function () {
         _json.partyCategory = $(this).attr('partyCategoryId');
-        _json.partyCategoryName = $(this).html().replace('&', '-');
+        _json.partyCategoryName = $(this).html().replace('&', "-");
         ;
         window.location.href = searchObj.getUrl();
     });
     //专场分类查询
     $('.startTime .start').click(function () {
         _json.startTime = $(this).attr('startTimeId');
-        _json.startTimeName = $(this).html().replace('&', '-');
+        _json.startTimeName = $(this).html().replace('&', "-");
         ;
         window.location.href = searchObj.getUrl();
     });
     //特色专场
     $('.teSeParty .teSe').click(function () {
         _json.teSeParty = $(this).attr('teSeParty');
-        _json.teSePartyName = $(this).html().replace('&', '-');
-        ;
+        _json.teSePartyName = $(this).html().replace('&', "-");
         window.location.href = searchObj.getUrl();
     });
 
