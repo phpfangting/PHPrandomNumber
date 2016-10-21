@@ -157,10 +157,11 @@ $paramConfig = array_combine($types, $searchParam);
 
         ul li:hover {
             background: lightblue;
+            cursor: pointer;
         }
 
         .search .label{background: limegreen;position: relative;}
-        .search .label:hover{background: red;}
+        .search .label:hover{background: red;cursor: pointer;}
         .search .label:hover::after{content:'X';position: absolute;left:190px;height: 20px;top:-8px; width:20px;padding-bottom: 10px;}
 
 
