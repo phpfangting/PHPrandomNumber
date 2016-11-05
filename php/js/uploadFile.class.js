@@ -1,20 +1,22 @@
 /**
  * Created by liufangting on 2016/11/4.
  */
-var uploadFile = {
-    options: {
+
+
+function UploadFile() {
+
+    this.options = {
         url: '',//请求的url地址 [required]
         formId: '',//要提交的表单id [required]
         fileId: '',//文件上传input对应的id值 [required]
         iframeId: '',//新窗口对应的id值 [required]
         iframeName: '',//新窗口对应的名称 [required]
         imgId: ''//新窗口对应的名称 [required]
-    },
-    formObj: {},//表单对象
-    fileObj: {},//文件对象
-    iframeObj: {},//子窗口对象
-    //初始化参数
-    init: function (param) {
+    };
+    this.formObj = {};//表单对象
+    this.fileObj = {};//文件对象
+    this.iframeObj = {};//子窗口对象
+    this.init = function (param) {
         for (k in param) {
             this.options[k] = param[k];
         }
@@ -26,31 +28,29 @@ var uploadFile = {
             console.log('error');
             return false;
         }
-        _this = this;
-    },
-    //提交表单
-    submitForm: function () {
+        _uploadThis = this;
+    }
+    this.submitForm = function () {
         this.fileObj.onchange = function () {
-            _this.formObj.submit();
+            _uploadThis.formObj.submit();
         };
-    },
-    //监听子窗口
-    listenEvent: function () {
-        this.iframeObj.attachEvent ? this.iframeObj.attachEvent('onload', this.returnData) : this.iframeObj.onload = this.returnData;
-    },
-    //获取子窗口的数据
-    returnData: function () {
+    }
 
-        var acceptData = JSON.parse(_this.iframeObj.contentWindow.document.body.innerHTML);
+    this.listenEvent = function () {
+        this.iframeObj.attachEvent ? this.iframeObj.attachEvent('onload', this.returnData) : this.iframeObj.onload = this.returnData;
+    }
+
+    this.returnData = function () {
+        var acceptData = JSON.parse(_uploadThis.iframeObj.contentWindow.document.body.innerHTML);
 
         if (acceptData.data['url']) {
-            _this.imgObj.setAttribute('src', acceptData.data['url']);
+            _uploadThis.imgObj.setAttribute('src', acceptData.data['url']);
         }
-    },
-    //处理子窗口的数据
-    upload: function (param) {
+
+    }
+    this.upload = function (param) {
         this.init(param);
         this.submitForm();
         this.listenEvent();
     }
-};
+}
