@@ -28,29 +28,34 @@ function UploadFile() {
             console.log('error');
             return false;
         }
-        _uploadThis = this;
+
     }
-    this.submitForm = function () {
+    this.submitForm = function (e) {
+
         this.fileObj.onchange = function () {
-            _uploadThis.formObj.submit();
+            e.formObj.submit();
         };
+
     }
 
     this.listenEvent = function () {
+        var _uploadThis = this;
         this.iframeObj.attachEvent ? this.iframeObj.attachEvent('onload', this.returnData) : this.iframeObj.onload = this.returnData;
     }
 
     this.returnData = function () {
-        var acceptData = JSON.parse(_uploadThis.iframeObj.contentWindow.document.body.innerHTML);
-
+        var acceptData = JSON.parse(this.contentWindow.document.body.innerHTML);
         if (acceptData.data['url']) {
             _uploadThis.imgObj.setAttribute('src', acceptData.data['url']);
         }
+        _uploadThis.formObj.reset();
 
     }
+
     this.upload = function (param) {
+
         this.init(param);
-        this.submitForm();
+        this.submitForm(this);
         this.listenEvent();
     }
 }

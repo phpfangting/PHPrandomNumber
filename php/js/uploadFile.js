@@ -41,11 +41,12 @@ var uploadFile = {
     //获取子窗口的数据
     returnData: function () {
 
-        var acceptData = JSON.parse(_this.iframeObj.contentWindow.document.body.innerHTML);
+        // var acceptData = JSON.parse(_this.iframeObj.contentWindow.document.body.innerHTML);
 
-        if (acceptData.data['url']) {
-            _this.imgObj.setAttribute('src', acceptData.data['url']);
-        }
+        // if (acceptData.data['url']) {
+        //     _this.imgObj.setAttribute('src', acceptData.data['url']);
+        // }
+        _this.formObj.reset();
     },
     //处理子窗口的数据
     upload: function (param) {
