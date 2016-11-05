@@ -8,6 +8,7 @@
 <body>
 <img src="" id="headimg" width="300" height="300">
 <img src="" id="headimg2" width="300" height="300">
+<img src="" id="headimg3" width="300" height="300">
 <form id="form1" method="post" action="upload.php" enctype="multipart/form-data" target="ifrUpload">
     <input id="myfile" type="file" name="upload_file" value="">
 </form>
@@ -15,34 +16,33 @@
     <input id="myfile2" type="file" name="upload_file2" value="">
 </form>
 
-<iframe width="250" height="220" src="" id="ifr" name="ifrUpload">
-
-</iframe>
-<iframe width="220" height="220" src="" id="ifr2" name="ifrUpload2">
-
-</iframe>
+<form id="form3" method="post" action="upload.php" enctype="multipart/form-data" target="ifrUpload3">
+    <input id="myfile3" type="file" name="upload_file3" value="">
+</form>
+<iframe width="250" height="220" src="" id="ifr" name="ifrUpload"></iframe>
+<iframe width="220" height="220" src="" id="ifr2" name="ifrUpload2"></iframe>
+<iframe width="220" height="220" src="" id="ifr3" name="ifrUpload3"></iframe>
 </body>
 </html>
 
 <script>
-    up1 = new UploadFile();
-    up1.upload({
-        url: 'upload.php',//请求的url地址 [required]
+    UploadFile({
         formId: 'form1',//要提交的表单id [required]
         fileId: 'myfile',//文件上传input对应的id值 [required]
         iframeId: 'ifr',//新窗口对应的id值 [required]
-        target: 'ifrUpload',//新窗口对应的名称 [required]
         imgId: 'headimg'
     });
-
-    up2 = new UploadFile();
-    up2.upload({
-        url: 'upload.php',//请求的url地址 [required]
+    UploadFile({
         formId: 'form2',//要提交的表单id [required]
         fileId: 'myfile2',//文件上传input对应的id值 [required]
         iframeId: 'ifr2',//新窗口对应的id值 [required]
-        target: 'ifrUpload2',//新窗口对应的名称 [required]
         imgId: 'headimg2'
+    });
+    UploadFile({
+        formId: 'form3',//要提交的表单id [required]
+        fileId: 'myfile3',//文件上传input对应的id值 [required]
+        iframeId: 'ifr3',//新窗口对应的id值 [required]
+        imgId: 'headimg3'
     });
 
 

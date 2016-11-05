@@ -3,60 +3,42 @@
  */
 
 
-function UploadFile() {
+function UploadFile(params) {
 
-    this.options = {
-        url: '',//请求的url地址 [required]
+    //参数初始化
+    var options = {
         formId: '',//要提交的表单id [required]
         fileId: '',//文件上传input对应的id值 [required]
         iframeId: '',//新窗口对应的id值 [required]
-        iframeName: '',//新窗口对应的名称 [required]
-        imgId: ''//新窗口对应的名称 [required]
+        imgId:''
     };
-    this.formObj = {};//表单对象
-    this.fileObj = {};//文件对象
-    this.iframeObj = {};//子窗口对象
-    this.init = function (param) {
-        for (k in param) {
-            this.options[k] = param[k];
-        }
-        this.formObj = document.getElementById(this.options['formId']);
-        this.fileObj = document.getElementById(this.options['fileId']);
-        this.iframeObj = document.getElementById(this.options['iframeId']);
-        this.imgObj = document.getElementById(this.options['imgId']);
-        if (!this.formObj || !this.fileObj || !this.iframeObj) {
-            console.log('error');
-            return false;
-        }
 
-    }
-    this.submitForm = function (e) {
-
-        this.fileObj.onchange = function () {
-            e.formObj.submit();
-        };
-
+    //定义参数
+    for (k in params) {
+        options[k] = params[k];
     }
 
-    this.listenEvent = function () {
-        this.iframeObj.attachEvent ? this.iframeObj.attachEvent('onload', this.returnData) : this.iframeObj.onload = this.returnData;
+    //获取dom对象
+    var formObj = document.getElementById(options.formId);//表单
+    var fileObj = document.getElementById(options.fileId);//文件
+    var ifrObj = document.getElementById(options.iframeId);//窗口
+    var imgObj = document.getElementById(options.imgId);//窗口
 
-
+    //提交表单上传图片
+    fileObj.onchange = function () {
+        formObj.submit();
     }
 
-    this.returnData = function (e) {
-        var acceptData = JSON.parse(this.contentWindow.document.body.innerHTML);
+    //监听子窗口是否有内容加载进来
+    ifrObj.attachEvent ? ifrObj.attachEvent('onload', callback) : ifrObj.onload = callback;
+
+    //处理子窗口的内容
+    function callback() {
+        var acceptData = JSON.parse(ifrObj.contentWindow.document.body.innerHTML);
         if (acceptData.data['url']) {
-            e.imgObj.setAttribute('src', acceptData.data['url']);
+            imgObj.setAttribute('src', acceptData.data['url']);
         }
-        e.formObj.reset();
-
+        formObj.reset();
     }
 
-    this.upload = function (param) {
-
-        this.init(param);
-        this.submitForm(this);
-        this.listenEvent();
-    }
 }
