@@ -7,24 +7,32 @@
 </head>
 <body>
 <img src="" id="headimg" width="500" height="500">
+<img src="" id="headimg2" width="500" height="500">
 <form id="form1" method="post" action="upload.php" enctype="multipart/form-data" target="ifrUpload">
     <input id="myfile" type="file" name="upload_file" value="">
 </form>
+<form id="form2" method="post" action="upload.php" enctype="multipart/form-data" target="ifrUpload2">
+    <input id="myfile2" type="file" name="upload_file" value="">
+</form>
 
 <iframe width="0" height="0" src="" id="ifr" name="ifrUpload">
+
+</iframe>
+<iframe width="0" height="0" src="" id="ifr2" name="ifrUpload2">
 
 </iframe>
 </body>
 </html>
 
 <script>
-
+    //上传一
     var upload = new UploadFile();
     UploadFile.prototype.returnData = function () {
-        var acceptData = JSON.parse(_this.iframeObj.contentWindow.document.body.innerHTML);
-        if (acceptData.data['url']) {
-            _this.imgObj.setAttribute('src', acceptData.data['url']);
-        }
+        var acceptData = _uploadThis.iframeObj.contentWindow.document.body.innerHTML;
+        alert(acceptData);
+//        if (acceptData.data['url']) {
+//            _this.imgObj.setAttribute('src', acceptData.data['url']);
+//        }
     }
     upload.upload({
         url: 'upload.php',//请求的url地址 [required]
@@ -34,6 +42,25 @@
         target: 'ifrUpload',//新窗口对应的名称 [required]
         imgId: 'headimg'
     });
+
+    var upload2 = new UploadFile();
+    UploadFile.prototype.returnData = function () {
+        var acceptData = _uploadThis.iframeObj.contentWindow.document.body.innerHTML;
+        alert(acceptData);
+//        var acceptData = JSON.parse(_this.iframeObj.contentWindow.document.body.innerHTML);
+//        if (acceptData.data['url']) {
+//            _this.imgObj.setAttribute('src', acceptData.data['url']);
+//        }
+    }
+    upload2.upload({
+        url: 'x.php',//请求的url地址 [required]
+        formId: 'form2',//要提交的表单id [required]
+        fileId: 'myfile2',//文件上传input对应的id值 [required]
+        iframeId: 'ifr2',//新窗口对应的id值 [required]
+        target: 'ifrUpload2',//新窗口对应的名称 [required]
+        imgId: 'headimg2'
+    });
+
 
 
 </script>
