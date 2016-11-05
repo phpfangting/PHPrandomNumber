@@ -3,19 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="./js/uploadFile.js"></script>
+    <!--<script src="js/uploadFile.class.js"></script>-->
 </head>
 <body>
+<<<<<<< HEAD
 <img src="" id="headimg" width="500" height="500">
 <img src="" id="headimg2" width="500" height="500">
+=======
+<img src="" id="headimg" width="100" height="100">
+<img src="" id="headimg2" width="100" height="100">
+>>>>>>> 81df25bb793842871cf54ad70f0c0708c045496b
 <form id="form1" method="post" action="upload.php" enctype="multipart/form-data" target="ifrUpload">
-    <input id="myfile" type="file" name="upload_file" value="">
+    <input id="myfile" type="file" name="upload_file1" value="" />
 </form>
 <form id="form2" method="post" action="upload.php" enctype="multipart/form-data" target="ifrUpload2">
+<<<<<<< HEAD
     <input id="myfile2" type="file" name="upload_file" value="">
 </form>
+=======
+    <input id="myfile2" type="file" name="upload_file1" value="" />
+</form>
+<iframe style="display:none" width="0" height="0" src="" id="ifr" name="ifrUpload"></iframe>
+>>>>>>> 81df25bb793842871cf54ad70f0c0708c045496b
 
-<iframe width="0" height="0" src="" id="ifr" name="ifrUpload">
+</iframe>
+<iframe style="display:none" width="0" height="0" src="" id="ifr2" name="ifrUpload2"></iframe>
 
 </iframe>
 <iframe width="0" height="0" src="" id="ifr2" name="ifrUpload2">
@@ -23,8 +35,9 @@
 </iframe>
 </body>
 </html>
-
+<!--https://segmentfault.com/q/1010000007108532-->
 <script>
+<<<<<<< HEAD
     //上传一
     var upload = new UploadFile();
     UploadFile.prototype.returnData = function () {
@@ -33,15 +46,36 @@
 //        if (acceptData.data['url']) {
 //            _this.imgObj.setAttribute('src', acceptData.data['url']);
 //        }
+=======
+    function  test(formId,fileId,frId,imgId){
+
+        var formObj = document.getElementById(formId);
+        var fileObj = document.getElementById(fileId);
+        var iframeObj =  document.getElementById(frId);
+        var imgObj =  document.getElementById(imgId);
+        fileObj.onchange = function () {
+            formObj.setAttribute('action','upload.php?r='+Math.random());
+            formObj.submit();
+        }
+
+        function fn() {
+            formObj.reset();
+            var data = JSON.parse(iframeObj.contentWindow.document.body.innerHTML);
+            alert(data.data['url']);
+
+                imgObj.setAttribute('src',data.data['url']);
+
+
+        }
+
+        iframeObj.attachEvent ? iframeObj.attachEvent('onload', fun) : iframeObj.onload = fn;
+
+>>>>>>> 81df25bb793842871cf54ad70f0c0708c045496b
     }
-    upload.upload({
-        url: 'upload.php',//请求的url地址 [required]
-        formId: 'form1',//要提交的表单id [required]
-        fileId: 'myfile',//文件上传input对应的id值 [required]
-        iframeId: 'ifr',//新窗口对应的id值 [required]
-        target: 'ifrUpload',//新窗口对应的名称 [required]
-        imgId: 'headimg'
-    });
+
+    test('form1','myfile','ifr','headimg');
+    test('form2','myfile2','ifr2','headimg2');
+//    test('form2','myfile2');
 
     var upload2 = new UploadFile();
     UploadFile.prototype.returnData = function () {

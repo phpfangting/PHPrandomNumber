@@ -6,8 +6,9 @@
  * Time: 21:26
  */
 
+$key = isset(array_keys($_FILES)[0])?array_keys($_FILES)[0]:0;
 
-$imgRecource = $_FILES['upload_file'];
+$imgRecource = $_FILES[$key];
 if (!empty($imgRecource['tmp_name'])) {
     $targetDir = __DIR__ . '/' . 'uploads/';
     if (!is_dir($targetDir)) {
@@ -27,7 +28,8 @@ if (!empty($imgRecource['tmp_name'])) {
 
     $result = ['status' => 200, 'msg' => '', 'data' => ['url' => "/php/uploads/{$fileName}"]];
 
-    echo json_encode($result);
+   echo json_encode($result);
+
 }
 
 
