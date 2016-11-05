@@ -39,16 +39,17 @@ function UploadFile() {
     }
 
     this.listenEvent = function () {
-        var _uploadThis = this;
         this.iframeObj.attachEvent ? this.iframeObj.attachEvent('onload', this.returnData) : this.iframeObj.onload = this.returnData;
+
+
     }
 
-    this.returnData = function () {
+    this.returnData = function (e) {
         var acceptData = JSON.parse(this.contentWindow.document.body.innerHTML);
         if (acceptData.data['url']) {
-            _uploadThis.imgObj.setAttribute('src', acceptData.data['url']);
+            e.imgObj.setAttribute('src', acceptData.data['url']);
         }
-        _uploadThis.formObj.reset();
+        e.formObj.reset();
 
     }
 
