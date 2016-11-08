@@ -36,7 +36,9 @@ var uploadFile = {
     },
     //监听子窗口
     listenEvent: function () {
-        this.iframeObj.attachEvent ? this.iframeObj.attachEvent('onload', this.returnData) : this.iframeObj.onload = this.returnData;
+        this.iframeObj.attachEvent ? this.iframeObj.attachEvent('onload', function (e) {
+            
+        }) : this.iframeObj.onload = this.returnData;
     },
     //获取子窗口的数据
     returnData: function (event) {
