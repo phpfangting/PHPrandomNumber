@@ -32,16 +32,6 @@ function UploadFile(params) {
     //监听子窗口是否有内容加载进来
     ifrObj.attachEvent ? ifrObj.attachEvent('onload', callback) : ifrObj.onload = callback;
 
-<<<<<<< HEAD
-    this.returnData = function (event) {
-        ;
-        var acceptData = JSON.parse(this.contentWindow.document.body.innerHTML);
-        if (acceptData.data['url']) {
-            event.imgObj.setAttribute('src', acceptData.data['url']);
-        }
-        event.formObj.reset();
-
-=======
     //处理子窗口的内容
     function callback() {
         var acceptData = JSON.parse(ifrObj.contentWindow.document.body.innerHTML);
@@ -49,7 +39,6 @@ function UploadFile(params) {
             imgObj.setAttribute('src', acceptData.data['url']);
         }
         formObj.reset();
->>>>>>> bfafe686197085f25a80879f988487033b85822f
     }
 
 }
