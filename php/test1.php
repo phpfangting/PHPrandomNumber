@@ -40,10 +40,50 @@ $data = array (
   ),
 );
 
-$data = array_filter($data,function ($v){
-	return $v['browseType']==3;
-});
-$data = array_column($data,'browseTargetId');
+// $data = array_filter($data,function ($v){
+// 	return $v['browseType']==3;
+// });
+// $data = array_column($data,'browseTargetId');
+// 
+$json = '[
+    {
+        "browseTargetId":"7782630",
+        "channelSource":0,
+        "browseType":3,
+        "createTime":"2016-11-07 10:07:56",
+        "memberId":25226
+    },
+    {
+        "browseTargetId":"7782630",
+        "channelSource":0,
+        "browseType":3,
+        "createTime":"2016-11-07 10:08:26",
+        "memberId":25226
+    },
+    {
+        "browseTargetId":"7782630",
+        "channelSource":0,
+        "browseType":3,
+        "createTime":"2016-11-07 10:08:33",
+        "memberId":25226
+    },
+    {
+        "browseTargetId":"7783093",
+        "channelSource":0,
+        "browseType":3,
+        "createTime":"2016-11-07 10:08:45",
+        "memberId":25226
+    },
+    {
+        "browseTargetId":"7782630",
+        "channelSource":0,
+        "browseType":3,
+        "createTime":"2016-11-07 10:08:50",
+        "memberId":25226
+    }
+]';
+$data = json_decode($json,true);
+$data = array_unique($data);
 echo '<pre>';
 print_r($data);
 

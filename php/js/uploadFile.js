@@ -39,7 +39,7 @@ var uploadFile = {
         this.iframeObj.attachEvent ? this.iframeObj.attachEvent('onload', this.returnData) : this.iframeObj.onload = this.returnData;
     },
     //获取子窗口的数据
-    returnData: function () {
+    returnData: function (event) {
 
         // var acceptData = JSON.parse(_this.iframeObj.contentWindow.document.body.innerHTML);
 

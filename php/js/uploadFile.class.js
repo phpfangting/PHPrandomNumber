@@ -44,12 +44,13 @@ function UploadFile() {
 
     }
 
-    this.returnData = function (e) {
+    this.returnData = function (event) {
+        ;
         var acceptData = JSON.parse(this.contentWindow.document.body.innerHTML);
         if (acceptData.data['url']) {
-            e.imgObj.setAttribute('src', acceptData.data['url']);
+            event.imgObj.setAttribute('src', acceptData.data['url']);
         }
-        e.formObj.reset();
+        event.formObj.reset();
 
     }
 
