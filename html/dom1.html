@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" id="ht">
+<head id="ff">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body id="dd">
+<script>
+    window.onload = function () {
+        var nodelist = document.getElementById('ht').childNodes;
+        alert(nodelist.length);
+        for (var i = 0, len = nodelist.length; i < len; i++) {
+            if (nodelist[i].nodeType == 1) {
+                nodelist[i].setAttribute('data-' + i, i);
+            } else {
+                nodelist[i].nodeValue = i;
+            }
+            console.log(nodelist[i]);
+        }
+    }
+
+
+    function People(name,age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    function Student(name,age,weight) {
+        this.weight = weight;
+        People.apply(this,[name,age]);
+
+    }
+
+    var stu = new Student('zhangsan',18,120);
+
+    console.log(stu.name+stu.age+stu.weight);
+</script>
+<h1>hello</h1>
+</body>
+</html>
+

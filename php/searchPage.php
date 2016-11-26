@@ -99,7 +99,7 @@ $paramConfig = array_combine($types, $searchParam);
 <head>
     <meta charset="UTF-8">
     <title>测试啊</title>
-    <script src="./js/jquery-1.8.3.min.js"></script>
+    <script src="lib/jquery-1.8.3.min.js"></script>
     <style>
         * {
             margin: 0;

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,3 +25,24 @@
     </script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../public/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+<a id="close">closed</a>
+</body>
+</html>
+<script>
+    document.getElementById('close').onclick = function () {
+        if (confirm('是否关闭此页面？')) {
+            window.close();
+            window.location.href = 'about:blank';
+        }
+    }
+</script>
+>>>>>>> 9e6cd3d1724665f77b8556cb1e5d5d47961a107e
