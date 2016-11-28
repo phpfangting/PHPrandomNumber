@@ -115,19 +115,19 @@ case "$STR" in
 
         updateDev;
 
-        MSG="从本地  dev 分支切换到本地 test 分支"
+        MSG="从本地  dev 分支切换到本地 master 分支"
 
         success;
 
-        git checkout test
+        git checkout master
 
-        MSG="正在更新本地 test 分支"
+        MSG="正在更新本地 master 分支"
 
         success;
 
-        git pull origin test
+        git pull origin master
 
-        MSG="合并本地 dev 分支 到 test 分支"
+        MSG="合并本地 dev 分支 到 master 分支"
 
         success;
 
@@ -146,29 +146,29 @@ case "$STR" in
 
         git merge dev
 
-        MSG="提交代码到本地 test 分支"
+        MSG="提交代码到本地 master 分支"
 
         success;
 
         git commit -am'update'
 
-        MSG="推送代码到远程 test 分支"
+        MSG="推送代码到远程 master 分支"
 
         success;
 
-        git push origin test
+        git push origin master
 
-        MSG="更新本地 test 分支"
-
-        success;
-
-        git pull origin test
-
-        MSG="在 test 分支 打版完成！！！"
+        MSG="更新本地 master 分支"
 
         success;
 
-        MSG="从 test分支 切换到 dev 分支"
+        git pull origin master
+
+        MSG="在 master 分支 打版完成！！！"
+
+        success;
+
+        MSG="从 master分支 切换到 dev 分支"
 
         success;
 
