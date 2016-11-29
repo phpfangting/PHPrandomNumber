@@ -65,6 +65,3 @@ Git服务器打开RSA认证
   Authentication refused: bad ownership or modes for directory /home/git 报错
   修改文件的权限755
 5.id_rsa.pub 一定要正确,否则不能免密码登录
-
-
-
