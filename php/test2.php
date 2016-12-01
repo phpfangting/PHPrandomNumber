@@ -11,7 +11,6 @@
     }
 }
 
-
-$str = "<br>     ";
-
-echo trim(strip_tags($str))!='';
+$str = "<<script>alert(document.cookie);//<</script>";
+$str = "adsadsa";
+echo strip_tags($str) ;
