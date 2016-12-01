@@ -1,0 +1,72 @@
+git reset --hard <commit>:
+1.替换引用的指向.引用指向新的提交ID;
+2.替换暂存区.替换后,暂存区的内容和引用指向的目录树一致;
+3.替换工作区.替换后,工作区的内容变得和暂存区一致,也和HEAD所指向的目录树内容相同.
+
+git reset --soft <commit>:
+1.替换引用的指向.引用指向新的提交ID.
+即只更改引用的指向,不该编暂存区和工作区.
+
+git reset --mixed <commit>或git reset <commit>:
+1.替换引用的指向.引用指向新的提交ID;
+2.替换暂存区.替换后,暂存区的内容和引用指向的目录树一致;
+即更改引用的指向及重置暂存区,但是工作区不变.
+
+实例:
+git reset
+仅用HEAD指向的目录树重置暂存区,工作区不受影响,相当于将之前用git add命令更新到暂存区的内容撤出暂存区.引用也未改变,因为引用重置到HEAD相当于没有重置.
+
+git reset HEAD
+同上
+
+git reset -- filename
+仅将文件filename的改动撤出暂存区,暂存区中其他文件不该变.相当于git add filename的反向操作.
+
+git reset HEAD filename
+同上
+
+git reset --soft  HEAD^
+工作区和暂存区不改变,但是引用向前回退一次.当对最新提交的提交说明或提交不满意更改时,撤销最新的提交一遍重新提交.
+
+git reset HEAD^
+工作区不变,但是暂存区会回退到上一次提交之前,引用也会回退一次.
+
+git reset --mixed HEAD^
+同上
+
+git reset --hard HEAD^
+彻底撤销最近的提交.引用回退到前一次,而且工作区和暂存区都会回退到上一次提交的状态.自上一次以来的提交全部丢失.
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+git  checkout
+git checkout <commit> [--] <paths>
+1.<commit>是可选项,如果省略则相当于从暂存区进行检出.和reset命令大不相同:重置的默认值是HEAD,而检出的默认值是暂存区.
+2.因此重置一般用于重置暂存区(除非使用--hard,否则不重置工作区),而检出命令主要是覆盖工作区(如果<commit>不省略,也会替换暂存区中相应的文件).
+3.该命令不会改变HEAD的头指针,主要用于指定版本文件覆盖工作区中对应的文件.如果省略<commit>,则会用暂存区的文件覆盖工作区的文件,否则用指定提交中的文件覆盖暂存区和工作区中的对应文件.
+
+git checkout <branch>
+1.会改变HEAD头指针.之所以后面的参数写作<branch>,是因为只有HEAD切换到一个分支才可以对提交进行跟踪,否则仍然会进入"分离头指针"的状态.在"分离头指针"的状态下的提交并不能被引用关联到,从而可能丢失.所以该命令主要作用是切换分支.
+2.如果省略<branch>则相当于对工作区进行状态检查.
+
+实例:
+git checkout branch
+检出branch分支,更新HEAD以指向branch分支,以及用branch指向的树更新暂存区和工作区.
+
+git checkout
+汇总显示工作区,暂存区与HEAD的差异
+
+git checkout HEAD
+同上
+
+git checkout -- filename
+用暂存区中的filename文件来覆盖工作区中的filename文件.相当于取消自上次执行git add filename以来(如果执行过)的本地修改
+
+git checkout branch -- filename
+维持HEAD的指向不变.用branch所指向的提交中的filename替换暂存区和工作区中相应的文件.会将暂存区和工作区中的filename直接覆盖
+
+git checkout -- .或者git checkout .
+会取消本地所有修改,相当于用暂存区的所有文件直接覆盖本地文件.
+
+
+git ls-remote --tags origin  查看远程标签
