@@ -188,7 +188,9 @@ case "$STR" in
 
     success;
 
-    git ls-remote --tags origin|awk  '{if (NR%2==1) print $2}'|tr -d 'refs/tags/'|egrep 'v?[0-9]+\.[0-9]+' --color
+    #git ls-remote --tags origin|awk  '{if (NR%2==1) print $2}'|tr -d 'refs/tags/'|egrep 'v?[0-9]+\.[0-9]+' --color
+
+    git tag 
 
     read -p "是否创建tag?yes|no: " STR
 
