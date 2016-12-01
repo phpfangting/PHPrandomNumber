@@ -81,5 +81,18 @@ git checkout -- .或者git checkout .
 git ls-remote --tags origin  查看远程标签
 
 
-hello
+   本地分支回退（提交的版本还没推向远程分支）
+
+   git reflog
+
+   git reset --hard HEAD^/HEAD~1/commtid
+
+   远程分支回退
+
+   git reflog
+
+   git reset --hard HEAD^/HEAD~1/commtid
+
+   git push origin [branch] -f #强制推送
+
 
