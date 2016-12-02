@@ -108,7 +108,7 @@ class CommonHelp
     }
 
     /**
-     * 图片上传
+     * uploadImage
      * @param string $dirs
      * @return string
      */

@@ -26,7 +26,7 @@ if (!empty($imgRecource['tmp_name'])) {
 //    </script>
 //HTML;
 
-    $result = ['status' => 200, 'msg' => '', 'data' => ['url' => "/php/uploads/{$fileName}"]];
+    $result = ['status' => 200, 'msg' => '', 'data' => ['url' => "/php/uploadImage/uploads/{$fileName}"]];
 
    echo json_encode($result);
 

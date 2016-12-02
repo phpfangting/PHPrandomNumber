@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../public/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+    <form id="form1" name="form1">
+        <input id='file' type="file" name="file" value="">
+
+        <input id="token" type="hidden" name="token" value="">
+    </form>
+    <div>
+        <img  id="photo" src="" />
+    </div>
+    <script>
+        $('#file').on('change',function (){
+            var formData = new FormData($('#form1')[0]);
+//            formData.append("file",$('#file')[0].files);
+//            formData.append("token",$('#token').val());
+            $.ajax({
+                url:"upload.php",
+                type:"POST",
+                dataType:"JSON",
+                data:formData,
+                processData:false,
+                contentType:false,
+                success:function (response){
+                    $('#photo').attr('src',response.data.url);
+                    $('#form1')[0].reset();
+                }
+
+            })
+        });
+    </script>
+</body>
+</html>
