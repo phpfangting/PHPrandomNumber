@@ -1,0 +1,60 @@
+
+远程仓库:test.git  路径 /srv/test.git   （这里用test.git仓库作为远程仓库来说明），注意该仓库没有工作区
+      开始编写钩子
+      cd  /srv/test.git/hooks
+      将 post-receive.sample   改成 post-receive,然后 vim post-receive 写下如下脚本
+
+网站仓库:test (.ssh) 路径 /home/liufangting/www/test
+
+本地   test
+    1.当git push origin master时，出现如下错误
+        remote: No local changes to save
+        remote: Permission denied, please try again.
+        remote: Permission denied, please try again.
+        remote: Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).
+        remote: fatal: The remote end hung up unexpectedly
+     分析:
+        没有给git用户的公钥放到authorized_keys上，所以会报错
+     解决办法
+        以git用户登录到服务器(git:x:515:515::/home/git:/usr/bin/git-shell用户的登录git-shell,那么要改成/bin/bash,否则你登录不上去,生成密钥后再改回来),在git家目录下（ssh-keygen -t rsa -C ""）生成密钥和公钥 ,将公钥加入到authorized_keys中即可
+
+    2.本地推送代码到远程仓库,运行自动化部署脚本报错
+    remote: error: unable to unlink old 'my.txt' (Permission denied)
+        解决办法
+        在服务器上的网站仓库(网站目录)
+        cd /home/liufangting/www/test
+        sudo chmod -R ug+w .
+        重新推送代码
+
+    3.当git push origin master时，出现如下错误
+        Counting objects: 3, done.
+        Writing objects: 100% (3/3), 265 bytes | 0 bytes/s, done.
+        Total 3 (delta 0), reused 0 (delta 0)
+        remote: Host key verification failed.
+        remote: fatal: The remote end hung up unexpectedly
+       分析
+        禁止主机检查
+       解决办法
+       在.ssh/config（或者/etc/ssh/ssh_config）中配置：
+       StrictHostKeyChecking no
+       UserKnownHostsFile /dev/null
+
+     4.当git push origin master时，出现如下错误
+        git push origin master
+       Counting objects: 3, done.
+       Delta compression using up to 8 threads.
+       Compressing objects: 100% (2/2), done.
+       Writing objects: 100% (3/3), 276 bytes | 0 bytes/s, done.
+       Total 3 (delta 0), reused 0 (delta 0)
+       remote: error: insufficient permission for adding an object to repository database .git/objects
+       remote:
+       remote: fatal: failed to write object
+       remote: fatal: unpack-objects failed
+       To git@10.10.10.123:/srv/myck.git
+       10f7671..535d815  master -> master
+       分析
+       当以git用户进入站点的目录时，没有写的权限,就会报错
+       解决办法
+       进入网站根目录 sudo chmod 777 . 修改当前所以文件的和文件夹的权限
+       git config core.filemode false   #忽略权限
+
