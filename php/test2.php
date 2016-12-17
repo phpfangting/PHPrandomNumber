@@ -11,15 +11,6 @@
     }
 }
 
-// $str = "<<script>alert(document.cookie);//<</script>";
-// $str = "adsadsa";
-// echo strip_tags($str) ;
-
- function randStr($num=6){
- 	  $rangeData = array_merge(range('0','9'),range('a', 'z'),range('A', 'Z'));
-      shuffle($rangeData);
-      return  implode('',array_slice($rangeData, 0,$num));
- }
- 
-session_start();
-$_SESSION['login']='ok';
+$str = "<<script>alert(document.cookie);//<</script>";
+$str = "adsadsa";
+echo strip_tags($str) ;
