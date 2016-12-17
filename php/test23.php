@@ -12,3 +12,4 @@
 	echo 'two';
     echo 'three';
     echo 'five';
+    echo 'six';
