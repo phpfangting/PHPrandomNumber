@@ -15,3 +15,6 @@
     echo 'five';
     echo 'six';
 
+    echo '1';
+
+echo '2';
