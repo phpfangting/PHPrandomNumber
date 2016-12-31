@@ -198,7 +198,7 @@ class CommonMaskWords
         
         //将要过滤的单词放到redis中
        
-       $new_words = include('./filterWord.php')
+       $new_words = include('./filterWord.php');
         return $new_words;
 
     }
