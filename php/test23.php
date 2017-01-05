@@ -23,6 +23,13 @@
 // echo '4';
 
 
-	$num = 7.4999;
+$key='YWawPUqsmgIOgseMgIqiYV6HBtc9WZ+JY1xxL/hk01A=';
 
-	echo bcadd($num, 0,2); 
+
+$key = base64_encode($key);
+
+echo $key;
+
+echo "\n";
+echo base64_decode($key);
+
