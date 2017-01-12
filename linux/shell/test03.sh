@@ -26,17 +26,6 @@ if [ -z $str ];then
 
 fi
 
-
-
-
-
-
-
-
-
-
-
-=======
 i=0
 
 while [ $i -lt 5 ];do
@@ -46,4 +35,4 @@ while [ $i -lt 5 ];do
 	((i++))
 
 done
->>>>>>> 8d0c904a4f8cdea55c5bb69a7e8f6c9c1b2eef00
+
