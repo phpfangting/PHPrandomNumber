@@ -1,4 +1,7 @@
 <?php
-	$num = 1000000.567899;
-	echo number_format($num,2);
+	// phpinfo();
 	
+   $arr = [1,2,3,4];
+
+   var_dump(json_encode($arr));
+  
