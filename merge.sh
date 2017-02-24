@@ -80,7 +80,7 @@ if [ "$COMMENT" = "" ];then
 
 fi
 
-#更新代码wef
+#更新代码
 
 if [ "$TARGET_BRANCH" = "" ];then
 
