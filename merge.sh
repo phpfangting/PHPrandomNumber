@@ -71,6 +71,13 @@ function updateBranch(){
 	success;
 }
 
+if [ "$COMMENT" = "" ];then
+	
+	 MSG="第一个参数是注释【必填】,第二个参数是目标分支【可选】(第二个参数为空更新当前分支，否则打版)"
+	 error;
+	 exit
+
+fi
 
 #更新代码
 
