@@ -6,13 +6,13 @@
 
 #当前分支
 
-BRANCH=`git branch|grep '*'|awk '{print $2}'` 
+BRANCH=`git branch|grep '*'|awk '{print $2}'` #当前分支 
 
 COMMENT=$1
 
 COLOR_START_GREEN="\033[32m" #绿色
 
-COLOR_END="\033[0m" #
+COLOR_END="\033[0m" 
 
 COLOR_START_RED="\033[31m" #红色
 
