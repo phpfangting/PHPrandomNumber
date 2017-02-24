@@ -97,10 +97,12 @@ else
 	MSG="从本地  $UPDATE_BRANCH 分支切换到本地 $TARGET_BRANCH 分支"
 	success;
 	git checkout $TARGET_BRANCH
-	git rebase --abort
+
 	#更新并提交目标分支
-	UPDATE_BRANCH=$TARGET_BRANCH
-	updateBranch;
+	#UPDATE_BRANCH=$TARGET_BRANCH
+	#updateBranch;
+
+	git pull origin $TARGET_BRANCH
 
 		
 	#在目标分支上合并分支 
