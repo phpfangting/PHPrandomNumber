@@ -18,5 +18,6 @@ if [ ${num:-1} -eq 1 ];then
 	echo 'hello'
 
 fi
-echo ${num:0}
 
+
+echo ${num:0}
