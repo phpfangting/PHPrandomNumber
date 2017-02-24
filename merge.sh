@@ -56,7 +56,7 @@ function updateBranch(){
 	 	MSG="提交代码到本地 $UPDATE_BRANCH 分支"
 	 	success;
 	 	git add .
-	 	git commit -am"$COMMENT" #提交代码
+	 	git commit -am"update" #提交代码
 
 	 	MSG="推送代码到远程 $UPDATE_BRANCH 分支"
 	 	success;
