@@ -37,7 +37,7 @@ function error(){
 #操作分支
 
 function updateBranch(){
-     git clean -df
+
 	 MSG="正在更新本地 ${UPDATE_BRANCH} 分支"
 	 success;
 	 git pull origin $UPDATE_BRANCH
