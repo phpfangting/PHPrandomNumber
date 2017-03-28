@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var data = {
+        el: '#app-5',
+        data: {
+            message: 'Hello Vue.js!'
+        },
+        methods: {
+            reverseMessage: function () {
+                 alert(this.message);
+//                this.message = this.message.split('').reverse().join('')
+            }
+        }
+    };
+    console.log(data.methods.reverseMessage());
+</script>
+</body>
+</html>

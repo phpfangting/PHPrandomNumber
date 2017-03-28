@@ -2,13 +2,30 @@
 
 $data = [
 
-      ['name'=>'zhangsan','age'=>19],
+    'name'=>'zhangsan',
+    'age'=>10
 ];
 
 
 
-foreach ($data as $key => $value) {
+// foreach ($data as $key => $value) {
       
-}
+// }
 
-var_dump($value);
+// extract($data);
+// echo $name;
+
+// $preg='/[\x{4e00}-\x{9fa5}]/iu';
+
+// $str="你是我的谁....l阿拉拉了";
+// preg_match_all($preg, $str, $data);
+// print_r($data);
+
+// $str = '<img src="a.jpg"><img src="b.jpg"><img src="c.jpg"><img src="d.jpg"><img src="e.jpg"><img src="f.jpg"><img src="j.jpg">';
+// $preg = '/src=\"(.*?)\"/';
+// preg_match_all($preg, $str, $data);
+
+$str="abc123,cdf345,lkdhello";
+$preg='/[a-zA-Z]+(?!\d+)/';
+preg_match_all($preg, $str, $rs);
+print_r($rs);
