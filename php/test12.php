@@ -25,7 +25,13 @@ $data = [
 // $preg = '/src=\"(.*?)\"/';
 // preg_match_all($preg, $str, $data);
 
-$str="abc123,cdf345,lkdhello";
-$preg='/[a-zA-Z]+(?!\d+)/';
-preg_match_all($preg, $str, $rs);
-print_r($rs);
+// $str="abc123,cdf345,lkdhello";
+// $preg='/[a-zA-Z]+(?!\d+)/l ';
+// preg_match_all($preg, $str, $rs);
+// print_r($rs);
+
+$a = fopen('./d.txt','rw');
+$a = fread($a,filesize('./d.txt'));
+$a = explode(PHP_EOL, $a);
+print_r($a);
+

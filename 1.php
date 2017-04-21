@@ -5,5 +5,6 @@
  * Date: 2017/3/27
  * Time: 16:03
  */
-
-var_dump($_GET);
+$json=file_get_contents('php://input', 'r');
+echo $json;
+exit;
