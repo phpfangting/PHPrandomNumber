@@ -91,7 +91,7 @@ $searchParam = [
 ];
 //把types当做key  把$searchParam当做值合并返回新的数组
 $paramConfig = array_combine($types, $searchParam);
-
+print_r($_GET);EXIT;
 ?>
 
 <!doctype html>
@@ -99,7 +99,7 @@ $paramConfig = array_combine($types, $searchParam);
 <head>
     <meta charset="UTF-8">
     <title>测试啊</title>
-    <script src="lib/jquery-1.8.3.min.js"></script>
+    <script src="/public/jquery-1.8.3.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -278,7 +278,7 @@ $paramConfig = array_combine($types, $searchParam);
             switch (type) {
                 case 1:
                     //type 为1时说明用户点击的是国家标签,那么可以将子类删除
-                    $(e).remove();
+//                    $(e).remove();
                     $('.search li[type="2"]').remove();
                     _json.contry = '';//国家编号
                     _json.contryName = '';//国家名称
@@ -309,7 +309,7 @@ $paramConfig = array_combine($types, $searchParam);
                     break;
             }
             //type不为1时删除标签
-            $('.search li[type=' + type + ']').remove();
+//            $('.search li[type=' + type + ']').remove();
             //页面跳转
             window.location.href = searchObj.getUrl();
             return;
