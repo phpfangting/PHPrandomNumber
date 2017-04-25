@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 require(__DIR__ . '/../' . "phpMQTT.php");
-$host='mqtt.epailive.com';
+
 
 $message = [
     '练达回家偷菜了',
@@ -26,7 +26,7 @@ $TPL=<<<HTML
     <dev>{$_POST['content']}</dev>
 HTML;
 $clientId = "hacker_".md5(uniqid());
-
+$host='mqtt.epailive.com';
 $mqtt = new phpMQTT("ssl://{$host}", 8883, $clientId); //Change client name to something unique
 if (!empty($_POST['content'])) {
     if ($mqtt->connect()) {
@@ -50,6 +50,4 @@ if (!empty($_POST['content'])) {
     }
 }
 $mqtt->close();
-
-
 ?>
