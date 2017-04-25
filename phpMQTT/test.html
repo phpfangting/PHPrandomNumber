@@ -56,13 +56,13 @@
 <body>
 
 <div class="content">
-  <div class="message" style="color: orangered;font-weight: bold;">没意思</div>
+  <!--<div class="message" style="color: orangered;font-weight: bold;">没意思</div>-->
 </div>
 <script>
 
     // Create a client instance
-    hostname='10.10.10.123';
-    port=8083;
+    hostname='mqtt.epailive.com';
+    port=8084;
     clientUser = 'C_'+Math.ceil(Math.random()*1000100018+1);
     client = new Paho.MQTT.Client(hostname, Number(port),clientUser);
 
@@ -71,15 +71,15 @@
     client.onMessageArrived = onMessageArrived;
 
     // connect the client
-    client.connect({onSuccess:onConnect});
+    client.connect({onSuccess:onConnect,useSSL:true});
     // called when the client connects
     function onConnect() {
         // Once a connection has been made, make a subscription and send a message.
         console.log("onConnect");
 //        client.subscribe("music");
         client.subscribe('music');
-        message = new Paho.MQTT.Message("Hello");
-        message.destinationName = "World";
+        message = new Paho.MQTT.Message("我去");
+        message.destinationName = "你大爷的";
         client.send(message);
     }
 
@@ -93,7 +93,7 @@
     // called when a message arrives
     function onMessageArrived(message) {
         $('.content').prepend( '<div class="message" style="color: orangered;font-weight: bold;">'+message.payloadString+'</div>');
-//        console.log("接收到的消息:"+message.payloadString);
+        console.log("接收到的消息:"+message.payloadString);
     }
 </script>
 </body>

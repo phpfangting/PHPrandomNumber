@@ -1,6 +1,8 @@
 <?php
-
+error_reporting(E_ALL);
 require(__DIR__ . '/../' . "phpMQTT.php");
+$host='mqtt.epailive.com';
+
 $message = [
     '练达回家偷菜了',
     '明磊回家吃饭了',
@@ -25,19 +27,26 @@ $TPL=<<<HTML
 HTML;
 $clientId = "hacker_".md5(uniqid());
 
-$mqtt = new phpMQTT("10.10.10.123", 1883, $clientId); //Change client name to something unique
+$mqtt = new phpMQTT("ssl://{$host}", 8883, $clientId); //Change client name to something unique
 if (!empty($_POST['content'])) {
     if ($mqtt->connect()) {
+        echo '连接成功';
         $mqtt->publish("music", 'message: ' . $TPL . '<br>create_dt: ' . date("Y-m-d H:i:s"), 0);
+    }else{
+        die('连接失败');
     }
+
 } else {
 
     foreach ($message as $item) {
 
         if ($mqtt->connect()) {
+            echo '连接成功';
             $mqtt->publish("music", 'message: ' . $item . '<br>create_dt: ' . date("Y-m-d H:i:s"), 0);
+        }else{
+            echo '连接失败';
         }
-        sleep(1);
+
     }
 }
 $mqtt->close();
