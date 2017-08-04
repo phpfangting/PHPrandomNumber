@@ -46,7 +46,7 @@
     $('#btnPush').click(function () {
         var content = $('#content').val();
         console.log(content);
-        if(!content){
+        if (!content) {
             console.log('内容不能为空');
             return false;
         }
@@ -54,7 +54,7 @@
             url: "/phpMQTT/examples/sendMessage.php",
             dataType: "",
             type: "POST",
-            data:{'content':content},
+            data: {'content': content},
             success: function (data) {
                 console.log('hello');
             }

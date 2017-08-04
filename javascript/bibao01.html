@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+</head>
+<body>
+<canvas id="clock"></canvas>
+<script type='text/javascript'>
+  var canvas = document.getElementById('clock');
+     var cxt = canvas.getContext('2d');//绘图环境
+
+
+ var i =0;
+  function   f(){
+  cxt.clearRect(0,0,1000,1000);
+     i++;
+  canvas.style.background='black';
+  canvas.style.margin='0px auto';
+ 
+
+
+  //画轨道
+  cxt.strokeStyle='white';
+  cxt.lineWidth=2;
+  cxt.beginPath();
+  cxt.arc(500,500,100,0,360,false);
+  cxt.closePath();
+  cxt.stroke();
+
+  //画太阳
+
+ 
+  cxt.beginPath();
+  cxt.arc(500,500,20,0,360,false);
+  cxt.closePath();
+  cxt.stroke();
+  var grd = cxt.createRadialGradient(500,500,0,500,500,25);
+  grd.addColorStop(0,"red");
+  grd.addColorStop(1,"yellow");
+  cxt.fillStyle=grd;
+  cxt.fill();
+ 
+  //画地球
+  cxt.save();
+  cxt.translate(500,500);
+  //设置旋转角度
+  cxt.rotate((i*365/360)*Math.PI/180);
+  cxt.beginPath();
+  cxt.arc(0,-100,5,0,360);
+  cxt.closePath();
+  cxt.stroke();
+  //渐变
+  var grd = cxt.createRadialGradient(0,-100,0,0,-100,5);
+  grd.addColorStop(0,"blue");
+  grd.addColorStop(1,"purple");
+  cxt.fillStyle=grd;
+  cxt.fill();
+  cxt.restore();//返回最初状态
+
+
+  //化轨道
+
+  cxt.beginPath();
+  cxt.arc(500,500,150,0,360,false);
+  cxt.closePath();
+  cxt.stroke();
+
+  //画星球
+
+  cxt.save();
+  cxt.translate(500,500);
+  cxt.rotate((i*235/360)*Math.PI/180);
+  cxt.beginPath();
+  cxt.arc(0,-150,10,0,360,false);
+  cxt.closePath();
+  cxt.stroke();
+  //渐变
+  var grd = cxt.createRadialGradient(0,-150,0,0,-150,10);
+  grd.addColorStop(0,"gold");
+  grd.addColorStop(1,"white");
+  cxt.fillStyle=grd;
+  cxt.fill();
+  cxt.restore();//返回最初状态
+ 
+ 
+
+  //化轨道
+
+  cxt.beginPath();
+  cxt.arc(500,500,250,0,360,false);
+  cxt.closePath();
+  cxt.stroke();
+
+
+  cxt.save();
+  cxt.translate(500,500);
+  cxt.rotate((i*31/360)*Math.PI/180);
+  cxt.beginPath();
+  cxt.arc(0,-250,10,0,360,false);
+  cxt.closePath();
+  cxt.stroke();
+  //对星球渐变
+  var grd = cxt.createRadialGradient(0,-250,0,0,-150,10);
+  grd.addColorStop(0,"green");
+  grd.addColorStop(1,"yellow");
+  cxt.fillStyle=grd;
+  cxt.fill();
+  cxt.restore();//返回最初状态
+
+
+ }
+ 
+ setInterval('f()',10);
+</script>
+</body>
+</html>
