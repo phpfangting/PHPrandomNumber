@@ -1,13 +1,50 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<title></title>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="./public/jquery-1.8.3.min.js"></script>
+	<style>
+		*{
+			padding:0;margin:0}
+		li{width:100pc;height:35px;line-height: 35px;}
+	</style>
 </head>
 <body>
-<script type="text/javascript">
-	var _str = '9999.9万';
-	_str= _str.split('.').join('.');;
-	console.log(_str);
-</script>
+<div class="box">
+	<ul>
+		<li>第一个元素</li>
+		<li>hello</li>
+		<li>hello</li>
+		<li>hello</li>
+		<li>hello</li>
+	</ul>
+	<ul>
+		<li>第一个元素</li>
+		<li>hello</li>
+		<li>hello</li>
+		<li>hello</li>
+		<li>hello</li>
+	</ul>
+	<ul>
+		<li>第一个元素</li>
+		<li>hello</li>
+		<li>hello</li>
+		<li>hello</li>
+		<li>hello</li>
+	</ul>
+	<ul>
+		<li>第一个元素</li>
+		<li>hello</li>
+		<li>hello</li>
+		<li>hello</li>
+		<li>hello</li>
+	</ul>
+</div>
 </body>
 </html>
+<script>
+		$('.box ul > li').each(function () {
+			$(this).nextAll().css({color:'red'})
+		});
+</script>

@@ -22,5 +22,6 @@
 // $width=100;
 // $extension = pathinfo($imgPath, PATHINFO_EXTENSION);
 //  echo !empty($extension)?str_replace('.'.$extension, '_ARTDATA'.$width.'.'.$extension, $imgPath):'';
-$item['itemPic']='';
-print_r(explode(',', $item['itemPic']));
+$num = 10.2;
+$arr = explode('.', $num);
+print_r($arr);

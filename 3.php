@@ -65,13 +65,9 @@
 
     }
 
-    $data = [
-      'company'=>[],
-      'time'=>[]
-    ];
-    $url =  http_build_query($data);
+   function say(){
+       return 100;
+   }
 
-
-   
-
-    echo $url;
+   $a=100;
+  $rs = say();
