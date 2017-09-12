@@ -37,7 +37,7 @@
                         <tbody>
                         <tr>
                             <th scope="row">周一</th>
-                            <td>整理单元测试文档</td>
+                            <td>首页、搜索页BUG</td>
                             <td>
                                 <div class="progress" style="margin:0">
                                     <?php $progress=100;?>
@@ -47,24 +47,24 @@
                                 </div>
 
                             </td>
-                            <td>完成单元测试入门</td>
+                            <td>完成首页、搜索页BUG</td>
                         </tr>
                         <tr>
                             <th scope="row">周二</th>
-                            <td>惠民消费（活动）</td>
+                            <td>惠民消费二期（活动）</td>
                             <td>
                                 <div class="progress" style="margin:0">
-                                    <?php $progress=50;?>
-                                    <div class="progress-bar progress-bar-warning progress-bar-striped"  role="progressbar" aria-valuenow="<?=$progress?>" aria-valuemin="0" aria-valuemax="100" style="width: <?=$progress?>%">
+                                    <?php $progress=100;?>
+                                    <div class="progress-bar progress-bar-success progress-bar-striped"  role="progressbar" aria-valuenow="<?=$progress?>" aria-valuemin="0" aria-valuemax="100" style="width: <?=$progress?>%">
                                         <span class="sr-only"><?=$progress?>% Complete (success)</span>
                                     </div>
                                 </div>
                             </td>
-                            <td>正在和前端对接口</td>
+                            <td>替换Excel、图片</td>
                         </tr>
                         <tr>
                             <th scope="row">周三</th>
-                            <td>惠民消费（活动）</td>
+                            <td>session</td>
                             <td>
                                 <div class="progress" style="margin:0">
                                     <?php $progress=100;?>
@@ -73,23 +73,23 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>完成惠民消费</td>
+                            <td>自定义session机制，session垃圾回收</td>
                         <tr>
                             <th scope="row">周四</th>
-                            <td>年鉴BUG</td>
+                            <td>年鉴搜索BUG</td>
                             <td>
                                 <div class="progress" style="margin:0">
-                                    <?php $progress=65;?>
-                                    <div class="progress-bar progress-bar-warning progress-bar-striped"  role="progressbar" aria-valuenow="<?=$progress?>" aria-valuemin="0" aria-valuemax="100" style="width: <?=$progress?>%">
+                                    <?php $progress=100;?>
+                                    <div class="progress-bar progress-bar-success progress-bar-striped"  role="progressbar" aria-valuenow="<?=$progress?>" aria-valuemin="0" aria-valuemax="100" style="width: <?=$progress?>%">
                                         <span class="sr-only"><?=$progress?>% Complete (success)</span>
                                     </div>
                                 </div>
                             </td>
-                            <td>年鉴首页BUG,拍卖结果页BUG</td>
+                            <td>修改年鉴搜索日期不显示BUG</td>
                         </tr>
                         <tr>
                             <th scope="row">周五</th>
-                            <td>年鉴BUG</td>
+                            <td>分享session</td>
                             <td>
                                 <div class="progress" style="margin:0">
                                     <?php $progress=100;?>
@@ -98,7 +98,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>完成年鉴首页BUG,拍卖结果页BUG</td>
+                            <td>完成分享session</td>
                         </tr>
                         <tr>
                             <th scope="row">周六</th>

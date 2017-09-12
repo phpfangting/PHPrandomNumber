@@ -69,5 +69,4 @@
        return 100;
    }
 
-   $a=100;
-  $rs = say();
+   strpos(null,'.');

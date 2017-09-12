@@ -22,6 +22,9 @@
 // $width=100;
 // $extension = pathinfo($imgPath, PATHINFO_EXTENSION);
 //  echo !empty($extension)?str_replace('.'.$extension, '_ARTDATA'.$width.'.'.$extension, $imgPath):'';
-$num = 10.2;
-$arr = explode('.', $num);
-print_r($arr);
+// $num = 10.2;
+// $arr = explode('.', $num);
+// print_r($arr);
+$str = 'name|s:15:"谁是你的谁"';
+
+echo serialize($str);
