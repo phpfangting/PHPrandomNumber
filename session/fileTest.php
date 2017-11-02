@@ -13,4 +13,4 @@
 
 $str = "zhangsan001:123456";
 
-echo base64_encode($str);
+echo ($str);
