@@ -42,12 +42,47 @@
 // echo json_encode('M00/01/F6/CgoKYVkiPnyAP44GAAOb12oZu0k841.jpg');
 // $data = json_decode('{"memberId":24977,"relationId":1,"relationType":2}',true);
 // var_export($data);
-function xrange($start, $end, $step = 1) {  
-    for ($i = $start; $i <= $end; $i += $step) {  
-        yield $i;  
-    }  
-}  
+// function xrange($start, $end, $step = 1) {  
+//     for ($i = $start; $i <= $end; $i += $step) {  
+//         yield $i;  
+//     }  
+// }  
 
-foreach (xrange(1, 1000000) as $num) {  
-    echo $num, "\n";  
-}  
+// foreach (xrange(1, 1000000) as $num) {  
+//     echo $num, "\n";  
+// }  
+$header = ['alg'=>'HS256','typ'=>'JWT'];
+$payload = ['iss'=>'dpbkNJY089bdeJk6PxAofj6ti19rsTRZ'];
+$secret_key = 'xVX7ousYSEU7447L42bELx6Wd3ydjdjC';
+
+function jwt($header = [], $payload = [], $secret_key = '', $secret_base64_encode = false)
+{
+    $encoded_header = base64_encode(json_encode($header));
+    $encoded_payload = base64_encode(json_encode($payload));
+    $header_payload = $encoded_header . '.' . $encoded_payload;
+    if ($secret_base64_encode) $secret_key = $secret_key = base64_encode($secret_key);
+    $signature = base64_encode(hash_hmac('sha256', $header_payload, $secret_key, true));
+    return $header_payload . '.' . $signature;
+}
+
+$token = jwt($header,$payload,$secret_key);
+
+$params = 'f=1&b=2&e=3&d=9&h=100&a=90';//参数
+$key='key=abcdefg';
+$secret = 'kjdfkdfgergnre%90';
+
+$arr = explode('&', $params); asort($arr);
+$paramstr = implode("&", $arr);
+$sign = strtoupper(md5($secret.$paramstr));
+
+
+
+var_dump($paramstr);
+
+
+
+
+
+
+
+
