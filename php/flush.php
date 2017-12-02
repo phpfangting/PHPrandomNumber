@@ -7,12 +7,13 @@
  */
 ob_start();
 
-echo str_repeat(" ",11024);
+
 
 for ($i=0;$i<10;++$i){
+	echo str_pad(" ",11024);
     echo $i;
     sleep(1);
     flush();
-    #ob_flush();
+    ob_flush();
 
 }
