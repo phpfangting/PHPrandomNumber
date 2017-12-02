@@ -154,11 +154,15 @@ class Loader
             $domain = $this->default_domain;
         }
 
+<<<<<<< HEAD
         if (!isset($this->domains[$this->locale])) {
             $this->domains[$this->locale] = array();
         }
 
         if (!isset($this->domains[$this->locale][$domain])) {
+=======
+        if (!isset($this->domains[$domain])) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             if (isset($this->paths[$domain])) {
                 $base = $this->paths[$domain];
             } else {
@@ -177,10 +181,17 @@ class Loader
 
             // We don't care about invalid path, we will get fallback
             // translator here
+<<<<<<< HEAD
             $this->domains[$this->locale][$domain] = new Translator($filename);
         }
 
         return $this->domains[$this->locale][$domain];
+=======
+            $this->domains[$domain] = new Translator($filename);
+        }
+
+        return $this->domains[$domain];
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 
     /**

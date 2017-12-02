@@ -6,10 +6,19 @@
 
 namespace PhpMyAdmin\SqlParser\Utils;
 
+<<<<<<< HEAD
 use PhpMyAdmin\SqlParser\Components\Expression;
 use PhpMyAdmin\SqlParser\Lexer;
 use PhpMyAdmin\SqlParser\Parser;
 use PhpMyAdmin\SqlParser\Statement;
+=======
+use PhpMyAdmin\SqlParser\Lexer;
+use PhpMyAdmin\SqlParser\Parser;
+use PhpMyAdmin\SqlParser\Statement;
+use PhpMyAdmin\SqlParser\Token;
+use PhpMyAdmin\SqlParser\TokensList;
+use PhpMyAdmin\SqlParser\Components\Expression;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 use PhpMyAdmin\SqlParser\Statements\AlterStatement;
 use PhpMyAdmin\SqlParser\Statements\AnalyzeStatement;
 use PhpMyAdmin\SqlParser\Statements\CallStatement;
@@ -20,18 +29,27 @@ use PhpMyAdmin\SqlParser\Statements\DeleteStatement;
 use PhpMyAdmin\SqlParser\Statements\DropStatement;
 use PhpMyAdmin\SqlParser\Statements\ExplainStatement;
 use PhpMyAdmin\SqlParser\Statements\InsertStatement;
+<<<<<<< HEAD
 use PhpMyAdmin\SqlParser\Statements\LoadStatement;
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 use PhpMyAdmin\SqlParser\Statements\OptimizeStatement;
 use PhpMyAdmin\SqlParser\Statements\RenameStatement;
 use PhpMyAdmin\SqlParser\Statements\RepairStatement;
 use PhpMyAdmin\SqlParser\Statements\ReplaceStatement;
 use PhpMyAdmin\SqlParser\Statements\SelectStatement;
+<<<<<<< HEAD
 use PhpMyAdmin\SqlParser\Statements\SetStatement;
 use PhpMyAdmin\SqlParser\Statements\ShowStatement;
 use PhpMyAdmin\SqlParser\Statements\TruncateStatement;
 use PhpMyAdmin\SqlParser\Statements\UpdateStatement;
 use PhpMyAdmin\SqlParser\Token;
 use PhpMyAdmin\SqlParser\TokensList;
+=======
+use PhpMyAdmin\SqlParser\Statements\ShowStatement;
+use PhpMyAdmin\SqlParser\Statements\TruncateStatement;
+use PhpMyAdmin\SqlParser\Statements\UpdateStatement;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 /**
  * Statement utilities.
@@ -51,6 +69,7 @@ class Query
         'SUM', 'AVG', 'STD', 'STDDEV', 'MIN', 'MAX', 'BIT_OR', 'BIT_AND',
     );
 
+<<<<<<< HEAD
     public static $ALLFLAGS = array(
         /*
          * select ... DISTINCT ...
@@ -283,6 +302,8 @@ class Query
         return $flags;
     }
 
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     /**
      * Gets an array with flags this statement has.
      *
@@ -295,7 +316,165 @@ class Query
     {
         $flags = array();
         if ($all) {
+<<<<<<< HEAD
             $flags = self::$ALLFLAGS;
+=======
+            $flags = array(
+                /*
+                 * select ... DISTINCT ...
+                 */
+                'distinct' => false,
+
+                /*
+                 * drop ... DATABASE ...
+                 */
+                'drop_database' => false,
+
+                /*
+                 * ... GROUP BY ...
+                 */
+                'group' => false,
+
+                /*
+                 * ... HAVING ...
+                 */
+                'having' => false,
+
+                /*
+                 * INSERT ...
+                 * or
+                 * REPLACE ...
+                 * or
+                 * DELETE ...
+                 */
+                'is_affected' => false,
+
+                /*
+                 * select ... PROCEDURE ANALYSE( ... ) ...
+                 */
+                'is_analyse' => false,
+
+                /*
+                 * select COUNT( ... ) ...
+                 */
+                'is_count' => false,
+
+                /*
+                 * DELETE ...
+                 */
+                'is_delete' => false, // @deprecated; use `querytype`
+
+                /*
+                 * EXPLAIN ...
+                 */
+                'is_explain' => false, // @deprecated; use `querytype`
+
+                /*
+                 * select ... INTO OUTFILE ...
+                 */
+                'is_export' => false,
+
+                /*
+                 * select FUNC( ... ) ...
+                 */
+                'is_func' => false,
+
+                /*
+                 * select ... GROUP BY ...
+                 * or
+                 * select ... HAVING ...
+                 */
+                'is_group' => false,
+
+                /*
+                 * INSERT ...
+                 * or
+                 * REPLACE ...
+                 * or
+                 * TODO: LOAD DATA ...
+                 */
+                'is_insert' => false,
+
+                /*
+                 * ANALYZE ...
+                 * or
+                 * CHECK ...
+                 * or
+                 * CHECKSUM ...
+                 * or
+                 * OPTIMIZE ...
+                 * or
+                 * REPAIR ...
+                 */
+                'is_maint' => false,
+
+                /*
+                 * CALL ...
+                 */
+                'is_procedure' => false,
+
+                /*
+                 * REPLACE ...
+                 */
+                'is_replace' => false, // @deprecated; use `querytype`
+
+                /*
+                 * SELECT ...
+                 */
+                'is_select' => false, // @deprecated; use `querytype`
+
+                /*
+                 * SHOW ...
+                 */
+                'is_show' => false, // @deprecated; use `querytype`
+
+                /*
+                 * Contains a subquery.
+                 */
+                'is_subquery' => false,
+
+                /*
+                 * ... JOIN ...
+                 */
+                'join' => false,
+
+                /*
+                 * ... LIMIT ...
+                 */
+                'limit' => false,
+
+                /*
+                 * TODO
+                 */
+                'offset' => false,
+
+                /*
+                 * ... ORDER ...
+                 */
+                'order' => false,
+
+                /*
+                 * The type of the query (which is usually the first keyword of
+                 * the statement).
+                 */
+                'querytype' => false,
+
+                /*
+                 * Whether a page reload is required.
+                 */
+                'reload' => false,
+
+                /*
+                 * SELECT ... FROM ...
+                 */
+                'select_from' => false,
+
+                /*
+                 * ... UNION ...
+                 */
+                'union' => false,
+            );
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         }
 
         if ($statement instanceof AlterStatement) {
@@ -342,25 +521,96 @@ class Query
             $flags['querytype'] = 'INSERT';
             $flags['is_affected'] = true;
             $flags['is_insert'] = true;
+<<<<<<< HEAD
         } elseif ($statement instanceof LoadStatement) {
             $flags['querytype'] = 'LOAD';
             $flags['is_affected'] = true;
             $flags['is_insert'] = true;
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         } elseif ($statement instanceof ReplaceStatement) {
             $flags['querytype'] = 'REPLACE';
             $flags['is_affected'] = true;
             $flags['is_replace'] = true;
             $flags['is_insert'] = true;
         } elseif ($statement instanceof SelectStatement) {
+<<<<<<< HEAD
             $flags = self::_getFlagsSelect($statement, $flags);
+=======
+            $flags['querytype'] = 'SELECT';
+            $flags['is_select'] = true;
+
+            if (!empty($statement->from)) {
+                $flags['select_from'] = true;
+            }
+
+            if ($statement->options->has('DISTINCT')) {
+                $flags['distinct'] = true;
+            }
+
+            if ((!empty($statement->group)) || (!empty($statement->having))) {
+                $flags['is_group'] = true;
+            }
+
+            if ((!empty($statement->into))
+                && ($statement->into->type === 'OUTFILE')
+            ) {
+                $flags['is_export'] = true;
+            }
+
+            $expressions = $statement->expr;
+            if (!empty($statement->join)) {
+                foreach ($statement->join as $join) {
+                    $expressions[] = $join->expr;
+                }
+            }
+
+            foreach ($expressions as $expr) {
+                if (!empty($expr->function)) {
+                    if ($expr->function === 'COUNT') {
+                        $flags['is_count'] = true;
+                    } elseif (in_array($expr->function, static::$FUNCTIONS)) {
+                        $flags['is_func'] = true;
+                    }
+                }
+                if (!empty($expr->subquery)) {
+                    $flags['is_subquery'] = true;
+                }
+            }
+
+            if ((!empty($statement->procedure))
+                && ($statement->procedure->name === 'ANALYSE')
+            ) {
+                $flags['is_analyse'] = true;
+            }
+
+            if (!empty($statement->group)) {
+                $flags['group'] = true;
+            }
+
+            if (!empty($statement->having)) {
+                $flags['having'] = true;
+            }
+
+            if (!empty($statement->union)) {
+                $flags['union'] = true;
+            }
+
+            if (!empty($statement->join)) {
+                $flags['join'] = true;
+            }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         } elseif ($statement instanceof ShowStatement) {
             $flags['querytype'] = 'SHOW';
             $flags['is_show'] = true;
         } elseif ($statement instanceof UpdateStatement) {
             $flags['querytype'] = 'UPDATE';
             $flags['is_affected'] = true;
+<<<<<<< HEAD
         } elseif ($statement instanceof SetStatement) {
             $flags['querytype'] = 'SET';
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         }
 
         if (($statement instanceof SelectStatement)
@@ -578,7 +828,11 @@ class Query
          *
          * @var string
          */
+<<<<<<< HEAD
         $clauseType = $lexer->list->getNextOfType(Token::TYPE_KEYWORD)->keyword;
+=======
+        $clauseType = $lexer->list->getNextOfType(Token::TYPE_KEYWORD)->value;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
         /**
          * The index of this clause.
@@ -630,10 +884,17 @@ class Query
             if ($brackets == 0) {
                 // Checking if the section was changed.
                 if (($token->type === Token::TYPE_KEYWORD)
+<<<<<<< HEAD
                     && (isset($clauses[$token->keyword]))
                     && ($clauses[$token->keyword] >= $currIdx)
                 ) {
                     $currIdx = $clauses[$token->keyword];
+=======
+                    && (isset($clauses[$token->value]))
+                    && ($clauses[$token->value] >= $currIdx)
+                ) {
+                    $currIdx = $clauses[$token->value];
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     if (($skipFirst) && ($currIdx == $clauseIdx)) {
                         // This token is skipped (not added to the old
                         // clause) because it will be replaced.
@@ -846,11 +1107,19 @@ class Query
 
             if ($brackets == 0) {
                 if (($token->type === Token::TYPE_KEYWORD)
+<<<<<<< HEAD
                     && (isset($clauses[$token->keyword]))
                     && ($clause === $token->keyword)
                 ) {
                     return $i;
                 } elseif ($token->keyword === 'UNION') {
+=======
+                    && (isset($clauses[$token->value]))
+                    && ($clause === $token->value)
+                ) {
+                    return $i;
+                } elseif ($token->value === 'UNION') {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     return -1;
                 }
             }

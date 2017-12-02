@@ -41,6 +41,10 @@ $GLOBALS['ConfigFile']->setPersistKeys(
         'Servers/1/host',
         'Servers/1/port',
         'Servers/1/socket',
+<<<<<<< HEAD
+=======
+        'Servers/1/connect_type',
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         'Servers/1/auth_type',
         'Servers/1/user',
         'Servers/1/password'

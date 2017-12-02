@@ -95,11 +95,19 @@ class DBIMysqli implements DBIExtension
         /* Optionally enable SSL */
         if ($server['ssl']) {
             $client_flags |= MYSQLI_CLIENT_SSL;
+<<<<<<< HEAD
             if (! empty($server['ssl_key']) ||
                 ! empty($server['ssl_cert']) ||
                 ! empty($server['ssl_ca']) ||
                 ! empty($server['ssl_ca_path']) ||
                 ! empty($server['ssl_ciphers'])
+=======
+            if (! is_null($server['ssl_key']) ||
+                ! is_null($server['ssl_cert']) ||
+                ! is_null($server['ssl_ca']) ||
+                ! is_null($server['ssl_ca_paths']) ||
+                ! is_null($server['ssl_ciphers'])
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             ) {
                 mysqli_ssl_set(
                     $link,
@@ -143,6 +151,7 @@ class DBIMysqli implements DBIExtension
         );
 
         if ($return_value === false || is_null($return_value)) {
+<<<<<<< HEAD
             /*
              * Switch to SSL if server asked us to do so
              *
@@ -161,6 +170,8 @@ class DBIMysqli implements DBIExtension
                     $server['ssl'] = true;
                     return self::connect($user, $password, $server);
             }
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             return false;
         }
 

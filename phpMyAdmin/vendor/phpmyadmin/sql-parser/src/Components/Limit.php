@@ -81,7 +81,11 @@ class Limit extends Component
                 break;
             }
 
+<<<<<<< HEAD
             if ($token->type === Token::TYPE_KEYWORD && $token->keyword === 'OFFSET') {
+=======
+            if (($token->type === Token::TYPE_KEYWORD) && ($token->value === 'OFFSET')) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 if ($offset) {
                     $parser->error('An offset was expected.', $token);
                 }

@@ -62,6 +62,17 @@ $cfg['SuhosinDisableWarning'] = false;
 $cfg['LoginCookieValidityDisableWarning'] = false;
 
 /**
+<<<<<<< HEAD
+=======
+ * Disable the default warning that is displayed if a difference between
+ * the MySQL library and server is detected.
+ *
+ * @global boolean $cfg['['ServerLibraryDifference_DisableWarning']']
+ */
+$cfg['ServerLibraryDifference_DisableWarning'] = false;
+
+/**
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
  * Disable the default warning about MySQL reserved words in column names
  *
  * @global boolean $cfg['ReservedWordDisableWarning']
@@ -184,6 +195,16 @@ $cfg['Servers'][$i]['ssl_ciphers'] = null;
 $cfg['Servers'][$i]['ssl_verify'] = true;
 
 /**
+<<<<<<< HEAD
+=======
+ * How to connect to MySQL server ('tcp' or 'socket')
+ *
+ * @global string $cfg['Servers'][$i]['connect_type']
+ */
+$cfg['Servers'][$i]['connect_type'] = 'tcp';
+
+/**
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
  * Use compressed protocol for the MySQL connection
  *
  * @global boolean $cfg['Servers'][$i]['compress']
@@ -1662,7 +1683,11 @@ $cfg['Export']['csv_removeCRLF'] = false;
  *
  * @global boolean $cfg['Export']['excel_columns']
  */
+<<<<<<< HEAD
 $cfg['Export']['excel_columns'] = true;
+=======
+$cfg['Export']['excel_columns'] = false;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 /**
  *
@@ -1887,7 +1912,11 @@ $cfg['Export']['sql_metadata'] = false;
  *
  * @global boolean $cfg['Export']['sql_use_transaction']
  */
+<<<<<<< HEAD
 $cfg['Export']['sql_use_transaction'] = true;
+=======
+$cfg['Export']['sql_use_transaction'] = false;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 /**
  *

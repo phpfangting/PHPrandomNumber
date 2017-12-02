@@ -10,7 +10,10 @@ use PMA\libraries\Encoding;
 use PMA\libraries\plugins\ImportPlugin;
 use PMA\libraries\File;
 use PMA\libraries\URL;
+<<<<<<< HEAD
 use PMA\libraries\Util;
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 use PMA\libraries\Bookmark;
 
 /* Enable LOAD DATA LOCAL INFILE for LDI plugin */
@@ -252,6 +255,7 @@ PMA\libraries\Util::checkParameters(array('import_type', 'format'));
 // We don't want anything special in format
 $format = PMA_securePath($format);
 
+<<<<<<< HEAD
 if (strlen($table) > 0 && strlen($db) > 0) {
     $urlparams = array('db' => $db, 'table' => $table);
 } elseif (strlen($db) > 0) {
@@ -266,6 +270,24 @@ if ($import_type == 'table') {
 } elseif ($import_type == 'database') {
     $goto = 'db_import.php';
 } elseif ($import_type == 'server') {
+=======
+// Create error and goto url
+if ($import_type == 'table') {
+    $err_url = 'tbl_import.php' . URL::getCommon(
+        array(
+            'db' => $db, 'table' => $table
+        )
+    );
+    $_SESSION['Import_message']['go_back_url'] = $err_url;
+    $goto = 'tbl_import.php';
+} elseif ($import_type == 'database') {
+    $err_url = 'db_import.php' . URL::getCommon(array('db' => $db));
+    $_SESSION['Import_message']['go_back_url'] = $err_url;
+    $goto = 'db_import.php';
+} elseif ($import_type == 'server') {
+    $err_url = 'server_import.php' . URL::getCommon();
+    $_SESSION['Import_message']['go_back_url'] = $err_url;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     $goto = 'server_import.php';
 } else {
     if (empty($goto) || !preg_match('@^(server|db|tbl)(_[a-z]*)*\.php$@i', $goto)) {
@@ -277,9 +299,25 @@ if ($import_type == 'table') {
             $goto = 'server_sql.php';
         }
     }
+<<<<<<< HEAD
 }
 $err_url = $goto . URL::getCommon($urlparams);
 $_SESSION['Import_message']['go_back_url'] = $err_url;
+=======
+    if (strlen($table) > 0 && strlen($db) > 0) {
+        $common = URL::getCommon(array('db' => $db, 'table' => $table));
+    } elseif (strlen($db) > 0) {
+        $common = URL::getCommon(array('db' => $db));
+    } else {
+        $common = URL::getCommon();
+    }
+    $err_url  = $goto . $common
+        . (preg_match('@^tbl_[a-z]*\.php$@', $goto)
+            ? '&amp;table=' . htmlspecialchars($table)
+            : '');
+    $_SESSION['Import_message']['go_back_url'] = $err_url;
+}
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 // Avoid setting selflink to 'import.php'
 // problem similar to bug 4276
 if (basename($_SERVER['SCRIPT_NAME']) === 'import.php') {
@@ -291,7 +329,11 @@ if (strlen($db) > 0) {
     $GLOBALS['dbi']->selectDb($db);
 }
 
+<<<<<<< HEAD
 Util::setTimeLimit();
+=======
+@set_time_limit($cfg['ExecTimeLimit']);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 if (! empty($cfg['MemoryLimit'])) {
     @ini_set('memory_limit', $cfg['MemoryLimit']);
 }
@@ -319,8 +361,11 @@ $run_query = true;
 $charset_conversion = false;
 $reset_charset = false;
 $bookmark_created = false;
+<<<<<<< HEAD
 $result = false;
 $msg = 'Sorry an unexpected error happened!';
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 // Bookmark Support: get a query back from bookmark if required
 if (! empty($_REQUEST['id_bookmark'])) {
@@ -599,6 +644,7 @@ if (! empty($id_bookmark) && $_REQUEST['action_bookmark'] == 2) {
 
 // Did we hit timeout? Tell it user.
 if ($timeout_passed) {
+<<<<<<< HEAD
     $urlparams['timeout_passed'] = '1';
     $urlparams['offset'] = $GLOBALS['offset'];
     if (isset($local_import_file)) {
@@ -607,6 +653,14 @@ if ($timeout_passed) {
 
     $importUrl = $err_url = $goto . URL::getCommon($urlparams);
 
+=======
+    $importUrl = $err_url .= '&timeout_passed=1&offset=' . urlencode(
+        $GLOBALS['offset']
+    );
+    if (isset($local_import_file)) {
+        $importUrl .= '&local_import_file=' . urlencode($local_import_file);
+    }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     $message = PMA\libraries\Message::error(
         __(
             'Script timeout passed, if you want to finish import,'

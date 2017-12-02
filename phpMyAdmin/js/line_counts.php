@@ -16,6 +16,7 @@ $LINE_COUNT = array();
 $LINE_COUNT['server_variables.js'] = 154;
 $LINE_COUNT['cross_framing_protection.js'] = 14;
 $LINE_COUNT['tbl_zoom_plot_jqplot.js'] = 632;
+<<<<<<< HEAD
 $LINE_COUNT['tbl_relation.js'] = 239;
 $LINE_COUNT['navigation.js'] = 1652;
 $LINE_COUNT['sprintf.js'] = 211;
@@ -27,6 +28,19 @@ $LINE_COUNT['pmd/designer_page.js'] = 172;
 $LINE_COUNT['pmd/move.js'] = 2090;
 $LINE_COUNT['error_report.js'] = 311;
 $LINE_COUNT['console.js'] = 1532;
+=======
+$LINE_COUNT['tbl_relation.js'] = 238;
+$LINE_COUNT['navigation.js'] = 1647;
+$LINE_COUNT['sprintf.js'] = 211;
+$LINE_COUNT['pmd/designer_objects.js'] = 17;
+$LINE_COUNT['pmd/history.js'] = 869;
+$LINE_COUNT['pmd/init.js'] = 41;
+$LINE_COUNT['pmd/designer_db.js'] = 136;
+$LINE_COUNT['pmd/designer_page.js'] = 172;
+$LINE_COUNT['pmd/move.js'] = 2090;
+$LINE_COUNT['error_report.js'] = 310;
+$LINE_COUNT['console.js'] = 1533;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 $LINE_COUNT['jqplot/plugins/jqplot.canvasTextRenderer.js'] = 448;
 $LINE_COUNT['jqplot/plugins/jqplot.byteFormatter.js'] = 46;
 $LINE_COUNT['jqplot/plugins/jqplot.pointLabels.js'] = 379;
@@ -39,7 +53,11 @@ $LINE_COUNT['jqplot/plugins/jqplot.cursor.js'] = 1108;
 $LINE_COUNT['jqplot/plugins/jqplot.pieRenderer.js'] = 945;
 $LINE_COUNT['jqplot/jquery.jqplot.js'] = 11477;
 $LINE_COUNT['keyhandler.js'] = 144;
+<<<<<<< HEAD
 $LINE_COUNT['common.js'] = 550;
+=======
+$LINE_COUNT['common.js'] = 544;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 $LINE_COUNT['server_status_variables.js'] = 101;
 $LINE_COUNT['db_tracking.js'] = 93;
 $LINE_COUNT['server_status_advisor.js'] = 99;
@@ -49,6 +67,7 @@ $LINE_COUNT['tbl_structure.js'] = 533;
 $LINE_COUNT['indexes.js'] = 760;
 $LINE_COUNT['server_status_sorter.js'] = 69;
 $LINE_COUNT['server_privileges.js'] = 478;
+<<<<<<< HEAD
 $LINE_COUNT['tbl_operations.js'] = 314;
 $LINE_COUNT['server_status_processes.js'] = 188;
 $LINE_COUNT['menu-resizer.js'] = 183;
@@ -58,6 +77,17 @@ $LINE_COUNT['db_central_columns.js'] = 238;
 $LINE_COUNT['codemirror/addon/runmode/runmode.js'] = 72;
 $LINE_COUNT['codemirror/addon/lint/sql-lint.js'] = 40;
 $LINE_COUNT['codemirror/addon/lint/lint.js'] = 248;
+=======
+$LINE_COUNT['tbl_operations.js'] = 313;
+$LINE_COUNT['server_status_processes.js'] = 188;
+$LINE_COUNT['menu-resizer.js'] = 183;
+$LINE_COUNT['gis_data_editor.js'] = 399;
+$LINE_COUNT['functions.js'] = 5036;
+$LINE_COUNT['db_central_columns.js'] = 238;
+$LINE_COUNT['codemirror/addon/runmode/runmode.js'] = 72;
+$LINE_COUNT['codemirror/addon/lint/sql-lint.js'] = 40;
+$LINE_COUNT['codemirror/addon/lint/lint.js'] = 239;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 $LINE_COUNT['codemirror/addon/hint/show-hint.js'] = 438;
 $LINE_COUNT['codemirror/addon/hint/sql-hint.js'] = 271;
 $LINE_COUNT['codemirror/mode/javascript/javascript.js'] = 795;
@@ -67,12 +97,20 @@ $LINE_COUNT['codemirror/lib/codemirror.js'] = 9112;
 $LINE_COUNT['replication.js'] = 94;
 $LINE_COUNT['db_operations.js'] = 162;
 $LINE_COUNT['server_plugins.js'] = 16;
+<<<<<<< HEAD
 $LINE_COUNT['makegrid.js'] = 2287;
+=======
+$LINE_COUNT['makegrid.js'] = 2291;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 $LINE_COUNT['tbl_gis_visualization.js'] = 365;
 $LINE_COUNT['server_status_queries.js'] = 34;
 $LINE_COUNT['jquery/jquery.mousewheel.js'] = 221;
 $LINE_COUNT['jquery/jquery.debounce-1.0.5.js'] = 70;
+<<<<<<< HEAD
 $LINE_COUNT['jquery/jquery-ui.min.js'] = 13;
+=======
+$LINE_COUNT['jquery/jquery-ui.min.js'] = 12;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 $LINE_COUNT['jquery/jquery.svg.js'] = 1352;
 $LINE_COUNT['jquery/jquery.min.js'] = 4;
 $LINE_COUNT['jquery/jquery.ba-hashchange-1.3.js'] = 390;
@@ -328,6 +366,7 @@ $LINE_COUNT['transformations/xml.js'] = 18;
 $LINE_COUNT['normalization.js'] = 710;
 $LINE_COUNT['microhistory.js'] = 332;
 $LINE_COUNT['server_user_groups.js'] = 42;
+<<<<<<< HEAD
 $LINE_COUNT['export.js'] = 989;
 $LINE_COUNT['zxcvbn.js'] = 28;
 $LINE_COUNT['sql.js'] = 998;
@@ -340,6 +379,20 @@ $LINE_COUNT['shortcuts_handler.js'] = 112;
 $LINE_COUNT['tbl_tracking.js'] = 109;
 $LINE_COUNT['config.js'] = 879;
 $LINE_COUNT['tbl_select.js'] = 409;
+=======
+$LINE_COUNT['export.js'] = 863;
+$LINE_COUNT['zxcvbn.js'] = 28;
+$LINE_COUNT['sql.js'] = 921;
+$LINE_COUNT['tbl_find_replace.js'] = 47;
+$LINE_COUNT['multi_column_sort.js'] = 81;
+$LINE_COUNT['doclinks.js'] = 365;
+$LINE_COUNT['server_status_monitor.js'] = 2165;
+$LINE_COUNT['server_databases.js'] = 183;
+$LINE_COUNT['shortcuts_handler.js'] = 112;
+$LINE_COUNT['tbl_tracking.js'] = 109;
+$LINE_COUNT['config.js'] = 877;
+$LINE_COUNT['tbl_select.js'] = 408;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 $LINE_COUNT['tbl_chart.js'] = 415;
 $LINE_COUNT['tbl_change.js'] = 725;
 $LINE_COUNT['db_structure.js'] = 457;
@@ -666,4 +719,8 @@ $LINE_COUNT['openlayers/src/openlayers/lib/OpenLayers/Feature/Vector.js'] = 510;
 $LINE_COUNT['openlayers/src/openlayers/lib/OpenLayers/Tile.js'] = 292;
 $LINE_COUNT['openlayers/OpenLayers.js'] = 1443;
 $LINE_COUNT['db_qbe.js'] = 76;
+<<<<<<< HEAD
 $LINE_COUNT['ajax.js'] = 816;
+=======
+$LINE_COUNT['ajax.js'] = 797;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65

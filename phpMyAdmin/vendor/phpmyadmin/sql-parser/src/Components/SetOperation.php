@@ -35,6 +35,7 @@ class SetOperation extends Component
     public $value;
 
     /**
+<<<<<<< HEAD
      * Constructor.
      *
      * @param string $column Field's name..
@@ -47,6 +48,8 @@ class SetOperation extends Component
     }
 
     /**
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      * @param Parser     $parser  the parser that serves as context
      * @param TokensList $list    the list of tokens that are being parsed
      * @param array      $options parameters for parsing
@@ -140,8 +143,14 @@ class SetOperation extends Component
     {
         if (is_array($component)) {
             return implode(', ', $component);
+<<<<<<< HEAD
         }
 
         return $component->column . ' = ' . $component->value;
+=======
+        } else {
+            return $component->column . ' = ' . $component->value;
+        }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 }

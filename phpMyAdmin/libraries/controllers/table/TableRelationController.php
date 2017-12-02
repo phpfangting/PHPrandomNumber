@@ -307,9 +307,12 @@ class TableRelationController extends TableController
         foreach ($columnList as $column) {
             $columns[] = htmlspecialchars($column);
         }
+<<<<<<< HEAD
         if ($GLOBALS['cfg']['NaturalOrder']) {
             usort($columns, 'strnatcasecmp');
         }
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         $this->response->addJSON('columns', $columns);
 
         // @todo should be: $server->db($db)->table($table)->primary()
@@ -360,9 +363,12 @@ class TableRelationController extends TableController
                 $tables[] = htmlspecialchars($row[0]);
             }
         }
+<<<<<<< HEAD
         if ($GLOBALS['cfg']['NaturalOrder']) {
             usort($tables, 'strnatcasecmp');
         }
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         $this->response->addJSON('tables', $tables);
     }
 }

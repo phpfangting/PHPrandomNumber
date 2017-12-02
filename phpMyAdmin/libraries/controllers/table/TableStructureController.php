@@ -493,6 +493,7 @@ class TableStructureController extends TableController
          */
         $fields_meta = array();
         for ($i = 0; $i < $selected_cnt; $i++) {
+<<<<<<< HEAD
             $value = $this->dbi->getColumns(
                 $this->db, $this->table, $selected[$i], true
             );
@@ -506,6 +507,11 @@ class TableStructureController extends TableController
             } else {
                 $fields_meta[] = $value;
             }
+=======
+            $fields_meta[] = $this->dbi->getColumns(
+                $this->db, $this->table, $selected[$i], true
+            );
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         }
         $num_fields = count($fields_meta);
         // set these globals because tbl_columns_definition_form.inc.php

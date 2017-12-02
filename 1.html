@@ -1,0 +1,41 @@
+<!--内容开始-->
+    <?php
+     if(config('baseConfig.cache.switch')):
+        $homeCachePath = resource_path('/views/home/cache') . DIRECTORY_SEPARATOR;//缓存路径
+        $cacheFileName = 'content.html';
+
+        if(!file_exists($homeCachePath.$cacheFileName) || filemtime($homeCachePath.$cacheFileName) + config('baseConfig.cache.expire') < time()):
+            ob_end_flush();//将头部缓存的内容放到程序缓存,并关闭ob缓存
+            ob_start();//开启ob缓存
+        ?>
+        @include('home.content')
+        <?php
+            if(!file_exists($homeCachePath)){
+                mkdir($homeCachePath,0777,true);
+            }
+            $content = ob_get_contents();//获取ob缓存的内容
+            file_put_contents($homeCachePath . DIRECTORY_SEPARATOR . $cacheFileName, $content);//将获取的缓存内容写入到缓存文件
+            ob_end_flush();//将content模板缓存的内容放到程序缓存,并关闭ob缓存
+        else:
+            include_once($homeCachePath.$cacheFileName);//引入生成的静态模板文件
+        endif;
+    else:
+    ?>
+        @include('home.content')
+   <?php endif;?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+        <ul>
+            <li>
+                <img src="a.jpg">
+                <div data-id=1>
+                    
+                </div>
+            </li>
+        </ul>
+</body>
+</html>

@@ -202,6 +202,7 @@ function PMA_getTransformationName($file)
 }
 
 /**
+<<<<<<< HEAD
  * Fixups old MIME or tranformation name to new one
  *
  * - applies some hardcoded fixups
@@ -228,6 +229,8 @@ function PMA_fixupMIME($value)
 }
 
 /**
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
  * Gets the mimetypes for all columns of a table
  *
  * @param string  $db       the name of the db to check for
@@ -279,7 +282,23 @@ function PMA_getMIME($db, $table, $strict = false, $fullName = false)
         $values = str_replace("png", "PNG", $values);
 
         // convert mimetype to new format (f.e. Text_Plain, etc)
+<<<<<<< HEAD
         $values['mimetype'] = PMA_fixupMIME($values['mimetype']);
+=======
+        $delimiter_space = '- ';
+        $delimiter = "_";
+        $values['mimetype'] = str_replace(
+            $delimiter_space,
+            $delimiter,
+            ucwords(
+                str_replace(
+                    $delimiter,
+                    $delimiter_space,
+                    $values['mimetype']
+                )
+            )
+        );
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
         // For transformation of form
         // output/image_jpeg__inline.inc.php
@@ -291,7 +310,21 @@ function PMA_getMIME($db, $table, $strict = false, $fullName = false)
             $values['transformation'] = $dir[1];
         }
 
+<<<<<<< HEAD
         $values['transformation'] = PMA_fixupMIME($values['transformation']);
+=======
+        $values['transformation'] = str_replace(
+            $delimiter_space,
+            $delimiter,
+            ucwords(
+                str_replace(
+                    $delimiter,
+                    $delimiter_space,
+                    $values['transformation']
+                )
+            )
+        );
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         $values['transformation'] = $subdir . $values['transformation'];
         $result[$column] = $values;
     }

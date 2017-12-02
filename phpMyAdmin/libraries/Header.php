@@ -148,9 +148,21 @@ class Header
     private function _addDefaultScripts()
     {
         // Localised strings
+<<<<<<< HEAD
         $this->_scripts->addFile('jquery/jquery.min.js');
         $this->_scripts->addFile('jquery/jquery-migrate-3.0.0.js');
         $this->_scripts->addFile('whitelist.php');
+=======
+        $params = array('lang' => $GLOBALS['lang']);
+        if (isset($GLOBALS['db'])) {
+            $params['db'] = $GLOBALS['db'];
+        }
+        $this->_scripts->addFile('jquery/jquery.min.js');
+        $this->_scripts->addFile('jquery/jquery-migrate-3.0.0.js');
+        $this->_scripts->addFile(
+            'whitelist.php' . URL::getCommon($params), false, true
+        );
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         $this->_scripts->addFile('sprintf.js');
         $this->_scripts->addFile('ajax.js');
         $this->_scripts->addFile('keyhandler.js');
@@ -177,7 +189,11 @@ class Header
         // Here would not be a good place to add CodeMirror because
         // the user preferences have not been merged at this point
 
+<<<<<<< HEAD
         $this->_scripts->addFile('messages.php');
+=======
+        $this->_scripts->addFile('messages.php' . URL::getCommon($params));
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         // Append the theme id to this url to invalidate
         // the cache on a theme change. Though this might be
         // unavailable for fatal errors.
@@ -186,7 +202,13 @@ class Header
         } else {
             $theme_id = 'default';
         }
+<<<<<<< HEAD
         $this->_scripts->addFile('get_image.js.php', false, array('theme' => $theme_id));
+=======
+        $this->_scripts->addFile(
+            'get_image.js.php?theme=' . $theme_id
+        );
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         $this->_scripts->addFile('config.js');
         $this->_scripts->addFile('doclinks.js');
         $this->_scripts->addFile('functions.js');
@@ -244,7 +266,10 @@ class Header
             'pftext' => $pftext,
             'confirm' => $GLOBALS['cfg']['Confirm'],
             'LoginCookieValidity' => $GLOBALS['cfg']['LoginCookieValidity'],
+<<<<<<< HEAD
             'session_gc_maxlifetime' => (int)@ini_get('session.gc_maxlifetime'),
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             'logged_in' => isset($GLOBALS['userlink']) ? true : false,
             'PMA_VERSION' => PMA_VERSION
         );
@@ -529,7 +554,10 @@ class Header
                 'X-Frame-Options: DENY'
             );
         }
+<<<<<<< HEAD
         header('Referrer-Policy: no-referrer');
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         header(
             "Content-Security-Policy: default-src 'self' "
             . $captcha_url
@@ -542,6 +570,10 @@ class Header
             . $captcha_url
             . $GLOBALS['cfg']['CSPAllow']
             . ";"
+<<<<<<< HEAD
+=======
+            . "referrer no-referrer;"
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             . "img-src 'self' data: "
             . $GLOBALS['cfg']['CSPAllow']
             . $map_tile_urls
@@ -674,9 +706,13 @@ class Header
                 . $basedir . 'js/codemirror/addon/lint/lint.css?' . $v . '" />';
             $retval .= '<link rel="stylesheet" type="text/css" href="'
                 . $basedir . 'phpmyadmin.css.php?'
+<<<<<<< HEAD
                 . 'nocache=' . $theme_id . $GLOBALS['text_dir']
                 . (isset($GLOBALS['server']) ? '&amp;server=' . $GLOBALS['server'] : '')
                 . '" />';
+=======
+                . 'nocache=' . $theme_id . $GLOBALS['text_dir'] . '" />';
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             // load Print view's CSS last, so that it overrides all other CSS while
             // 'printing'
             $retval .= '<link rel="stylesheet" type="text/css" href="'

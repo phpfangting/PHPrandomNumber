@@ -66,7 +66,11 @@ class IntoKeyword extends Component
     /**
      * The values to be selected into (SELECT .. INTO @var1).
      *
+<<<<<<< HEAD
      * @var Expression[]
+=======
+     * @var ExpressionArray
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      */
     public $values;
 
@@ -96,6 +100,7 @@ class IntoKeyword extends Component
     public $lines_options;
 
     /**
+<<<<<<< HEAD
      * Constructor.
      *
      * @param string $type           Type of destination (may be OUTFILE).
@@ -122,6 +127,8 @@ class IntoKeyword extends Component
     }
 
     /**
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      * @param Parser     $parser  the parser that serves as context
      * @param TokensList $list    the list of tokens that are being parsed
      * @param array      $options parameters for parsing
@@ -167,7 +174,11 @@ class IntoKeyword extends Component
             }
 
             if (($token->type === Token::TYPE_KEYWORD) && ($token->flags & Token::FLAG_KEYWORD_RESERVED)) {
+<<<<<<< HEAD
                 if (($state === 0) && ($token->keyword === 'OUTFILE')) {
+=======
+                if (($state === 0) && ($token->value === 'OUTFILE')) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     $ret->type = 'OUTFILE';
                     $state = 2;
                     continue;
@@ -211,7 +222,11 @@ class IntoKeyword extends Component
                 $ret->parseFileOptions($parser, $list, $token->value);
                 $state = 4;
             } elseif ($state == 4) {
+<<<<<<< HEAD
                 if ($token->type === Token::TYPE_KEYWORD && $token->keyword !== 'LINES') {
+=======
+                if ($token->type === Token::TYPE_KEYWORD && $token->value !== 'LINES') {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     break;
                 }
 
@@ -261,11 +276,17 @@ class IntoKeyword extends Component
     public static function build($component, array $options = array())
     {
         if ($component->dest instanceof Expression) {
+<<<<<<< HEAD
             $columns = !empty($component->columns) ? '(`' . implode('`, `', $component->columns) . '`)' : '';
+=======
+            $columns = !empty($component->columns) ?
+                '(`' . implode('`, `', $component->columns) . '`)' : '';
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
             return $component->dest . $columns;
         } elseif (isset($component->values)) {
             return ExpressionArray::build($component->values);
+<<<<<<< HEAD
         }
 
         $ret = 'OUTFILE "' . $component->dest . '"';
@@ -282,5 +303,23 @@ class IntoKeyword extends Component
         }
 
         return $ret;
+=======
+        } else {
+            $ret = 'OUTFILE "' . $component->dest . '"';
+
+            $fields_options_str = OptionsArray::build($component->fields_options);
+            if (trim($fields_options_str) !== '') {
+                $ret .= ($component->fields_keyword) ? ' FIELDS' : ' COLUMNS';
+                $ret .= ' ' . $fields_options_str;
+            }
+
+            $lines_options_str = OptionsArray::build($component->lines_options, array('expr' => true));
+            if (trim($lines_options_str) !== '') {
+                $ret .= ' LINES ' . $lines_options_str;
+            }
+
+            return $ret;
+        }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 }

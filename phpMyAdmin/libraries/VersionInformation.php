@@ -217,16 +217,24 @@ class VersionInformation
     }
 
     /**
+<<<<<<< HEAD
      * Returns the MySQL version if connected to a database
+=======
+     * Returns the MySQL version
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      *
      * @return string MySQL version
      */
     protected function getMySQLVersion()
     {
+<<<<<<< HEAD
         if (defined('PMA_MYSQL_STR_VERSION')) {
             return PMA_MYSQL_STR_VERSION;
         } else {
             return null;
         }
+=======
+        return PMA_MYSQL_STR_VERSION;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 }

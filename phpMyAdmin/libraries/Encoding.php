@@ -325,6 +325,7 @@ class Encoding
             . '</label><br />'
             . '</li></ul>';
     }
+<<<<<<< HEAD
 
     public static function listEncodings()
     {
@@ -342,3 +343,6 @@ class Encoding
         );
     }
 }
+=======
+}
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65

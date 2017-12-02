@@ -11,6 +11,7 @@
 
 namespace Symfony\Component\Cache\Adapter;
 
+<<<<<<< HEAD
 use Symfony\Component\Cache\Traits\FilesystemTrait;
 
 class FilesystemAdapter extends AbstractAdapter
@@ -22,9 +23,81 @@ class FilesystemAdapter extends AbstractAdapter
      * @param int         $defaultLifetime
      * @param string|null $directory
      */
+=======
+/**
+ * @author Nicolas Grekas <p@tchwork.com>
+ */
+class FilesystemAdapter extends AbstractAdapter
+{
+    use FilesystemAdapterTrait;
+
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     public function __construct($namespace = '', $defaultLifetime = 0, $directory = null)
     {
         parent::__construct('', $defaultLifetime);
         $this->init($namespace, $directory);
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function doFetch(array $ids)
+    {
+        $values = array();
+        $now = time();
+
+        foreach ($ids as $id) {
+            $file = $this->getFile($id);
+            if (!file_exists($file) || !$h = @fopen($file, 'rb')) {
+                continue;
+            }
+            if ($now >= (int) $expiresAt = fgets($h)) {
+                fclose($h);
+                if (isset($expiresAt[0])) {
+                    @unlink($file);
+                }
+            } else {
+                $i = rawurldecode(rtrim(fgets($h)));
+                $value = stream_get_contents($h);
+                fclose($h);
+                if ($i === $id) {
+                    $values[$id] = parent::unserialize($value);
+                }
+            }
+        }
+
+        return $values;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function doHave($id)
+    {
+        $file = $this->getFile($id);
+
+        return file_exists($file) && (@filemtime($file) > time() || $this->doFetch(array($id)));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function doSave(array $values, $lifetime)
+    {
+        $ok = true;
+        $expiresAt = time() + ($lifetime ?: 31557600); // 31557600s = 1 year
+
+        foreach ($values as $id => $value) {
+            $ok = $this->write($this->getFile($id, true), $expiresAt."\n".rawurlencode($id)."\n".serialize($value), $expiresAt) && $ok;
+        }
+
+        if (!$ok && !is_writable($this->directory)) {
+            throw new CacheException(sprintf('Cache directory is not writable (%s)', $this->directory));
+        }
+
+        return $ok;
+    }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 }

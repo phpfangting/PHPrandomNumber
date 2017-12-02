@@ -6,8 +6,13 @@
 
 namespace PhpMyAdmin\SqlParser\Statements;
 
+<<<<<<< HEAD
 use PhpMyAdmin\SqlParser\Components\Expression;
 use PhpMyAdmin\SqlParser\Statement;
+=======
+use PhpMyAdmin\SqlParser\Statement;
+use PhpMyAdmin\SqlParser\Components\Expression;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 /**
  * `DROP` statement.
@@ -49,12 +54,21 @@ class DropStatement extends Statement
      * @var array
      */
     public static $CLAUSES = array(
+<<<<<<< HEAD
         'DROP' => array('DROP', 2),
         // Used for options.
         '_OPTIONS' => array('_OPTIONS', 1),
         // Used for select expressions.
         'DROP_' => array('DROP', 1),
         'ON' => array('ON', 3),
+=======
+        'DROP' => array('DROP',        2),
+        // Used for options.
+        '_OPTIONS' => array('_OPTIONS',    1),
+        // Used for select expressions.
+        'DROP_' => array('DROP',        1),
+        'ON' => array('ON',          3),
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     );
 
     /**

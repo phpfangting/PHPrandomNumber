@@ -1,5 +1,6 @@
 # Change Log
 
+<<<<<<< HEAD
 ## [4.1.10] - 2017-08-21
 
 * Use custom LoaderException for context loading errors.
@@ -54,6 +55,8 @@
 * Better handling of non upper cased not reserved keywords.
 * Minor performance and coding style improvements.
 
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 ## [4.1.0] - 2017-01-23
 
 * Use phpmyadmin/motranslator to localize messages.

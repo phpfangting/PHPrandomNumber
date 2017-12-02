@@ -6,15 +6,26 @@
 
 namespace PhpMyAdmin\SqlParser\Statements;
 
+<<<<<<< HEAD
 use PhpMyAdmin\SqlParser\Components\ArrayObj;
 use PhpMyAdmin\SqlParser\Components\Condition;
 use PhpMyAdmin\SqlParser\Components\Expression;
 use PhpMyAdmin\SqlParser\Components\FunctionCall;
+=======
+use PhpMyAdmin\SqlParser\Statement;
+use PhpMyAdmin\SqlParser\Components\ArrayObj;
+use PhpMyAdmin\SqlParser\Components\FunctionCall;
+use PhpMyAdmin\SqlParser\Components\Expression;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 use PhpMyAdmin\SqlParser\Components\IntoKeyword;
 use PhpMyAdmin\SqlParser\Components\JoinKeyword;
 use PhpMyAdmin\SqlParser\Components\Limit;
 use PhpMyAdmin\SqlParser\Components\OrderKeyword;
+<<<<<<< HEAD
 use PhpMyAdmin\SqlParser\Statement;
+=======
+use PhpMyAdmin\SqlParser\Components\Condition;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 /**
  * `SELECT` statement.
@@ -83,6 +94,7 @@ class SelectStatement extends Statement
      * @var array
      */
     public static $CLAUSES = array(
+<<<<<<< HEAD
         'SELECT' => array('SELECT', 2),
         // Used for options.
         '_OPTIONS' => array('_OPTIONS', 1),
@@ -116,6 +128,41 @@ class SelectStatement extends Statement
         // These are available only when `UNION` is present.
         // 'ORDER BY'                      => array('ORDER BY', 3),
         // 'LIMIT'                         => array('LIMIT', 3),
+=======
+        'SELECT' => array('SELECT',                  2),
+        // Used for options.
+        '_OPTIONS' => array('_OPTIONS',                1),
+        // Used for selected expressions.
+        '_SELECT' => array('SELECT',                  1),
+        'INTO' => array('INTO',                    3),
+        'FROM' => array('FROM',                    3),
+        'PARTITION' => array('PARTITION',               3),
+
+        'JOIN' => array('JOIN',                    1),
+        'FULL JOIN' => array('FULL JOIN',               1),
+        'INNER JOIN' => array('INNER JOIN',              1),
+        'LEFT JOIN' => array('LEFT JOIN',               1),
+        'LEFT OUTER JOIN' => array('LEFT OUTER JOIN',         1),
+        'RIGHT JOIN' => array('RIGHT JOIN',              1),
+        'RIGHT OUTER JOIN' => array('RIGHT OUTER JOIN',        1),
+        'NATURAL JOIN' => array('NATURAL JOIN',            1),
+        'NATURAL LEFT JOIN' => array('NATURAL LEFT JOIN',       1),
+        'NATURAL RIGHT JOIN' => array('NATURAL RIGHT JOIN',      1),
+        'NATURAL LEFT OUTER JOIN' => array('NATURAL LEFT OUTER JOIN', 1),
+        'NATURAL RIGHT OUTER JOIN' => array('NATURAL RIGHT JOIN',      1),
+
+        'WHERE' => array('WHERE',                   3),
+        'GROUP BY' => array('GROUP BY',                3),
+        'HAVING' => array('HAVING',                  3),
+        'ORDER BY' => array('ORDER BY',                3),
+        'LIMIT' => array('LIMIT',                   3),
+        'PROCEDURE' => array('PROCEDURE',               3),
+        'UNION' => array('UNION',                   1),
+        '_END_OPTIONS' => array('_END_OPTIONS',            1),
+        // These are available only when `UNION` is present.
+        // 'ORDER BY'                      => array('ORDER BY',    3),
+        // 'LIMIT'                         => array('LIMIT',       3),
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     );
 
     /**

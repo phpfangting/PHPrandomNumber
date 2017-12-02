@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Version 3.3
 
 * Released on 2017-06-01.
@@ -16,22 +17,37 @@
 # Version 3.0
 
 * Released on 2017-01-23.
+=======
+# Version 3.0
+  
+* Released on 2017-01-23
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 * All classes moved to the PhpMyAdmin namespace.
 
 # Version 2.2
 
+<<<<<<< HEAD
 * Released on 2017-01-07.
+=======
+* Released on 2017-01-07
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 * Coding style cleanup.
 * Avoid installing tests using composer.
 
 # Version 2.1
 
+<<<<<<< HEAD
 * Released on 2016-12-21.
 * Various code cleanups.
+=======
+* Released on 2016-12-21
+* Various code cleanups
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 * Added support for PHP 5.3.
 
 # Version 2.0
 
+<<<<<<< HEAD
 * Released on 2016-10-13.
 * Consistently use camelCase in API.
 * No more relies on using eval().
@@ -54,6 +70,30 @@
 * Released on 2016-04-27.
 * Documentation improvements.
 * Testsuite improvements.
+=======
+* Released on 2016-10-13
+* Consistently use camelCase in API
+* No more relies on using eval()
+* Depends on symfony/expression-language for calculations
+
+# Version 1.2
+
+* Released on 2016-09-22
+* Stricter validation of plural expression
+
+# Version 1.1
+
+* Released on 2016-08-29
+* Improved handling of corrupted mo files
+* Minor performance improvements
+* Stricter validation of plural expression
+
+# Version 1.0
+
+* Released on 2016-04-27
+* Documentation improvements
+* Testsuite improvements
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 # Version 0.4
 

@@ -43,9 +43,12 @@ foreach ($columns as $column) {
         $column_array[$column['Field']] = $column['Field'];
     }
 }
+<<<<<<< HEAD
 if ($GLOBALS['cfg']['NaturalOrder']) {
     uksort($column_array, 'strnatcasecmp');
 }
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 $foreign_table = false;
 // foreign database dropdown
@@ -54,7 +57,11 @@ $foreign_db = (isset($one_key['ref_db_name'])) ? $one_key['ref_db_name'] : $db;
 $tables = array();
 if ($foreign_db) {
     $foreign_table = isset($one_key['ref_table_name'])
+<<<<<<< HEAD
         ? $one_key['ref_table_name'] : false;
+=======
+        ? $one_key['ref_table_name'] : '';
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
     $tables_rs = $GLOBALS['dbi']->query(
         'SHOW TABLE STATUS FROM ' . Util::backquote($foreign_db),
@@ -68,9 +75,12 @@ if ($foreign_db) {
             $tables[] = $row[0];
         }
     }
+<<<<<<< HEAD
     if ($GLOBALS['cfg']['NaturalOrder']) {
         usort($tables, 'strnatcasecmp');
     }
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 }
 ?>
 <tr>

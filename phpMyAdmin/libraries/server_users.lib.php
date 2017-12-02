@@ -16,11 +16,19 @@ use PMA\libraries\URL;
  */
 function PMA_getHtmlForSubMenusOnUsersPage($selfUrl)
 {
+<<<<<<< HEAD
+=======
+    $url_params = URL::getCommon();
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     $items = array(
         array(
             'name' => __('User accounts overview'),
             'url' => 'server_privileges.php',
+<<<<<<< HEAD
             'params' => URL::getCommon(array('viewing_mode' => 'server')),
+=======
+            'specific_params' => '&viewing_mode=server'
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         )
     );
 
@@ -28,7 +36,11 @@ function PMA_getHtmlForSubMenusOnUsersPage($selfUrl)
         $items[] = array(
             'name' => __('User groups'),
             'url' => 'server_user_groups.php',
+<<<<<<< HEAD
             'params' => URL::getCommon(),
+=======
+            'specific_params' => ''
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         );
     }
 
@@ -40,7 +52,12 @@ function PMA_getHtmlForSubMenusOnUsersPage($selfUrl)
         }
         $retval .= '<li>';
         $retval .= '<a' . $class;
+<<<<<<< HEAD
         $retval .= ' href="' . $item['url'] . $item['params'] . '">';
+=======
+        $retval .= ' href="' . $item['url']
+            . $url_params . $item['specific_params'] . '">';
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         $retval .= $item['name'];
         $retval .= '</a>';
         $retval .= '</li>';

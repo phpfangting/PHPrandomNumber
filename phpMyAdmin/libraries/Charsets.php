@@ -239,6 +239,7 @@ class Charsets
      */
     public static function getCollationDescr($collation)
     {
+<<<<<<< HEAD
         $parts = explode('_', $collation);
 
         $name = __('Unknown');
@@ -590,5 +591,239 @@ class Charsets
             $result .= ', ' . implode(', ', $suffixes);
         }
         return $result;
+=======
+        if ($collation == 'binary') {
+            return __('Binary');
+        }
+        $parts = explode('_', $collation);
+        if (count($parts) == 1) {
+            $parts[1] = 'general';
+        } elseif ($parts[1] == 'ci' || $parts[1] == 'cs') {
+            $parts[2] = $parts[1];
+            $parts[1] = 'general';
+        }
+        $descr = '';
+        switch ($parts[1]) {
+        case 'bulgarian':
+            $descr = __('Bulgarian');
+            break;
+        case 'chinese':
+            if ($parts[0] == 'gb2312' || $parts[0] == 'gbk') {
+                $descr = __('Simplified Chinese');
+            } elseif ($parts[0] == 'big5') {
+                $descr = __('Traditional Chinese');
+            }
+            break;
+        case 'ci':
+            $descr = __('case-insensitive');
+            break;
+        case 'cs':
+            $descr = __('case-sensitive');
+            break;
+        case 'croatian':
+            $descr = __('Croatian');
+            break;
+        case 'czech':
+            $descr = __('Czech');
+            break;
+        case 'danish':
+            $descr = __('Danish');
+            break;
+        case 'english':
+            $descr = __('English');
+            break;
+        case 'esperanto':
+            $descr = __('Esperanto');
+            break;
+        case 'estonian':
+            $descr = __('Estonian');
+            break;
+        case 'german1':
+            $descr = __('German') . ' (' . __('dictionary') . ')';
+            break;
+        case 'german2':
+            $descr = __('German') . ' (' . __('phone book') . ')';
+            break;
+        case 'hungarian':
+            $descr = __('Hungarian');
+            break;
+        case 'icelandic':
+            $descr = __('Icelandic');
+            break;
+        case 'japanese':
+            $descr = __('Japanese');
+            break;
+        case 'latvian':
+            $descr = __('Latvian');
+            break;
+        case 'lithuanian':
+            $descr = __('Lithuanian');
+            break;
+        case 'korean':
+            $descr = __('Korean');
+            break;
+        case 'myanmar':
+            $descr = __('Burmese');
+            break;
+        case 'persian':
+            $descr = __('Persian');
+            break;
+        case 'polish':
+            $descr = __('Polish');
+            break;
+        case 'roman':
+            $descr = __('West European');
+            break;
+        case 'romanian':
+            $descr = __('Romanian');
+            break;
+        case 'sinhala':
+            $descr = __('Sinhalese');
+            break;
+        case 'slovak':
+            $descr = __('Slovak');
+            break;
+        case 'slovenian':
+            $descr = __('Slovenian');
+            break;
+        case 'spanish':
+            $descr = __('Spanish');
+            break;
+        case 'spanish2':
+            $descr = __('Traditional Spanish');
+            break;
+        case 'swedish':
+            $descr = __('Swedish');
+            break;
+        case 'thai':
+            $descr = __('Thai');
+            break;
+        case 'turkish':
+            $descr = __('Turkish');
+            break;
+        case 'ukrainian':
+            $descr = __('Ukrainian');
+            break;
+        case 'unicode':
+            $descr = __('Unicode') . ' (' . __('multilingual') . ')';
+            break;
+        case 'vietnamese':
+            $descr = __('Vietnamese');
+            break;
+        /** @noinspection PhpMissingBreakStatementInspection */
+        case 'bin':
+            $is_bin = true;
+            // no break; statement here, continuing with 'general' section:
+        case 'general':
+            switch ($parts[0]) {
+            // Unicode charsets
+            case 'ucs2':
+            case 'utf8':
+            case 'utf16':
+            case 'utf16le':
+            case 'utf16be':
+            case 'utf32':
+            case 'utf8mb4':
+                $descr = __('Unicode') . ' (' . __('multilingual') . ')';
+                break;
+            // West European charsets
+            case 'ascii':
+            case 'cp850':
+            case 'dec8':
+            case 'hp8':
+            case 'latin1':
+            case 'macroman':
+                $descr = __('West European') . ' (' . __('multilingual') . ')';
+                break;
+            // Central European charsets
+            case 'cp1250':
+            case 'cp852':
+            case 'latin2':
+            case 'macce':
+                $descr = __('Central European') . ' (' . __('multilingual') . ')';
+                break;
+            // Russian charsets
+            case 'cp866':
+            case 'koi8r':
+                $descr = __('Russian');
+                break;
+            // Simplified Chinese charsets
+            case 'gb2312':
+            case 'gbk':
+                $descr = __('Simplified Chinese');
+                break;
+            // Japanese charsets
+            case 'sjis':
+            case 'ujis':
+            case 'cp932':
+            case 'eucjpms':
+                $descr = __('Japanese');
+                break;
+            // Baltic charsets
+            case 'cp1257':
+            case 'latin7':
+                $descr = __('Baltic') . ' (' . __('multilingual') . ')';
+                break;
+            // Other
+            case 'armscii8':
+            case 'armscii':
+                $descr = __('Armenian');
+                break;
+            case 'big5':
+                $descr = __('Traditional Chinese');
+                break;
+            case 'cp1251':
+                $descr = __('Cyrillic') . ' (' . __('multilingual') . ')';
+                break;
+            case 'cp1256':
+                $descr = __('Arabic');
+                break;
+            case 'euckr':
+                $descr = __('Korean');
+                break;
+            case 'hebrew':
+                $descr = __('Hebrew');
+                break;
+            case 'geostd8':
+                $descr = __('Georgian');
+                break;
+            case 'greek':
+                $descr = __('Greek');
+                break;
+            case 'keybcs2':
+                $descr = __('Czech-Slovak');
+                break;
+            case 'koi8u':
+                $descr = __('Ukrainian');
+                break;
+            case 'latin5':
+                $descr = __('Turkish');
+                break;
+            case 'swe7':
+                $descr = __('Swedish');
+                break;
+            case 'tis620':
+                $descr = __('Thai');
+                break;
+            default:
+                $descr = __('unknown');
+                break;
+            }
+            if (!empty($is_bin)) {
+                $descr .= ', ' . __('binary collation');
+            }
+            break;
+        default: $descr = __('unknown');
+        }
+        if (!empty($parts[2])) {
+            if ($parts[2] == 'ci') {
+                $descr .= ', ' . __('case-insensitive collation');
+            } elseif ($parts[2] == 'cs') {
+                $descr .= ', ' . __('case-sensitive collation');
+            }
+        }
+
+        return $descr;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 }

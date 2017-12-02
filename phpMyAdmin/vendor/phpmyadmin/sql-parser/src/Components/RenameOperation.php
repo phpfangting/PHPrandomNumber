@@ -35,6 +35,7 @@ class RenameOperation extends Component
     public $new;
 
     /**
+<<<<<<< HEAD
      * Constructor.
      *
      * @param Expression $old Old expression.
@@ -47,6 +48,8 @@ class RenameOperation extends Component
     }
 
     /**
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      * @param Parser     $parser  the parser that serves as context
      * @param TokensList $list    the list of tokens that are being parsed
      * @param array      $options parameters for parsing
@@ -112,7 +115,11 @@ class RenameOperation extends Component
                 }
                 $state = 1;
             } elseif ($state === 1) {
+<<<<<<< HEAD
                 if ($token->type === Token::TYPE_KEYWORD && $token->keyword === 'TO') {
+=======
+                if (($token->type === Token::TYPE_KEYWORD) && ($token->value === 'TO')) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     $state = 2;
                 } else {
                     $parser->error(
@@ -175,8 +182,14 @@ class RenameOperation extends Component
     {
         if (is_array($component)) {
             return implode(', ', $component);
+<<<<<<< HEAD
         }
 
         return $component->old . ' TO ' . $component->new;
+=======
+        } else {
+            return $component->old . ' TO ' . $component->new;
+        }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 }

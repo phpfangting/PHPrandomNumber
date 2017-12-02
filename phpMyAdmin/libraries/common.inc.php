@@ -75,6 +75,7 @@ require_once './libraries/vendor_config.php';
 /**
  * Activate autoloader
  */
+<<<<<<< HEAD
 if (! @is_readable('./vendor/autoload.php')) {
     die(
         'File <tt>./vendor/autoload.php</tt> missing or not readable. <br />'
@@ -82,6 +83,8 @@ if (! @is_readable('./vendor/autoload.php')) {
         . '<a href="https://docs.phpmyadmin.net/en/latest/setup.html#installing-from-git">install library files</a>.'
     );
 }
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 require_once './vendor/autoload.php';
 
 /**
@@ -242,10 +245,13 @@ if (isset($_COOKIE)) {
     ) {
         // delete all cookies
         foreach ($_COOKIE as $cookie_name => $tmp) {
+<<<<<<< HEAD
             // We ignore cookies not with pma prefix
             if (strncmp('pma', $cookie_name, 3) != 0) {
                 continue;
             }
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             $GLOBALS['PMA_Config']->removeCookie($cookie_name);
         }
         $_COOKIE = array();
@@ -375,15 +381,25 @@ $token_provided = false;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (PMA_isValid($_POST['token'])) {
         $token_provided = true;
+<<<<<<< HEAD
         $token_mismatch = ! @hash_equals($_SESSION[' PMA_token '], $_POST['token']);
+=======
+        $token_mismatch = ! hash_equals($_SESSION[' PMA_token '], $_POST['token']);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 
     if ($token_mismatch) {
         /**
          * We don't allow any POST operation parameters if the token is mismatched
          * or is not provided
+<<<<<<< HEAD
          */
         $whitelist = array('ajax_request');
+=======
+         *
+         */
+        $whitelist = array();
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         PMA\libraries\Sanitize::removeRequestVars($whitelist);
     }
 }
@@ -460,11 +476,16 @@ $GLOBALS['PMA_Config']->checkErrors();
 /**
  * As we try to handle charsets by ourself, mbstring overloads just
  * break it, see bug 1063821.
+<<<<<<< HEAD
  *
  * We specifically use empty here as we are looking for anything else than
  * empty value or 0.
  */
 if (@extension_loaded('mbstring') && !empty(@ini_get('mbstring.func_overload'))) {
+=======
+ */
+if (@extension_loaded('mbstring') && @ini_get('mbstring.func_overload') != '0') {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     PMA_fatalError(
         __(
             'You have enabled mbstring.func_overload in your PHP '
@@ -474,6 +495,7 @@ if (@extension_loaded('mbstring') && !empty(@ini_get('mbstring.func_overload')))
     );
 }
 
+<<<<<<< HEAD
 /**
  * The ini_set and ini_get functions can be disabled using
  * disable_functions but we're relying quite a lot of them.
@@ -487,6 +509,8 @@ if (! function_exists('ini_get') || ! function_exists('ini_set')) {
     );
 }
 
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 /******************************************************************************/
 /* setup servers                                       LABEL_setup_servers    */
 
@@ -521,12 +545,36 @@ if (! isset($cfg['Servers']) || count($cfg['Servers']) == 0) {
 
         $each_server = array_merge($default_server, $each_server);
 
+<<<<<<< HEAD
+=======
+        // Don't use servers with no hostname
+        if ($each_server['connect_type'] == 'tcp' && empty($each_server['host'])) {
+            trigger_error(
+                sprintf(
+                    __(
+                        'Invalid hostname for server %1$s. '
+                        . 'Please review your configuration.'
+                    ),
+                    $server_index
+                ),
+                E_USER_ERROR
+            );
+        }
+
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         // Final solution to bug #582890
         // If we are using a socket connection
         // and there is nothing in the verbose server name
         // or the host field, then generate a name for the server
         // in the form of "Server 2", localized of course!
+<<<<<<< HEAD
         if (empty($each_server['host']) && empty($each_server['verbose'])) {
+=======
+        if ($each_server['connect_type'] == 'socket'
+            && empty($each_server['host'])
+            && empty($each_server['verbose'])
+        ) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             $each_server['verbose'] = sprintf(__('Server %d'), $server_index);
         }
 
@@ -540,6 +588,14 @@ if (! isset($cfg['Servers']) || count($cfg['Servers']) == 0) {
 unset($default_server);
 
 
+<<<<<<< HEAD
+=======
+/******************************************************************************/
+/* setup themes                                          LABEL_theme_setup    */
+
+ThemeManager::initializeTheme();
+
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 if (! defined('PMA_MINIMUM_COMMON')) {
     /**
      * Lookup server by name
@@ -566,6 +622,7 @@ if (! defined('PMA_MINIMUM_COMMON')) {
         }
         unset($i);
     }
+<<<<<<< HEAD
 }
 
 /**
@@ -601,6 +658,36 @@ $GLOBALS['url_params']['server'] = $GLOBALS['server'];
 ThemeManager::initializeTheme();
 
 if (! defined('PMA_MINIMUM_COMMON')) {
+=======
+
+    /**
+     * If no server is selected, make sure that $cfg['Server'] is empty (so
+     * that nothing will work), and skip server authentication.
+     * We do NOT exit here, but continue on without logging into any server.
+     * This way, the welcome page will still come up (with no server info) and
+     * present a choice of servers in the case that there are multiple servers
+     * and '$cfg['ServerDefault'] = 0' is set.
+     */
+
+    if (isset($_REQUEST['server'])
+        && (is_string($_REQUEST['server']) || is_numeric($_REQUEST['server']))
+        && ! empty($_REQUEST['server'])
+        && ! empty($cfg['Servers'][$_REQUEST['server']])
+    ) {
+        $GLOBALS['server'] = $_REQUEST['server'];
+        $cfg['Server'] = $cfg['Servers'][$GLOBALS['server']];
+    } else {
+        if (!empty($cfg['Servers'][$cfg['ServerDefault']])) {
+            $GLOBALS['server'] = $cfg['ServerDefault'];
+            $cfg['Server'] = $cfg['Servers'][$GLOBALS['server']];
+        } else {
+            $GLOBALS['server'] = 0;
+            $cfg['Server'] = array();
+        }
+    }
+    $GLOBALS['url_params']['server'] = $GLOBALS['server'];
+
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     /**
      * save some settings in cookies
      * @todo should be done in PMA\libraries\Config
@@ -648,7 +735,11 @@ if (! defined('PMA_MINIMUM_COMMON')) {
          * the required auth type plugin
          */
         $auth_class = "Authentication" . ucfirst($cfg['Server']['auth_type']);
+<<<<<<< HEAD
         if (! @file_exists(
+=======
+        if (! file_exists(
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             './libraries/plugins/auth/'
             . $auth_class . '.php'
         )) {
@@ -657,7 +748,11 @@ if (! defined('PMA_MINIMUM_COMMON')) {
                 . ' ' . $cfg['Server']['auth_type']
             );
         }
+<<<<<<< HEAD
         if (isset($_REQUEST['pma_password']) && strlen($_REQUEST['pma_password']) > 256) {
+=======
+        if (isset($_REQUEST['pma_password'])) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             $_REQUEST['pma_password'] = substr($_REQUEST['pma_password'], 0, 256);
         }
         $fqnAuthClass = 'PMA\libraries\plugins\auth\\' . $auth_class;
@@ -732,6 +827,14 @@ if (! defined('PMA_MINIMUM_COMMON')) {
             $auth_plugin->authFails();
         }
 
+<<<<<<< HEAD
+=======
+        // if using TCP socket is not needed
+        if (mb_strtolower($cfg['Server']['connect_type']) == 'tcp') {
+            $cfg['Server']['socket'] = '';
+        }
+
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         // Try to connect MySQL with the control user profile (will be used to
         // get the privileges list for the current user but the true user link
         // must be open after this one so it would be default one for all the

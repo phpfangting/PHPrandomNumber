@@ -6,6 +6,7 @@
 
 namespace PhpMyAdmin\SqlParser\Statements;
 
+<<<<<<< HEAD
 use PhpMyAdmin\SqlParser\Components\ArrayObj;
 use PhpMyAdmin\SqlParser\Components\CreateDefinition;
 use PhpMyAdmin\SqlParser\Components\DataType;
@@ -17,6 +18,19 @@ use PhpMyAdmin\SqlParser\Parser;
 use PhpMyAdmin\SqlParser\Statement;
 use PhpMyAdmin\SqlParser\Token;
 use PhpMyAdmin\SqlParser\TokensList;
+=======
+use PhpMyAdmin\SqlParser\Parser;
+use PhpMyAdmin\SqlParser\Statement;
+use PhpMyAdmin\SqlParser\Token;
+use PhpMyAdmin\SqlParser\TokensList;
+use PhpMyAdmin\SqlParser\Components\ArrayObj;
+use PhpMyAdmin\SqlParser\Components\DataType;
+use PhpMyAdmin\SqlParser\Components\CreateDefinition;
+use PhpMyAdmin\SqlParser\Components\PartitionDefinition;
+use PhpMyAdmin\SqlParser\Components\Expression;
+use PhpMyAdmin\SqlParser\Components\OptionsArray;
+use PhpMyAdmin\SqlParser\Components\ParameterDefinition;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 /**
  * `CREATE` statement.
@@ -398,12 +412,20 @@ class CreateStatement extends Statement
             );
         } elseif ($this->options->has('TABLE')
             && ($token->type == Token::TYPE_KEYWORD)
+<<<<<<< HEAD
             && ($token->keyword == 'SELECT')
+=======
+            && ($token->value == 'SELECT')
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         ) {
             /* CREATE TABLE ... SELECT */
             $this->select = new SelectStatement($parser, $list);
         } elseif ($this->options->has('TABLE')
+<<<<<<< HEAD
             && ($token->type == Token::TYPE_KEYWORD) && ($token->keyword == 'AS')
+=======
+            && ($token->type == Token::TYPE_KEYWORD) && ($token->value == 'AS')
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             && ($list->tokens[$nextidx]->type == Token::TYPE_KEYWORD)
             && ($list->tokens[$nextidx]->value == 'SELECT')
         ) {
@@ -412,7 +434,11 @@ class CreateStatement extends Statement
             $this->select = new SelectStatement($parser, $list);
         } elseif ($this->options->has('TABLE')
             && $token->type == Token::TYPE_KEYWORD
+<<<<<<< HEAD
             && $token->keyword == 'LIKE'
+=======
+            && $token->value == 'LIKE'
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         ) {
             /* CREATE TABLE `new_tbl` LIKE 'orig_tbl' */
             $list->idx = $nextidx;
@@ -485,6 +511,7 @@ class CreateStatement extends Statement
                     continue;
                 }
 
+<<<<<<< HEAD
                 if (($token->type === Token::TYPE_KEYWORD) && ($token->keyword === 'PARTITION BY')) {
                     $field = 'partitionBy';
                     $brackets = false;
@@ -496,6 +523,19 @@ class CreateStatement extends Statement
                     --$list->idx; // `getNextOfType` also advances one position.
                     $this->partitionsNum = $token->value;
                 } elseif (($token->type === Token::TYPE_KEYWORD) && ($token->keyword === 'SUBPARTITIONS')) {
+=======
+                if (($token->type === Token::TYPE_KEYWORD) && ($token->value === 'PARTITION BY')) {
+                    $field = 'partitionBy';
+                    $brackets = false;
+                } elseif (($token->type === Token::TYPE_KEYWORD) && ($token->value === 'SUBPARTITION BY')) {
+                    $field = 'subpartitionBy';
+                    $brackets = false;
+                } elseif (($token->type === Token::TYPE_KEYWORD) && ($token->value === 'PARTITIONS')) {
+                    $token = $list->getNextOfType(Token::TYPE_NUMBER);
+                    --$list->idx; // `getNextOfType` also advances one position.
+                    $this->partitionsNum = $token->value;
+                } elseif (($token->type === Token::TYPE_KEYWORD) && ($token->value === 'SUBPARTITIONS')) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     $token = $list->getNextOfType(Token::TYPE_NUMBER);
                     --$list->idx; // `getNextOfType` also advances one position.
                     $this->subpartitionsNum = $token->value;
@@ -543,12 +583,20 @@ class CreateStatement extends Statement
         ) {
             $this->parameters = ParameterDefinition::parse($parser, $list);
             if ($this->options->has('FUNCTION')) {
+<<<<<<< HEAD
                 $prev_token = $token;
                 $token = $list->getNextOfType(Token::TYPE_KEYWORD);
                 if (is_null($token) || $token->keyword !== 'RETURNS') {
                     $parser->error(
                         'A "RETURNS" keyword was expected.',
                         is_null($token) ? $prev_token : $token
+=======
+                $token = $list->getNextOfType(Token::TYPE_KEYWORD);
+                if ($token->value !== 'RETURNS') {
+                    $parser->error(
+                        'A "RETURNS" keyword was expected.',
+                        $token
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     );
                 } else {
                     ++$list->idx;

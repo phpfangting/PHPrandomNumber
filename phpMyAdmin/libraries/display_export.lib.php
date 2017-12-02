@@ -11,7 +11,10 @@ use PMA\libraries\Message;
 use PMA\libraries\plugins\ExportPlugin;
 use PMA\libraries\Response;
 use PMA\libraries\Table;
+<<<<<<< HEAD
 use PMA\libraries\Template;
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 use PMA\libraries\URL;
 
 /**
@@ -639,7 +642,11 @@ function PMA_getHtmlForExportOptionsOutputCharset()
     $html = '        <li><label for="select_charset" class="desc">'
         . __('Character set of the file:') . '</label>' . "\n";
     $html .= '<select id="select_charset" name="charset" size="1">';
+<<<<<<< HEAD
     foreach (Encoding::listEncodings() as $temp_charset) {
+=======
+    foreach ($cfg['AvailableCharsets'] as $temp_charset) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         $html .= '<option value="' . $temp_charset . '"';
         if (isset($_GET['charset'])
             && ($_GET['charset'] != $temp_charset)
@@ -878,13 +885,18 @@ function PMA_getHtmlForExportOptions(
         $html .= PMA_getHtmlForExportOptionsQuickExport();
     }
 
+<<<<<<< HEAD
     $html .= PMA_getHtmlForAliasModalDialog();
+=======
+    $html .= PMA_getHtmlForAliasModalDialog($db, $table);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     $html .= PMA_getHtmlForExportOptionsOutput($export_type);
     $html .= PMA_getHtmlForExportOptionsFormat($export_list);
     return $html;
 }
 
 /**
+<<<<<<< HEAD
  * Generate Html For currently defined aliases
  *
  * @return string
@@ -948,6 +960,20 @@ function PMA_getHtmlForCurrentAlias()
  */
 function PMA_getHtmlForAliasModalDialog()
 {
+=======
+ * Prints Html For Alias Modal Dialog
+ *
+ * @param String $db    Selected DB
+ * @param String $table Selected Table
+ *
+ * @return string
+ */
+function PMA_getHtmlForAliasModalDialog($db = '', $table = '')
+{
+    if (isset($_SESSION['tmpval']['aliases'])) {
+        $aliases = $_SESSION['tmpval']['aliases'];
+    }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     // In case of server export, the following list of
     // databases are not shown in the list.
     $dbs_not_allowed = array(
@@ -958,10 +984,121 @@ function PMA_getHtmlForAliasModalDialog()
     // Fetch Columns info
     // Server export does not have db set.
     $title = __('Rename exported databases/tables/columns');
+<<<<<<< HEAD
 
     $html = '<div id="alias_modal" class="hide" title="' . $title . '">';
     $html .= PMA_getHtmlForCurrentAlias();
     $html .= Template::get('export/alias_add')->render();
+=======
+    if (empty($db)) {
+        $databases = $GLOBALS['dbi']->getColumnsFull(
+            null, null, null, $GLOBALS['userlink']
+        );
+        foreach ($dbs_not_allowed as $db) {
+            unset($databases[$db]);
+        }
+        // Database export does not have table set.
+    } elseif (empty($table)) {
+        $tables = $GLOBALS['dbi']->getColumnsFull(
+            $db, null, null, $GLOBALS['userlink']
+        );
+        $databases = array($db => $tables);
+        // Table export
+    } else {
+        $columns = $GLOBALS['dbi']->getColumnsFull(
+            $db, $table, null, $GLOBALS['userlink']
+        );
+        $databases = array(
+            $db => array(
+                $table => $columns
+            )
+        );
+    }
+
+    $html = '<div id="alias_modal" class="hide" title="' . $title . '">';
+    $db_html = '<label class="col-2">' . __('Select database') . ': '
+        . '</label><select id="db_alias_select">';
+    $table_html = '<label class="col-2">' . __('Select table') . ': </label>';
+    $first_db = true;
+    $table_input_html = $db_input_html = '';
+    foreach ($databases as  $db => $tables) {
+        $val = '';
+        if (!empty($aliases[$db]['alias'])) {
+            $val = htmlspecialchars($aliases[$db]['alias']);
+        }
+        $db = htmlspecialchars($db);
+        $name_attr = 'aliases[' . $db . '][alias]';
+        $id_attr = substr(md5($name_attr), 0, 12);
+        $class = 'hide';
+        if ($first_db) {
+            $first_db = false;
+            $class = '';
+            $db_input_html = '<label class="col-2" for="' . $id_attr . '">'
+                . __('New database name') . ': </label>';
+        }
+        $db_input_html .= '<input type="text" name="' . $name_attr . '" '
+            . 'placeholder="' . $db . ' alias" class="' . $class . '" '
+            . 'id="' . $id_attr . '" value="' . $val . '" disabled="disabled"/>';
+        $db_html .= '<option value="' . $id_attr . '">' . $db . '</option>';
+        $table_html .= '<span id="' . $id_attr . '_tables" class="' . $class . '">';
+        $table_html .= '<select id="' . $id_attr . '_tables_select" '
+            . 'class="table_alias_select">';
+        $first_tbl = true;
+        $col_html = '';
+        foreach ($tables as $table => $columns) {
+            $val = '';
+            if (!empty($aliases[$db]['tables'][$table]['alias'])) {
+                $val = htmlspecialchars($aliases[$db]['tables'][$table]['alias']);
+            }
+            $table = htmlspecialchars($table);
+            $name_attr =  'aliases[' . $db . '][tables][' . $table . '][alias]';
+            $id_attr = substr(md5($name_attr), 0, 12);
+            $class = 'hide';
+            if ($first_tbl) {
+                $first_tbl = false;
+                $class = '';
+                $table_input_html = '<label class="col-2" for="' . $id_attr . '">'
+                    . __('New table name') . ': </label>';
+            }
+            $table_input_html .= '<input type="text" value="' . $val . '" '
+                . 'name="' . $name_attr . '" id="' . $id_attr . '" '
+                . 'placeholder="' . $table . ' alias" class="' . $class . '" '
+                . 'disabled="disabled"/>';
+            $table_html .= '<option value="' . $id_attr . '">'
+                . $table . '</option>';
+            $col_html .= '<table id="' . $id_attr . '_cols" class="'
+                . $class . '" width="100%">';
+            $col_html .= '<thead><tr><th>' . __('Old column name') . '</th>'
+                . '<th>' . __('New column name') . '</th></tr></thead><tbody>';
+            foreach ($columns as $column => $col_def) {
+                $val = '';
+                if (!empty($aliases[$db]['tables'][$table]['columns'][$column])) {
+                    $val = htmlspecialchars(
+                        $aliases[$db]['tables'][$table]['columns'][$column]
+                    );
+                }
+                $column = htmlspecialchars($column);
+                $name_attr = 'aliases[' . $db . '][tables][' . $table
+                    . '][columns][' . $column . ']';
+                $id_attr = substr(md5($name_attr), 0, 12);
+                $col_html .= '<tr>';
+                $col_html .= '<th><label for="' . $id_attr . '">' . $column
+                    . '</label></th>';
+                $col_html .= '<td><dummy_inp type="text" name="' . $name_attr . '" '
+                    . 'id="' . $id_attr . '" placeholder="'
+                    . $column . ' alias" value="' . $val . '"></dummy_inp></td>';
+                $col_html .= '</tr>';
+            }
+            $col_html .= '</tbody></table>';
+        }
+        $table_html .= '</select>';
+        $table_html .= $table_input_html . '<hr/>' . $col_html . '</span>';
+    }
+    $db_html .= '</select>';
+    $html .= $db_html;
+    $html .= $db_input_html . '<hr/>';
+    $html .= $table_html;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
     $html .= '</div>';
     return $html;

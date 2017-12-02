@@ -137,7 +137,11 @@ class PartitionDefinition extends Component
             }
 
             if ($state === 0) {
+<<<<<<< HEAD
                 $ret->isSubpartition = ($token->type === Token::TYPE_KEYWORD) && ($token->keyword === 'SUBPARTITION');
+=======
+                $ret->isSubpartition = ($token->type === Token::TYPE_KEYWORD) && ($token->value === 'SUBPARTITION');
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 $state = 1;
             } elseif ($state === 1) {
                 $ret->name = $token->value;
@@ -203,6 +207,7 @@ class PartitionDefinition extends Component
     {
         if (is_array($component)) {
             return "(\n" . implode(",\n", $component) . "\n)";
+<<<<<<< HEAD
         }
 
         if ($component->isSubpartition) {
@@ -216,5 +221,21 @@ class PartitionDefinition extends Component
             . (empty($component->type) ? '' : ' VALUES ' . $component->type . ' ' . $component->expr . ' ')
             . $component->options . $subpartitions
         );
+=======
+        } else {
+            if ($component->isSubpartition) {
+                return trim('SUBPARTITION ' . $component->name . ' ' . $component->options);
+            } else {
+                $subpartitions = empty($component->subpartitions)
+                    ? '' : ' ' . self::build($component->subpartitions);
+
+                return trim(
+                    'PARTITION ' . $component->name
+                    . (empty($component->type) ? '' : ' VALUES ' . $component->type . ' ' . $component->expr . ' ')
+                    . $component->options . $subpartitions
+                );
+            }
+        }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 }

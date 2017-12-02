@@ -162,6 +162,10 @@ class Validator
     /**
      * Test database connection
      *
+<<<<<<< HEAD
+=======
+     * @param string $connect_type 'tcp' or 'socket'
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      * @param string $host         host name
      * @param string $port         tcp port to use
      * @param string $socket       socket to use
@@ -172,6 +176,10 @@ class Validator
      * @return bool|array
      */
     public static function testDBConnection(
+<<<<<<< HEAD
+=======
+        $connect_type,
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         $host,
         $port,
         $socket,
@@ -179,22 +187,36 @@ class Validator
         $pass = null,
         $error_key = 'Server'
     ) {
+<<<<<<< HEAD
         if ($GLOBALS['cfg']['DBG']['demo']) {
             // Connection test disabled on the demo server!
             return true;
         }
 
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         //    static::testPHPErrorMsg();
         $error = null;
         $host = PMA_sanitizeMySQLHost($host);
 
         if (DatabaseInterface::checkDbExtension('mysqli')) {
+<<<<<<< HEAD
             $socket = empty($socket) ? null : $socket;
             $port = empty($port) ? null : $port;
             $extension = 'mysqli';
         } else {
             $socket = empty($socket) ? null : ':' . ($socket[0] == '/' ? '' : '/') . $socket;
             $port = empty($port) ? null : ':' . $port;
+=======
+            $socket = empty($socket) || $connect_type == 'tcp' ? null : $socket;
+            $port = empty($port) || $connect_type == 'socket' ? null : $port;
+            $extension = 'mysqli';
+        } else {
+            $socket = empty($socket) || $connect_type == 'tcp'
+                ? null
+                : ':' . ($socket[0] == '/' ? '' : '/') . $socket;
+            $port = empty($port) || $connect_type == 'socket' ? null : ':' . $port;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             $extension = 'mysql';
         }
 
@@ -277,6 +299,10 @@ class Validator
                 $password = $values['Servers/1/password'];
             }
             $test = static::testDBConnection(
+<<<<<<< HEAD
+=======
+                empty($values['Servers/1/connect_type']) ? '' : $values['Servers/1/connect_type'],
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 empty($values['Servers/1/host']) ? '' : $values['Servers/1/host'],
                 empty($values['Servers/1/port']) ? '' : $values['Servers/1/port'],
                 empty($values['Servers/1/socket']) ? '' : $values['Servers/1/socket'],
@@ -332,6 +358,10 @@ class Validator
         }
         if (! $error) {
             $test = static::testDBConnection(
+<<<<<<< HEAD
+=======
+                empty($values['Servers/1/connect_type']) ? '' : $values['Servers/1/connect_type'],
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 empty($values['Servers/1/host']) ? '' : $values['Servers/1/host'],
                 empty($values['Servers/1/port']) ? '' : $values['Servers/1/port'],
                 empty($values['Servers/1/socket']) ? '' : $values['Servers/1/socket'],

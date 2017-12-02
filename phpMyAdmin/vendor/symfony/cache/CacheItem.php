@@ -22,11 +22,18 @@ final class CacheItem implements CacheItemInterface
 {
     protected $key;
     protected $value;
+<<<<<<< HEAD
     protected $isHit = false;
     protected $expiry;
     protected $defaultLifetime;
     protected $tags = array();
     protected $prevTags = array();
+=======
+    protected $isHit;
+    protected $expiry;
+    protected $defaultLifetime;
+    protected $tags = array();
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     protected $innerItem;
     protected $poolHash;
 
@@ -105,7 +112,11 @@ final class CacheItem implements CacheItemInterface
      *
      * @return static
      *
+<<<<<<< HEAD
      * @throws InvalidArgumentException When $tag is not valid
+=======
+     * @throws InvalidArgumentException When $tag is not valid.
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      */
     public function tag($tags)
     {
@@ -122,7 +133,11 @@ final class CacheItem implements CacheItemInterface
             if (!isset($tag[0])) {
                 throw new InvalidArgumentException('Cache tag length must be greater than zero');
             }
+<<<<<<< HEAD
             if (false !== strpbrk($tag, '{}()/\@:')) {
+=======
+            if (isset($tag[strcspn($tag, '{}()/\@:')])) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 throw new InvalidArgumentException(sprintf('Cache tag "%s" contains reserved characters {}()/\@:', $tag));
             }
             $this->tags[$tag] = $tag;
@@ -132,6 +147,7 @@ final class CacheItem implements CacheItemInterface
     }
 
     /**
+<<<<<<< HEAD
      * Returns the list of tags bound to the value coming from the pool storage if any.
      *
      * @return array
@@ -144,11 +160,17 @@ final class CacheItem implements CacheItemInterface
     }
 
     /**
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      * Validates a cache key according to PSR-6.
      *
      * @param string $key The key to validate
      *
+<<<<<<< HEAD
      * @throws InvalidArgumentException When $key is not valid
+=======
+     * @throws InvalidArgumentException When $key is not valid.
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      */
     public static function validateKey($key)
     {
@@ -158,7 +180,11 @@ final class CacheItem implements CacheItemInterface
         if (!isset($key[0])) {
             throw new InvalidArgumentException('Cache key length must be greater than zero');
         }
+<<<<<<< HEAD
         if (false !== strpbrk($key, '{}()/\@:')) {
+=======
+        if (isset($key[strcspn($key, '{}()/\@:')])) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             throw new InvalidArgumentException(sprintf('Cache key "%s" contains reserved characters {}()/\@:', $key));
         }
     }

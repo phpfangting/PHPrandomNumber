@@ -1,7 +1,11 @@
 {
     "name": "symfony/cache",
     "type": "library",
+<<<<<<< HEAD
     "description": "Symfony Cache component with PSR-6, PSR-16, and tags",
+=======
+    "description": "Symfony implementation of PSR-6",
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     "keywords": ["caching", "psr6"],
     "homepage": "https://symfony.com",
     "license": "MIT",
@@ -16,14 +20,22 @@
         }
     ],
     "provide": {
+<<<<<<< HEAD
         "psr/cache-implementation": "1.0",
         "psr/simple-cache-implementation": "1.0"
+=======
+        "psr/cache-implementation": "1.0"
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     },
     "require": {
         "php": ">=5.5.9",
         "psr/cache": "~1.0",
+<<<<<<< HEAD
         "psr/log": "~1.0",
         "psr/simple-cache": "^1.0"
+=======
+        "psr/log": "~1.0"
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     },
     "require-dev": {
         "cache/integration-tests": "dev-master",
@@ -31,9 +43,12 @@
         "doctrine/dbal": "~2.4",
         "predis/predis": "~1.0"
     },
+<<<<<<< HEAD
     "conflict": {
         "symfony/var-dumper": "<3.3"
     },
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     "suggest": {
         "symfony/polyfill-apcu": "For using ApcuAdapter on HHVM"
     },
@@ -46,7 +61,11 @@
     "minimum-stability": "dev",
     "extra": {
         "branch-alias": {
+<<<<<<< HEAD
             "dev-master": "3.3-dev"
+=======
+            "dev-master": "3.2-dev"
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         }
     }
 }

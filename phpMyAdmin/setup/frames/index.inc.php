@@ -28,6 +28,10 @@ $all_languages = LanguageManager::getInstance()->sortedLanguages();
 
 /** @var ConfigFile $cf */
 $cf = $GLOBALS['ConfigFile'];
+<<<<<<< HEAD
+=======
+$separator = URL::getArgSeparator('html');
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 // message handling
 PMA_messagesBegin();
@@ -156,10 +160,19 @@ if ($cf->getServerCount() > 0) {
         echo '<td>' , htmlspecialchars($cf->getServerDSN($id)) , '</td>';
         echo '<td style="white-space: nowrap">';
         echo '<small>';
+<<<<<<< HEAD
         echo '<a href="' , URL::getCommon(array('page' => 'servers', 'mode' => 'edit', 'id' => $id)), '">'
             , __('Edit') , '</a>';
         echo ' | ';
         echo '<a href="' , URL::getCommon(array('page' => 'servers', 'mode' => 'remove', 'id' => $id)), '">'
+=======
+        echo '<a href="' , URL::getCommon() , $separator , 'page=servers'
+            , $separator , 'mode=edit' , $separator , 'id=' , $id , '">'
+            , __('Edit') , '</a>';
+        echo ' | ';
+        echo '<a href="' , URL::getCommon() , $separator , 'page=servers'
+            , $separator , 'mode=remove' , $separator , 'id=' , $id , '">'
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             , __('Delete') , '</a>';
         echo '</small>';
         echo '</td>';
@@ -267,6 +280,10 @@ echo '<div id="footer">';
 echo '<a href="../url.php?url=https://www.phpmyadmin.net/">' , __('phpMyAdmin homepage') , '</a>';
 echo '<a href="../url.php?url=https://www.phpmyadmin.net/donate/">'
     ,  __('Donate') , '</a>';
+<<<<<<< HEAD
 echo '<a href="' ,  URL::getCommon(array('version_check' => '1')), '">'
+=======
+echo '<a href="' ,  URL::getCommon() , $separator , 'version_check=1">'
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     , __('Check for latest version') , '</a>';
 echo '</div>';

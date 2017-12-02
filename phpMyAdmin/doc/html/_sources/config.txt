@@ -108,10 +108,13 @@ Basic settings
     :type: boolean
     :default: false
 
+<<<<<<< HEAD
     .. deprecated:: 4.7.0
 
         This setting was removed as the warning has been removed as well.
 
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     A warning is displayed on the main page if there is a difference
     between the MySQL library and server version.
 
@@ -222,11 +225,16 @@ Server connection settings
 
     .. note::
 
+<<<<<<< HEAD
         The hostname ``localhost`` is handled specially by MySQL and it uses
         the socket based connection protocol. To use TCP/IP networking, use an
         IP address or hostname such as ``127.0.0.1`` or ``db.example.com``. You
         can configure the path to the socket with
         :config:option:`$cfg['Servers'][$i]['socket']`.
+=======
+        The hostname ``localhost`` is handled specially by MySQL and it
+        ignores :config:option:`$cfg['Servers'][$i]['port']` in this case.
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
     .. seealso::
 
@@ -263,11 +271,14 @@ Server connection settings
     :command:`mysql` command–line client, issue the ``status`` command. Among the
     resulting information displayed will be the socket used.
 
+<<<<<<< HEAD
     .. note::
 
         This takes effect only if :config:option:`$cfg['Servers'][$i]['host']` is set
         to ``localhost``.
 
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     .. seealso::
 
         :config:option:`$cfg['Servers'][$i]['host']`,
@@ -401,7 +412,11 @@ Server connection settings
     there is a chance your SSL connection will fail due to validation.
     Setting this to ``false`` will disable the validation check.
 
+<<<<<<< HEAD
     Since PHP 5.6.0 it also verifies whether server name matches CN of its
+=======
+    Since PHP 5.6.0 it also verifies whether server name matches CN of it's
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     certificate. There is currently no way to disable just this check without
     disabling complete SSL verification.
     
@@ -430,6 +445,7 @@ Server connection settings
     :type: string
     :default: ``'tcp'``
 
+<<<<<<< HEAD
     .. deprecated:: 4.7.0
 
        This setting is no longer used as of 4.7.0, since MySQL decides the
@@ -437,6 +453,8 @@ Server connection settings
        Please set :config:option:`$cfg['Servers'][$i]['host']` accordingly
        instead.
 
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     What type connection to use with the MySQL server. Your options are
     ``'socket'`` and ``'tcp'``. It defaults to tcp as that is nearly guaranteed
     to be available on all MySQL servers, while sockets are not supported on
@@ -1344,8 +1362,11 @@ Server connection settings
     :type: string
     :default: ``''``
 
+<<<<<<< HEAD
     .. versionadded:: 3.5.0
 
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     Name of PHP script to be sourced and executed to obtain login
     credentials. This is alternative approach to session based single
     signon. The script has to provide a function called
@@ -1997,7 +2018,11 @@ Navigation panel setup
 .. config:option:: $cfg['NavigationTreeEnableExpansion']
 
     :type: boolean
+<<<<<<< HEAD
     :default: true
+=======
+    :default: false
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
     Whether to offer the possibility of tree expansion in the navigation panel.
 
@@ -2064,8 +2089,25 @@ Main panel
     :type: boolean
     :default: false
 
+<<<<<<< HEAD
     Defines whether to display the :guilabel:`PHP information` or not at
     the starting main (right) frame.
+=======
+.. config:option:: $cfg['ShowChgPassword']
+
+    :type: boolean
+    :default: true
+
+.. config:option:: $cfg['ShowCreateDb']
+
+    :type: boolean
+    :default: true
+
+    Defines whether to display the :guilabel:`PHP information` and
+    :guilabel:`Change password` links and form for creating database or not at
+    the starting main (right) frame. This setting does not check MySQL commands
+    entered directly.
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
     Please note that to block the usage of ``phpinfo()`` in scripts, you have to
     put this in your :file:`php.ini`:
@@ -2082,6 +2124,7 @@ Main panel
         This might also make easier some remote attacks on your installations,
         so enable this only when needed.
 
+<<<<<<< HEAD
 .. config:option:: $cfg['ShowChgPassword']
 
     :type: boolean
@@ -2092,10 +2135,14 @@ Main panel
     entered directly.
 
     Please note that enabling the :guilabel:`Change password` link has no effect
+=======
+    Also note that enabling the :guilabel:`Change password` link has no effect
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     with config authentication mode: because of the hard coded password value
     in the configuration file, end users can't be allowed to change their
     passwords.
 
+<<<<<<< HEAD
 .. config:option:: $cfg['ShowCreateDb']
 
     :type: boolean
@@ -2105,6 +2152,8 @@ Main panel
     starting main (right) frame. This setting does not check MySQL commands
     entered directly.
 
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 .. config:option:: $cfg['ShowGitRevision']
 
     :type: boolean
@@ -3216,6 +3265,7 @@ Developer
     Enable to let server present itself as demo server.
     This is used for `phpMyAdmin demo server <https://www.phpmyadmin.net/try/>`_.
 
+<<<<<<< HEAD
     It currently changes following behavior:
 
     * There is welcome message on the main page.
@@ -3223,6 +3273,8 @@ Developer
     * The setup script is enabled even with existing configuration.
     * The setup does not try to connect to the MySQL server.
 
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 .. _config-examples:
 
 Examples

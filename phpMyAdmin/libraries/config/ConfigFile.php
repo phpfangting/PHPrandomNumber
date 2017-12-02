@@ -421,7 +421,11 @@ class ConfigFile
             }
             $dsn .= '@';
         }
+<<<<<<< HEAD
         if ($this->getValue("$path/host") != 'localhost') {
+=======
+        if ($this->getValue("$path/connect_type") == 'tcp') {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             $dsn .= $this->getValue("$path/host");
             $port = $this->getValue("$path/port");
             if ($port) {
@@ -535,6 +539,7 @@ class ConfigFile
      */
     public static function getDefaultTempDirectory()
     {
+<<<<<<< HEAD
         $dirs = array(
             $GLOBALS['cfg']['TempDir'],
             ini_get('upload_tmp_dir'),
@@ -548,5 +553,18 @@ class ConfigFile
         }
 
         return null;
+=======
+        $tmp_subdir = null;
+        if (! empty($GLOBALS['cfg']['TempDir']) && @is_writable($GLOBALS['cfg']['TempDir'])) {
+            $tmp_subdir = $GLOBALS['cfg']['TempDir'];
+        } else {
+            $tmp_subdir = ini_get('upload_tmp_dir');
+            if (empty($tmp_subdir)) {
+                $tmp_subdir = sys_get_temp_dir();
+            }
+            $tmp_subdir = rtrim($tmp_subdir, DIRECTORY_SEPARATOR);
+        }
+        return $tmp_subdir;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 }

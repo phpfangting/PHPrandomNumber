@@ -225,10 +225,15 @@ AJAX.registerTeardown('export.js', function () {
     $("input[type='radio'][name='quick_or_custom']").unbind('change');
     $("input[type='radio'][name='allrows']").unbind('change');
     $('#btn_alias_config').off('click');
+<<<<<<< HEAD
     $('.alias_remove').off('click');
     $('#db_alias_button').off('click');
     $('#table_alias_button').off('click');
     $('#column_alias_button').off('click');
+=======
+    $('#db_alias_select').off('change');
+    $('.table_alias_select').off('change');
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     $('input[name="table_select[]"]').off('change');
     $('input[name="table_structure[]"]').off('change');
     $('input[name="table_data[]"]').off('change');
@@ -766,10 +771,30 @@ function aliasSelectHandler(event) {
 function createAliasModal(event) {
     event.preventDefault();
     var dlgButtons = {};
+<<<<<<< HEAD
     dlgButtons[PMA_messages.strSaveAndClose] = function() {
         $(this).dialog("close");
         $('#alias_modal').parent().appendTo($('form[name="dump"]'));
     };
+=======
+    dlgButtons[PMA_messages.strResetAll] = function() {
+        $(this).find('input[type="text"]').val('');
+    };
+    dlgButtons[PMA_messages.strReset] = function() {
+        $(this).find('input[type="text"]:visible').val('');
+    };
+    dlgButtons[PMA_messages.strSaveAndClose] = function() {
+        $(this).dialog("close");
+        // do not fillup form submission with empty values
+        $.each($(this).find('input[type="text"]'), function (i, e) {
+            if ($(e).val().trim().length == 0) {
+                $(e).prop('disabled', true);
+            }
+        });
+        $('#alias_modal').parent().appendTo($('form[name="dump"]'));
+    };
+    $('#alias_modal').find('input[type="text"]').prop('disabled', false);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     $('#alias_modal').dialog({
         width: Math.min($(window).width() - 100, 700),
         maxHeight: $(window).height(),
@@ -778,6 +803,7 @@ function createAliasModal(event) {
         buttons: dlgButtons,
         create: function() {
             $(this).css('maxHeight', $(window).height() - 150);
+<<<<<<< HEAD
             var db = PMA_commonParams.get('db');
             if (db) {
                 var option = $('<option></option>');
@@ -804,10 +830,14 @@ function createAliasModal(event) {
                     }
                 });
             }
+=======
+            $('.alias-dialog .ui-dialog-titlebar-close').remove();
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         },
         close: function() {
             var isEmpty = true;
             $(this).find('input[type="text"]').each(function() {
+<<<<<<< HEAD
                 // trim empty input fields on close
                 if ($(this).val()) {
                     isEmpty = false;
@@ -816,10 +846,20 @@ function createAliasModal(event) {
                 }
             });
             // Toggle checkbox based on aliases
+=======
+                // trim input fields on close
+                $(this).val($(this).val().trim());
+                // check if non empty field present
+                if ($(this).val()) {
+                    isEmpty = false;
+                }
+            });
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             $('input#btn_alias_config').prop('checked', !isEmpty);
         },
         position: { my: "center top", at: "center top", of: window }
     });
+<<<<<<< HEAD
 }
 
 function aliasToggleRow(elm) {
@@ -851,6 +891,10 @@ function addAlias(type, name, field, value) {
     }
 
     $('#alias_data tbody').append(row);
+=======
+    // Call change event of .table_alias_select
+    $('.table_alias_select:visible').trigger('change');
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 }
 
 AJAX.registerOnload('export.js', function () {
@@ -890,6 +934,7 @@ AJAX.registerOnload('export.js', function () {
 
     // Open Alias Modal Dialog on click
     $('#btn_alias_config').on('click', createAliasModal);
+<<<<<<< HEAD
     $('.alias_remove').on('click', function () {
         $(this).parents('tr').remove();
     });
@@ -986,4 +1031,20 @@ AJAX.registerOnload('export.js', function () {
         );
         $('#column_alias_name').val('');
     });
+=======
+
+    // Database alias select on change event
+    $('#db_alias_select').on(
+        'change',
+        {sel: 'span', type: '_tables'},
+        aliasSelectHandler
+    );
+
+    // Table alias select on change event
+    $('.table_alias_select').on(
+        'change',
+        {sel: 'table', type: '_cols'},
+        aliasSelectHandler
+    );
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 });

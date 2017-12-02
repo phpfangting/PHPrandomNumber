@@ -32,7 +32,11 @@ namespace ReCaptcha;
 class Response
 {
     /**
+<<<<<<< HEAD
      * Success or failure.
+=======
+     * Succes or failure.
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      * @var boolean
      */
     private $success = false;
@@ -44,12 +48,15 @@ class Response
     private $errorCodes = array();
 
     /**
+<<<<<<< HEAD
      * The hostname of the site where the reCAPTCHA was solved.
      * @var string
      */
     private $hostname;
 
     /**
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      * Build the response from the expected JSON returned by the service.
      *
      * @param string $json
@@ -63,6 +70,7 @@ class Response
             return new Response(false, array('invalid-json'));
         }
 
+<<<<<<< HEAD
         $hostname = isset($responseData['hostname']) ? $responseData['hostname'] : null;
 
         if (isset($responseData['success']) && $responseData['success'] == true) {
@@ -74,6 +82,17 @@ class Response
         }
 
         return new Response(false, array(), $hostname);
+=======
+        if (isset($responseData['success']) && $responseData['success'] == true) {
+            return new Response(true);
+        }
+
+        if (isset($responseData['error-codes']) && is_array($responseData['error-codes'])) {
+            return new Response(false, $responseData['error-codes']);
+        }
+
+        return new Response(false);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 
     /**
@@ -81,6 +100,7 @@ class Response
      *
      * @param boolean $success
      * @param array $errorCodes
+<<<<<<< HEAD
      * @param string $hostname
      */
     public function __construct($success, array $errorCodes = array(), $hostname = null)
@@ -88,6 +108,13 @@ class Response
         $this->success = $success;
         $this->errorCodes = $errorCodes;
         $this->hostname = $hostname;
+=======
+     */
+    public function __construct($success, array $errorCodes = array())
+    {
+        $this->success = $success;
+        $this->errorCodes = $errorCodes;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 
     /**
@@ -109,6 +136,7 @@ class Response
     {
         return $this->errorCodes;
     }
+<<<<<<< HEAD
 
     /**
      * Get hostname.
@@ -119,4 +147,6 @@ class Response
     {
       return $this->hostname;
     }
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 }

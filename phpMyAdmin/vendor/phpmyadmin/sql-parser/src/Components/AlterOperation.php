@@ -117,6 +117,7 @@ class AlterOperation extends Component
     public $unknown = array();
 
     /**
+<<<<<<< HEAD
      * Constructor.
      *
      * @param OptionsArray $options options of alter operation
@@ -134,6 +135,8 @@ class AlterOperation extends Component
     }
 
     /**
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      * @param Parser     $parser  the parser that serves as context
      * @param TokensList $list    the list of tokens that are being parsed
      * @param array      $options parameters for parsing

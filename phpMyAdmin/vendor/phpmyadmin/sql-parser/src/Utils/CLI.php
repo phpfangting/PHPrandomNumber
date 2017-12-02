@@ -6,8 +6,13 @@
 
 namespace PhpMyAdmin\SqlParser\Utils;
 
+<<<<<<< HEAD
 use PhpMyAdmin\SqlParser\Lexer;
 use PhpMyAdmin\SqlParser\Parser;
+=======
+use PhpMyAdmin\SqlParser\Parser;
+use PhpMyAdmin\SqlParser\Lexer;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 /**
  * CLI interface.
@@ -130,6 +135,7 @@ class CLI
 
         return 1;
     }
+<<<<<<< HEAD
 
     public function usageTokenize()
     {
@@ -180,4 +186,6 @@ class CLI
 
         return 1;
     }
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 }

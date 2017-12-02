@@ -7,6 +7,7 @@ low overhead so that caching is fastest. It ships with a few caching adapters
 for the most widespread and suited to caching backends. It also provides a
 `doctrine/cache` proxy adapter to cover more advanced caching needs and a proxy
 adapter for greater interoperability between PSR-6 implementations.
+<<<<<<< HEAD
 
 Resources
 ---------
@@ -16,3 +17,5 @@ Resources
   * [Report issues](https://github.com/symfony/symfony/issues) and
     [send Pull Requests](https://github.com/symfony/symfony/pulls)
     in the [main Symfony repository](https://github.com/symfony/symfony)
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65

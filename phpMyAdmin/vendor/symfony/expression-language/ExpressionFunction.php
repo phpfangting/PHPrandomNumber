@@ -62,6 +62,7 @@ class ExpressionFunction
     {
         return $this->evaluator;
     }
+<<<<<<< HEAD
 
     /**
      * Creates an ExpressionFunction from a PHP function name.
@@ -99,4 +100,6 @@ class ExpressionFunction
 
         return new self($expressionFunctionName ?: end($parts), $compiler, $evaluator);
     }
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 }

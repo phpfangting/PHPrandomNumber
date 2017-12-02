@@ -6,9 +6,15 @@
 
 namespace PhpMyAdmin\SqlParser\Statements;
 
+<<<<<<< HEAD
 use PhpMyAdmin\SqlParser\Components\OptionsArray;
 use PhpMyAdmin\SqlParser\Components\SetOperation;
 use PhpMyAdmin\SqlParser\Statement;
+=======
+use PhpMyAdmin\SqlParser\Statement;
+use PhpMyAdmin\SqlParser\Components\SetOperation;
+use PhpMyAdmin\SqlParser\Components\OptionsArray;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 /**
  * `SET` statement.
@@ -27,7 +33,11 @@ class SetStatement extends Statement
      * @var array
      */
     public static $CLAUSES = array(
+<<<<<<< HEAD
         'SET' => array('SET', 3),
+=======
+        'SET' => array('SET',         3),
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     );
 
     /**

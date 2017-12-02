@@ -24,7 +24,10 @@ $header   = $response->getHeader();
 $scripts  = $header->getScripts();
 $scripts->addFile('server_privileges.js');
 $scripts->addFile('replication.js');
+<<<<<<< HEAD
 $scripts->addFile('zxcvbn.js');
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 /**
  * Checks if the user is allowed to do what he tries to...

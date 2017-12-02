@@ -642,7 +642,11 @@ function Save2(callback)
 {
     if (pmd_tables_enabled) {
         var poststr = '&operation=savePage&save_page=same&ajax_request=true';
+<<<<<<< HEAD
         poststr += '&server=' + server + '&db=' + db + '&token=' + PMA_commonParams.get('token') + '&selected_page=' + selected_page;
+=======
+        poststr += '&server=' + server + '&db=' + db + '&token=' + token + '&selected_page=' + selected_page;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         poststr += Get_url_pos();
 
         var $msgbox = PMA_ajaxShowMessage(PMA_messages.strProcessingRequest);
@@ -729,7 +733,11 @@ function Save3(callback)
         var $form = $('<form action="db_designer.php" method="post" name="save_page" id="save_page" class="ajax"></form>')
             .append('<input type="hidden" name="server" value="' + server + '" />')
             .append('<input type="hidden" name="db" value="' + db + '" />')
+<<<<<<< HEAD
             .append('<input type="hidden" name="token" value="' + PMA_commonParams.get('token') + '" />')
+=======
+            .append('<input type="hidden" name="token" value="' + token + '" />')
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             .append('<input type="hidden" name="operation" value="savePage" />')
             .append('<input type="hidden" name="save_page" value="new" />')
             .append('<label for="selected_value">' + PMA_messages.strPageName +
@@ -774,7 +782,11 @@ function Edit_pages()
         };
 
         var $msgbox = PMA_ajaxShowMessage();
+<<<<<<< HEAD
         var params = 'ajax_request=true&dialog=edit&server=' + server + '&token=' + PMA_commonParams.get('token') + '&db=' + db;
+=======
+        var params = 'ajax_request=true&dialog=edit&server=' + server + '&token=' + token + '&db=' + db;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         $.get("db_designer.php", params, function (data) {
             if (data.success === false) {
                 PMA_ajaxShowMessage(data.error, false);
@@ -854,7 +866,11 @@ function Delete_pages()
     };
 
     var $msgbox = PMA_ajaxShowMessage();
+<<<<<<< HEAD
     var params = 'ajax_request=true&dialog=delete&server=' + server + '&token=' + PMA_commonParams.get('token') + '&db=' + db;
+=======
+    var params = 'ajax_request=true&dialog=delete&server=' + server + '&token=' + token + '&db=' + db;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     $.get("db_designer.php", params, function (data) {
         if (data.success === false) {
             PMA_ajaxShowMessage(data.error, false);
@@ -953,7 +969,11 @@ function Save_as()
     };
 
     var $msgbox = PMA_ajaxShowMessage();
+<<<<<<< HEAD
     var params = 'ajax_request=true&dialog=save_as&server=' + server + '&token=' + PMA_commonParams.get('token') + '&db=' + db;
+=======
+    var params = 'ajax_request=true&dialog=save_as&server=' + server + '&token=' + token + '&db=' + db;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     $.get("db_designer.php", params, function (data) {
         if (data.success === false) {
             PMA_ajaxShowMessage(data.error, false);
@@ -1030,7 +1050,11 @@ function Export_pages()
         $(this).dialog('close');
     };
     var $msgbox = PMA_ajaxShowMessage();
+<<<<<<< HEAD
     var params = 'ajax_request=true&dialog=export&server=' + server + '&token=' + PMA_commonParams.get('token') + '&db=' + db + '&selected_page=' + selected_page;
+=======
+    var params = 'ajax_request=true&dialog=export&server=' + server + '&token=' + token + '&db=' + db + '&selected_page=' + selected_page;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     $.get("db_designer.php", params, function (data) {
         if (data.success === false) {
             PMA_ajaxShowMessage(data.error, false);
@@ -1077,7 +1101,11 @@ function Load_page(page) {
         if (page !== null) {
             param_page = '&page=' + page;
         }
+<<<<<<< HEAD
         $('<a href="db_designer.php?server=' + server + '&db=' + db + '&token=' + PMA_commonParams.get('token') + param_page + '"></a>')
+=======
+        $('<a href="db_designer.php?server=' + server + '&db=' + db + '&token=' + token + param_page + '"></a>')
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             .appendTo($('#page_content'))
             .click();
     } else {
@@ -1125,7 +1153,11 @@ function Angular_direct()
 
 function saveValueInConfig(index_sent, value_sent) {
     $.post('db_designer.php',
+<<<<<<< HEAD
         {operation: 'save_setting_value', index: index_sent, ajax_request: true, server: server, token: PMA_commonParams.get('token'), value: value_sent},
+=======
+        {operation: 'save_setting_value', index: index_sent, ajax_request: true, server: server, token: token, value: value_sent},
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         function (data) {
         if (data.success === false) {
             PMA_ajaxShowMessage(data.error, false);
@@ -1205,7 +1237,11 @@ function Click_field(T, f, PK) // table field
 
         var $msgbox = PMA_ajaxShowMessage(PMA_messages.strProcessingRequest);
         $.post('db_designer.php',
+<<<<<<< HEAD
             {operation: 'setDisplayField', ajax_request: true, server: server, token: PMA_commonParams.get('token'), db: db, table: T, field: f},
+=======
+            {operation: 'setDisplayField', ajax_request: true, server: server, token: token, db: db, table: T, field: f},
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             function (data) {
             if (data.success === false) {
                 PMA_ajaxShowMessage(data.error, false);
@@ -1220,7 +1256,11 @@ function Click_field(T, f, PK) // table field
 function New_relation()
 {
     document.getElementById('layer_new_relation').style.display = 'none';
+<<<<<<< HEAD
     link_relation += '&server=' + server + '&db=' + db + '&token=' + PMA_commonParams.get('token');
+=======
+    link_relation += '&server=' + server + '&db=' + db + '&token=' + token;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     link_relation += '&on_delete=' + document.getElementById('on_delete').value + '&on_update=' + document.getElementById('on_update').value;
     link_relation += '&operation=addNewRelation&ajax_request=true';
 
@@ -1451,7 +1491,11 @@ function Canvas_click(id, event)
 function Upd_relation()
 {
     document.getElementById('layer_upd_relation').style.display = 'none';
+<<<<<<< HEAD
     link_relation += '&server=' + server + '&db=' + db + '&token=' + PMA_commonParams.get('token');
+=======
+    link_relation += '&server=' + server + '&db=' + db + '&token=' + token;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     link_relation += '&operation=removeRelation&ajax_request=true';
 
     var $msgbox = PMA_ajaxShowMessage(PMA_messages.strProcessingRequest);

@@ -12,6 +12,7 @@
 namespace Symfony\Component\Cache\Adapter;
 
 use Doctrine\Common\Cache\CacheProvider;
+<<<<<<< HEAD
 use Symfony\Component\Cache\Traits\DoctrineTrait;
 
 class DoctrineAdapter extends AbstractAdapter
@@ -23,10 +24,90 @@ class DoctrineAdapter extends AbstractAdapter
      * @param string        $namespace
      * @param int           $defaultLifetime
      */
+=======
+
+/**
+ * @author Nicolas Grekas <p@tchwork.com>
+ */
+class DoctrineAdapter extends AbstractAdapter
+{
+    private $provider;
+
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     public function __construct(CacheProvider $provider, $namespace = '', $defaultLifetime = 0)
     {
         parent::__construct('', $defaultLifetime);
         $this->provider = $provider;
         $provider->setNamespace($namespace);
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function doFetch(array $ids)
+    {
+        $unserializeCallbackHandler = ini_set('unserialize_callback_func', parent::class.'::handleUnserializeCallback');
+        try {
+            return $this->provider->fetchMultiple($ids);
+        } catch (\Error $e) {
+            $trace = $e->getTrace();
+
+            if (isset($trace[0]['function']) && !isset($trace[0]['class'])) {
+                switch ($trace[0]['function']) {
+                    case 'unserialize':
+                    case 'apcu_fetch':
+                    case 'apc_fetch':
+                        throw new \ErrorException($e->getMessage(), $e->getCode(), E_ERROR, $e->getFile(), $e->getLine());
+                }
+            }
+
+            throw $e;
+        } finally {
+            ini_set('unserialize_callback_func', $unserializeCallbackHandler);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function doHave($id)
+    {
+        return $this->provider->contains($id);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function doClear($namespace)
+    {
+        $namespace = $this->provider->getNamespace();
+
+        return isset($namespace[0])
+            ? $this->provider->deleteAll()
+            : $this->provider->flushAll();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function doDelete(array $ids)
+    {
+        $ok = true;
+        foreach ($ids as $id) {
+            $ok = $this->provider->delete($id) && $ok;
+        }
+
+        return $ok;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function doSave(array $values, $lifetime)
+    {
+        return $this->provider->saveMultiple($values, $lifetime);
+    }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 }

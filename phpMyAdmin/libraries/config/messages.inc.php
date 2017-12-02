@@ -568,6 +568,15 @@ $strConfigPmaNoRelation_DisableWarning_desc = __(
 );
 $strConfigPmaNoRelation_DisableWarning_name
     = __('Missing phpMyAdmin configuration storage tables');
+<<<<<<< HEAD
+=======
+$strConfigServerLibraryDifference_DisableWarning_desc = __(
+    'Disable the default warning that is displayed if a difference between the '
+    . 'MySQL library and server is detected.'
+);
+$strConfigServerLibraryDifference_DisableWarning_name
+    = __('Server/library difference warning');
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 $strConfigReservedWordDisableWarning_desc = __(
     'Disable the default warning that is displayed on the Structure page if column '
     . 'names in a table are reserved MySQL words.'
@@ -636,6 +645,12 @@ $strConfigServers_column_info_desc = __(
 $strConfigServers_column_info_name = __('Column information table');
 $strConfigServers_compress_desc = __('Compress connection to MySQL server.');
 $strConfigServers_compress_name = __('Compress connection');
+<<<<<<< HEAD
+=======
+$strConfigServers_connect_type_desc
+    = __('How to connect to server, keep [kbd]tcp[/kbd] if unsure.');
+$strConfigServers_connect_type_name = __('Connection type');
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 $strConfigServers_controlpass_name = __('Control user password');
 $strConfigServers_controluser_desc = __(
     'A special MySQL user configured with limited permissions, more information '

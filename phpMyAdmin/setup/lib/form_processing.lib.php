@@ -37,18 +37,34 @@ function PMA_Process_formset(FormDisplay $form_display)
     }
 
     // form has errors, show warning
+<<<<<<< HEAD
     $page = isset($_GET['page']) ? $_GET['page'] : '';
     $formset = isset($_GET['formset']) ? $_GET['formset'] : '';
     $formId = PMA_isValid($_GET['id'], 'numeric') ? $_GET['id'] : '';
+=======
+    $separator = URL::getArgSeparator('html');
+    $page = isset($_GET['page']) ? htmlspecialchars($_GET['page']) : null;
+    $formset = isset($_GET['formset']) ? htmlspecialchars($_GET['formset']) : null;
+    $formset = $formset ? "{$separator}formset=$formset" : '';
+    $formId = PMA_isValid($_GET['id'], 'numeric') ? $_GET['id'] : null;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     if ($formId === null && $page == 'servers') {
         // we've just added a new server, get its id
         $formId = $form_display->getConfigFile()->getServerCount();
     }
+<<<<<<< HEAD
+=======
+    $formId = $formId ? "{$separator}id=$formId" : '';
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     ?>
     <div class="error">
         <h4><?php echo __('Warning') ?></h4>
         <?php echo __('Submitted form contains errors') ?><br />
+<<<<<<< HEAD
         <a href="<?php echo URL::getCommon(array('page' => $page, 'formset' => $formset, 'id' => $formId, 'mode' => 'revert')) ?>">
+=======
+        <a href="<?php echo URL::getCommon() , $separator ?>page=<?php echo $page , $formset , $formId , $separator ?>mode=revert">
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             <?php echo __('Try to revert erroneous fields to their default values') ?>
         </a>
     </div>
@@ -57,7 +73,11 @@ function PMA_Process_formset(FormDisplay $form_display)
         <?php echo __('Ignore errors') ?>
     </a>
     &nbsp;
+<<<<<<< HEAD
     <a class="btn" href="<?php echo URL::getCommon(array('page' => $page, 'formset' => $formset, 'id' => $formId, 'mode' => 'edit')) ?>">
+=======
+    <a class="btn" href="<?php echo URL::getCommon() , $separator ?>page=<?php echo $page , $formset , $formId , $separator ?>mode=edit">
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         <?php echo __('Show form') ?>
     </a>
     <?php
@@ -79,4 +99,8 @@ function PMA_generateHeader303()
     if (!defined('TESTSUITE')) {
         exit;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65

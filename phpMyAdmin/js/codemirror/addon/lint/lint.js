@@ -112,11 +112,15 @@
     if (!severity) severity = "error";
     var tip = document.createElement("div");
     tip.className = "CodeMirror-lint-message-" + severity;
+<<<<<<< HEAD
     if (typeof ann.messageHTML != 'undefined') {
         tip.innerHTML = ann.messageHTML;
     } else {
         tip.appendChild(document.createTextNode(ann.message));
     }
+=======
+    tip.appendChild(document.createTextNode(ann.message));
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     return tip;
   }
 
@@ -144,12 +148,16 @@
     if (options.async || getAnnotations.async) {
       lintAsync(cm, getAnnotations, passOptions)
     } else {
+<<<<<<< HEAD
       var annotations = getAnnotations(cm.getValue(), passOptions, cm);
       if (!annotations) return;
       if (annotations.then) annotations.then(function(issues) {
         updateLinting(cm, issues);
       });
       else updateLinting(cm, annotations);
+=======
+      updateLinting(cm, getAnnotations(cm.getValue(), passOptions, cm));
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
   }
 

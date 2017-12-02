@@ -8,8 +8,13 @@
 
 namespace PhpMyAdmin\SqlParser\Components;
 
+<<<<<<< HEAD
 use PhpMyAdmin\SqlParser\Component;
 use PhpMyAdmin\SqlParser\Context;
+=======
+use PhpMyAdmin\SqlParser\Context;
+use PhpMyAdmin\SqlParser\Component;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 use PhpMyAdmin\SqlParser\Parser;
 use PhpMyAdmin\SqlParser\Token;
 use PhpMyAdmin\SqlParser\TokensList;
@@ -201,11 +206,18 @@ class CreateDefinition extends Component
                         'An opening bracket was expected.',
                         $token
                     );
+<<<<<<< HEAD
 
                     break;
                 }
             } elseif ($state === 1) {
                 if ($token->type === Token::TYPE_KEYWORD && $token->keyword === 'CONSTRAINT') {
+=======
+                    break;
+                }
+            } elseif ($state === 1) {
+                if (($token->type === Token::TYPE_KEYWORD) && ($token->value === 'CONSTRAINT')) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     $expr->isConstraint = true;
                 } elseif (($token->type === Token::TYPE_KEYWORD) && ($token->flags & Token::FLAG_KEYWORD_KEY)) {
                     $expr->key = Key::parse($parser, $list);
@@ -227,11 +239,19 @@ class CreateDefinition extends Component
                         );
 
                         return $ret;
+<<<<<<< HEAD
                     }
 
                     // Non-reserved keywords are allowed without backquotes
                     $expr->name = $token->value;
                     $state = 2;
+=======
+                    } else {
+                        // Non-reserved keywords are allowed without backquotes
+                        $expr->name = $token->value;
+                        $state = 2;
+                    }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 } else {
                     $parser->error(
                         'A symbol name was expected!',
@@ -247,7 +267,11 @@ class CreateDefinition extends Component
                 $expr->options = OptionsArray::parse($parser, $list, static::$FIELD_OPTIONS);
                 $state = 4;
             } elseif ($state === 4) {
+<<<<<<< HEAD
                 if ($token->type === Token::TYPE_KEYWORD && $token->keyword === 'REFERENCES') {
+=======
+                if (($token->type === Token::TYPE_KEYWORD) && ($token->value === 'REFERENCES')) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     ++$list->idx; // Skipping keyword 'REFERENCES'.
                     $expr->references = Reference::parse($parser, $list);
                 } else {
@@ -303,6 +327,7 @@ class CreateDefinition extends Component
     {
         if (is_array($component)) {
             return "(\n  " . implode(",\n  ", $component) . "\n)";
+<<<<<<< HEAD
         }
 
         $tmp = '';
@@ -333,5 +358,37 @@ class CreateDefinition extends Component
         $tmp .= $component->options;
 
         return trim($tmp);
+=======
+        } else {
+            $tmp = '';
+
+            if ($component->isConstraint) {
+                $tmp .= 'CONSTRAINT ';
+            }
+
+            if ((isset($component->name)) && ($component->name !== '')) {
+                $tmp .= Context::escape($component->name) . ' ';
+            }
+
+            if (!empty($component->type)) {
+                $tmp .= DataType::build(
+                    $component->type,
+                    array('lowercase' => true)
+                ) . ' ';
+            }
+
+            if (!empty($component->key)) {
+                $tmp .= $component->key . ' ';
+            }
+
+            if (!empty($component->references)) {
+                $tmp .= 'REFERENCES ' . $component->references . ' ';
+            }
+
+            $tmp .= $component->options;
+
+            return trim($tmp);
+        }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 }

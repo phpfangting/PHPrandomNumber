@@ -51,11 +51,16 @@ class CaseExpression extends Component
     /**
      * The result in ELSE section of expr.
      *
+<<<<<<< HEAD
      * @var Expression
+=======
+     * @var array
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      */
     public $else_result;
 
     /**
+<<<<<<< HEAD
      * The sub-expression.
      *
      * @var string
@@ -63,6 +68,8 @@ class CaseExpression extends Component
     public $expr = '';
 
     /**
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      * Constructor.
      */
     public function __construct()
@@ -73,7 +80,11 @@ class CaseExpression extends Component
      * @param Parser     $parser the parser that serves as context
      * @param TokensList $list   the list of tokens that are being parsed
      *
+<<<<<<< HEAD
      * @return CaseExpression
+=======
+     * @return Expression
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      */
     public static function parse(Parser $parser, TokensList $list, array $options = array())
     {
@@ -112,7 +123,11 @@ class CaseExpression extends Component
 
             if ($state === 0) {
                 if ($token->type === Token::TYPE_KEYWORD
+<<<<<<< HEAD
                     && $token->keyword === 'WHEN'
+=======
+                    && $token->value === 'WHEN'
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 ) {
                     ++$list->idx; // Skip 'WHEN'
                     $new_condition = Condition::parse($parser, $list);
@@ -120,13 +135,22 @@ class CaseExpression extends Component
                     $state = 1;
                     $ret->conditions[] = $new_condition;
                 } elseif ($token->type === Token::TYPE_KEYWORD
+<<<<<<< HEAD
                     && $token->keyword === 'ELSE'
+=======
+                    && $token->value === 'ELSE'
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 ) {
                     ++$list->idx; // Skip 'ELSE'
                     $ret->else_result = Expression::parse($parser, $list);
                     $state = 0; // last clause of CASE expression
                 } elseif ($token->type === Token::TYPE_KEYWORD
+<<<<<<< HEAD
                     && $token->keyword === 'END'
+=======
+                    && ($token->value === 'END'
+                    || $token->value === 'end')
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 ) {
                     $state = 3; // end of CASE expression
                     ++$list->idx;
@@ -142,20 +166,33 @@ class CaseExpression extends Component
             } elseif ($state === 1) {
                 if ($type === 0) {
                     if ($token->type === Token::TYPE_KEYWORD
+<<<<<<< HEAD
                         && $token->keyword === 'WHEN'
+=======
+                        && $token->value === 'WHEN'
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     ) {
                         ++$list->idx; // Skip 'WHEN'
                         $new_value = Expression::parse($parser, $list);
                         $state = 2;
                         $ret->compare_values[] = $new_value;
                     } elseif ($token->type === Token::TYPE_KEYWORD
+<<<<<<< HEAD
                         && $token->keyword === 'ELSE'
+=======
+                        && $token->value === 'ELSE'
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     ) {
                         ++$list->idx; // Skip 'ELSE'
                         $ret->else_result = Expression::parse($parser, $list);
                         $state = 0; // last clause of CASE expression
                     } elseif ($token->type === Token::TYPE_KEYWORD
+<<<<<<< HEAD
                         && $token->keyword === 'END'
+=======
+                        && ($token->value === 'END'
+                        || $token->value === 'end')
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     ) {
                         $state = 3; // end of CASE expression
                         ++$list->idx;
@@ -166,7 +203,11 @@ class CaseExpression extends Component
                     }
                 } else {
                     if ($token->type === Token::TYPE_KEYWORD
+<<<<<<< HEAD
                         && $token->keyword === 'THEN'
+=======
+                        && $token->value === 'THEN'
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     ) {
                         ++$list->idx; // Skip 'THEN'
                         $new_result = Expression::parse($parser, $list);
@@ -180,7 +221,11 @@ class CaseExpression extends Component
             } elseif ($state === 2) {
                 if ($type === 0) {
                     if ($token->type === Token::TYPE_KEYWORD
+<<<<<<< HEAD
                         && $token->keyword === 'THEN'
+=======
+                        && $token->value === 'THEN'
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     ) {
                         ++$list->idx; // Skip 'THEN'
                         $new_result = Expression::parse($parser, $list);
@@ -199,8 +244,11 @@ class CaseExpression extends Component
                 'Unexpected end of CASE expression',
                 $list->tokens[$list->idx - 1]
             );
+<<<<<<< HEAD
         } else {
             $ret->expr = self::build($ret);
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         }
 
         --$list->idx;
@@ -209,8 +257,13 @@ class CaseExpression extends Component
     }
 
     /**
+<<<<<<< HEAD
      * @param CaseExpression $component the component to be built
      * @param array          $options   parameters for building
+=======
+     * @param Expression $component the component to be built
+     * @param array      $options   parameters for building
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      *
      * @return string
      */
@@ -220,17 +273,33 @@ class CaseExpression extends Component
         if (isset($component->value)) {
             // Syntax type 0
             $ret .= $component->value . ' ';
+<<<<<<< HEAD
             $val_cnt = count($component->compare_values);
             $res_cnt = count($component->results);
             for ($i = 0; $i < $val_cnt && $i < $res_cnt; ++$i) {
+=======
+            for (
+                $i = 0;
+                $i < count($component->compare_values) && $i < count($component->results);
+                ++$i
+            ) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 $ret .= 'WHEN ' . $component->compare_values[$i] . ' ';
                 $ret .= 'THEN ' . $component->results[$i] . ' ';
             }
         } else {
             // Syntax type 1
+<<<<<<< HEAD
             $val_cnt = count($component->conditions);
             $res_cnt = count($component->results);
             for ($i = 0; $i < $val_cnt && $i < $res_cnt; ++$i) {
+=======
+            for (
+                $i = 0;
+                $i < count($component->conditions) && $i < count($component->results);
+                ++$i
+            ) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 $ret .= 'WHEN ' . Condition::build($component->conditions[$i]) . ' ';
                 $ret .= 'THEN ' . $component->results[$i] . ' ';
             }

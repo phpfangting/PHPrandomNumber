@@ -81,7 +81,11 @@ function PMA_getHtmlForRenameDatabase($db)
 
     $html_output .= '<input id="new_db_name" type="text" name="newname" '
         . 'maxlength="64" size="30" class="textfield" required="required" '
+<<<<<<< HEAD
         . 'value=""/>';
+=======
+        . 'value="' . htmlspecialchars($db) . '"/>';
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
     if ($GLOBALS['db_priv'] && $GLOBALS['table_priv']
         && $GLOBALS['col_priv'] && $GLOBALS['proc_priv']
@@ -201,7 +205,11 @@ function PMA_getHtmlForCopyDatabase($db)
     $html_output .= __('Copy database to')
         . '</legend>'
         . '<input type="text" maxlength="64" name="newname" size="30" '
+<<<<<<< HEAD
         . 'class="textfield" value="" '
+=======
+        . 'class="textfield" value="' . htmlspecialchars($db) . '" '
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         . 'required="required" /><br />'
         . Util::getRadioFields(
             'what', $choices, 'data', true
@@ -1358,7 +1366,11 @@ function PMA_getListofMaintainActionLink($pma_table, $url_params)
     $html_output = '';
 
     // analyze table
+<<<<<<< HEAD
     if ($pma_table->isEngine(array('MYISAM', 'ARIA', 'INNODB', 'BERKELEYDB', 'TOKUDB'))) {
+=======
+    if ($pma_table->isEngine(array('MYISAM', 'ARIA', 'INNODB', 'BERKELEYDB'))) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         $params = array(
             'sql_query' => 'ANALYZE TABLE '
                 . Util::backquote($GLOBALS['table']),
@@ -1373,7 +1385,11 @@ function PMA_getListofMaintainActionLink($pma_table, $url_params)
     }
 
     // check table
+<<<<<<< HEAD
     if ($pma_table->isEngine(array('MYISAM', 'ARIA', 'INNODB', 'TOKUDB'))) {
+=======
+    if ($pma_table->isEngine(array('MYISAM', 'ARIA', 'INNODB'))) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         $params = array(
             'sql_query' => 'CHECK TABLE '
                 . Util::backquote($GLOBALS['table']),
@@ -1433,7 +1449,11 @@ function PMA_getListofMaintainActionLink($pma_table, $url_params)
     );
 
     // optimize table
+<<<<<<< HEAD
     if ($pma_table->isEngine(array('MYISAM', 'ARIA', 'INNODB', 'BERKELEYDB', 'TOKUDB'))) {
+=======
+    if ($pma_table->isEngine(array('MYISAM', 'ARIA', 'INNODB', 'BERKELEYDB'))) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         $params = array(
             'sql_query' => 'OPTIMIZE TABLE '
                 . Util::backquote($GLOBALS['table']),
@@ -1714,8 +1734,11 @@ function PMA_getQueryAndResultForReorderingTable()
         && $_REQUEST['order_order'] === 'desc'
     ) {
         $sql_query .= ' DESC';
+<<<<<<< HEAD
     } else {
         $sql_query .= ' ASC';
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
     $sql_query .= ';';
     $result = $GLOBALS['dbi']->query($sql_query);

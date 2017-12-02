@@ -371,6 +371,7 @@ class Table
             // so we can't just convert it to integer
             $query .= '(' . $length . ')';
         }
+<<<<<<< HEAD
         if ($attribute != '') {
             $query .= ' ' . $attribute;
 
@@ -382,10 +383,26 @@ class Table
                 $query .= '(' . $length . ')';
             }
         }
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
         if ($virtuality) {
             $query .= ' AS (' . $expression . ') ' . $virtuality;
         } else {
+<<<<<<< HEAD
+=======
+            if ($attribute != '') {
+                $query .= ' ' . $attribute;
+
+                if ($is_timestamp
+                    && preg_match('/TIMESTAMP/i', $attribute)
+                    && strlen($length) !== 0
+                    && $length !== 0
+                ) {
+                    $query .= '(' . $length . ')';
+                }
+            }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
             $matches = preg_match(
                 '@^(TINYTEXT|TEXT|MEDIUMTEXT|LONGTEXT|VARCHAR|CHAR|ENUM|SET)$@i',
@@ -1124,11 +1141,20 @@ class Table
                     . ') ' . ' VALUES(' . '\'' . $GLOBALS['dbi']->escapeString($target_db)
                     . '\',\'' . $GLOBALS['dbi']->escapeString($target_table) . '\',\''
                     . $GLOBALS['dbi']->escapeString($comments_copy_row['column_name'])
+<<<<<<< HEAD
                     . '\',\'' . $GLOBALS['dbi']->escapeString($target_table) . '\',\''
                     . $GLOBALS['dbi']->escapeString($comments_copy_row['comment'])
                     . '\''
                     . ($GLOBALS['cfgRelation']['mimework']
                         ? ',\'' . $GLOBALS['dbi']->escapeString(
+=======
+                    . '\''
+                    . ($GLOBALS['cfgRelation']['mimework']
+                        ? ',\'' . $GLOBALS['dbi']->escapeString(
+                            $comments_copy_row['comment']
+                        )
+                        . '\',' . '\'' . $GLOBALS['dbi']->escapeString(
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                             $comments_copy_row['mimetype']
                         )
                         . '\',' . '\'' . $GLOBALS['dbi']->escapeString(
@@ -1749,7 +1775,11 @@ class Table
             // check if the table has not been modified
             if ($this->getStatusInfo('Create_time') == $this->uiprefs['CREATE_TIME']
             ) {
+<<<<<<< HEAD
                 return array_map('intval', $this->uiprefs[$property]);
+=======
+                return $this->uiprefs[$property];
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             }
 
             // remove the property, since the table has been modified
@@ -1982,13 +2012,19 @@ class Table
         }
 
         // specifying index type is allowed only for primary, unique and index only
+<<<<<<< HEAD
         // TokuDB is using Fractal Tree, Using Type is not useless
         // Ref: https://mariadb.com/kb/en/mariadb/storage-engine-index-types/
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         $type = $index->getType();
         if ($index->getChoice() != 'SPATIAL'
             && $index->getChoice() != 'FULLTEXT'
             && in_array($type, Index::getIndexTypes())
+<<<<<<< HEAD
             && ! $this->isEngine(array('TOKUDB'))
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         ) {
             $sql_query .= ' USING ' . $type;
         }

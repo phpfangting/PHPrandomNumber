@@ -1,6 +1,7 @@
 phpMyAdmin - ChangeLog
 ======================
 
+<<<<<<< HEAD
 4.7.4 (2017-08-23)
 - issue #13415 Remove shadow from the logo
 - issue #13507 Fixed per server theme feature
@@ -76,6 +77,9 @@ phpMyAdmin - ChangeLog
 - issue #13177 Grid editing repeats action after error
 
 4.7.0 (2017-03-28)
+=======
+4.7.0.0 (not yet released)
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 - patch #12233 [Display] Improve message when renaming database to same name
 - issue #6146  Log authentication attempts to syslog
 - issue #11981 Remove support for Swekey authentication
@@ -123,6 +127,7 @@ phpMyAdmin - ChangeLog
 - issue #12901 Use server returned table name on renaming table
 - issue #12918 Always use \r\n as newline when editing fields
 - issue #12923 Fixed server side search in navigation panel
+<<<<<<< HEAD
 - issue #12929 Undefined index warning with ssl_ca_paths
 - issue #12924 Do not show errors from OpenSSL cookie encryption/decryption
 - issue #12945 Fixed hint rendering on adding new user
@@ -183,6 +188,8 @@ phpMyAdmin - ChangeLog
 - issue #12349 Fixed undefined variable on import from some formats
 - issue #13103 Do not offer default names for copying/renaming databases
 - issue        [security] Possible to bypass $cfg['Servers'][$i]['AllowNoPassword'], see PMASA-2017-08
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 4.6.6 (2017-01-23)
 - issue #12759 Fix Notice regarding 'Undefined index: old_usergroup'

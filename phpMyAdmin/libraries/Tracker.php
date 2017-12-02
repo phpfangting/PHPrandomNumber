@@ -24,11 +24,14 @@ class Tracker
     static protected $enabled = false;
 
     /**
+<<<<<<< HEAD
      * Cache to avoid quering tracking status multiple times.
      */
     static protected $_tracking_cache = array();
 
     /**
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      * Actually enables tracking. This needs to be done after all
      * underlaying code is initialized.
      *
@@ -116,10 +119,13 @@ class Tracker
         if (! self::$enabled) {
             return false;
         }
+<<<<<<< HEAD
 
         if (isset(self::$_tracking_cache[$dbname][$tablename])) {
             return self::$_tracking_cache[$dbname][$tablename];
         }
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         /* We need to avoid attempt to track any queries
          * from PMA_getRelationsParam
          */
@@ -136,11 +142,17 @@ class Tracker
         " AND table_name = '" . $GLOBALS['dbi']->escapeString($tablename) . "' " .
         " ORDER BY version DESC LIMIT 1";
 
+<<<<<<< HEAD
         $result = $GLOBALS['dbi']->fetchValue($sql_query, 0, 0, $GLOBALS['controllink']) == 1;
 
         self::$_tracking_cache[$dbname][$tablename] = $result;
 
         return $result;
+=======
+        $result = $GLOBALS['dbi']->fetchValue($sql_query);
+
+        return ($result == 1);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 
     /**
@@ -790,16 +802,23 @@ class Tracker
 
         // If we found a valid statement
         if (isset($result['identifier'])) {
+<<<<<<< HEAD
             if (! self::isTracked($dbname, $result['tablename'])) {
                 return;
             }
 
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             $version = self::getVersion(
                 $dbname, $result['tablename'], $result['identifier']
             );
 
             // If version not exists and auto-creation is enabled
             if ($GLOBALS['cfg']['Server']['tracking_version_auto_create'] == true
+<<<<<<< HEAD
+=======
+                && self::isTracked($dbname, $result['tablename']) == false
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 && $version == -1
             ) {
                 // Create the version
@@ -820,7 +839,11 @@ class Tracker
             }
 
             // If version exists
+<<<<<<< HEAD
             if ($version != -1) {
+=======
+            if (self::isTracked($dbname, $result['tablename']) && $version != -1) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 if ($result['type'] == 'DDL') {
                     $save_to = 'schema_sql';
                 } elseif ($result['type'] == 'DML') {

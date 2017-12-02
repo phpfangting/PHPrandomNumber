@@ -110,8 +110,13 @@ class ExpressionArray extends Component
     }
 
     /**
+<<<<<<< HEAD
      * @param ExpressionArray[] $component the component to be built
      * @param array             $options   parameters for building
+=======
+     * @param Expression[] $component the component to be built
+     * @param array        $options   parameters for building
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      *
      * @return string
      */

@@ -1,6 +1,7 @@
 CHANGELOG
 =========
 
+<<<<<<< HEAD
 3.3.0
 -----
 
@@ -10,6 +11,8 @@ CHANGELOG
  * added MemcachedAdapter (PSR-6) and MemcachedCache (PSR-16)
  * added TraceableAdapter (PSR-6) and TraceableCache (PSR-16)
 
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 3.2.0
 -----
 

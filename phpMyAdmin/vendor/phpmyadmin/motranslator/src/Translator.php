@@ -148,9 +148,15 @@ class Translator
     {
         if (array_key_exists($msgid, $this->cache_translations)) {
             return $this->cache_translations[$msgid];
+<<<<<<< HEAD
         }
 
         return $msgid;
+=======
+        } else {
+            return $msgid;
+        }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 
     /**
@@ -179,9 +185,12 @@ class Translator
             $expr = ltrim(substr($expr, 1));
         }
 
+<<<<<<< HEAD
         // Cleanup from unwanted chars
         $expr = preg_replace('@[^n0-9:\(\)\?=!<>/%&| ]@', '', $expr);
 
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         return $expr;
     }
 
@@ -199,9 +208,12 @@ class Translator
         if (strtolower(rtrim($nplurals[0])) != 'nplurals') {
             return 1;
         }
+<<<<<<< HEAD
         if (count($nplurals) == 1) {
             return 1;
         }
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
         return intval($nplurals[1]);
     }
@@ -238,11 +250,15 @@ class Translator
 
         // cache header field for plural forms
         if (is_null($this->pluralequation)) {
+<<<<<<< HEAD
             if (isset($this->cache_translations[''])) {
                 $header = $this->cache_translations[''];
             } else {
                 $header = '';
             }
+=======
+            $header = $this->cache_translations[''];
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             $expr = $this->extractPluralsForms($header);
             $this->pluralequation = $this->sanitizePluralExpression($expr);
             $this->pluralcount = $this->extractPluralCount($expr);
@@ -263,6 +279,7 @@ class Translator
         if (is_null($this->pluralexpression)) {
             $this->pluralexpression = new ExpressionLanguage();
         }
+<<<<<<< HEAD
         try {
             $plural = $this->pluralexpression->evaluate(
                 $this->getPluralForms(), array('n' => $n)
@@ -270,6 +287,11 @@ class Translator
         } catch (\Exception $e) {
             $plural = 0;
         }
+=======
+        $plural = $this->pluralexpression->evaluate(
+            $this->getPluralForms(), array('n' => $n)
+        );
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
         if ($plural >= $this->pluralcount) {
             $plural = $this->pluralcount - 1;
@@ -301,10 +323,13 @@ class Translator
         $result = $this->cache_translations[$key];
         $list = explode(chr(0), $result);
 
+<<<<<<< HEAD
         if (!isset($list[$select])) {
             return $list[0];
         }
 
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         return $list[$select];
     }
 
@@ -322,9 +347,15 @@ class Translator
         $ret = $this->gettext($key);
         if (strpos($ret, chr(4)) !== false) {
             return $msgid;
+<<<<<<< HEAD
         }
 
         return $ret;
+=======
+        } else {
+            return $ret;
+        }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 
     /**
@@ -343,8 +374,14 @@ class Translator
         $ret = $this->ngettext($key, $msgidPlural, $number);
         if (strpos($ret, chr(4)) !== false) {
             return $msgid;
+<<<<<<< HEAD
         }
 
         return $ret;
+=======
+        } else {
+            return $ret;
+        }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 }

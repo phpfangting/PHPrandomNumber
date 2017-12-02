@@ -13,29 +13,52 @@ namespace Symfony\Component\Cache\Adapter;
 
 use Psr\Cache\CacheItemInterface;
 use Psr\Log\LoggerAwareInterface;
+<<<<<<< HEAD
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Symfony\Component\Cache\CacheItem;
 use Symfony\Component\Cache\Exception\InvalidArgumentException;
 use Symfony\Component\Cache\Traits\AbstractTrait;
+=======
+use Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\Cache\CacheItem;
+use Symfony\Component\Cache\Exception\InvalidArgumentException;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 /**
  * @author Nicolas Grekas <p@tchwork.com>
  */
 abstract class AbstractAdapter implements AdapterInterface, LoggerAwareInterface
 {
+<<<<<<< HEAD
     use AbstractTrait;
+=======
+    use LoggerAwareTrait;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
     private static $apcuSupported;
     private static $phpFilesSupported;
 
+<<<<<<< HEAD
+=======
+    private $namespace;
+    private $deferred = array();
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     private $createCacheItem;
     private $mergeByLifetime;
 
     /**
+<<<<<<< HEAD
      * @param string $namespace
      * @param int    $defaultLifetime
      */
+=======
+     * @var int|null The maximum length to enforce for identifiers or null when no limit applies
+     */
+    protected $maxIdLength;
+
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     protected function __construct($namespace = '', $defaultLifetime = 0)
     {
         $this->namespace = '' === $namespace ? '' : $this->getId($namespace).':';
@@ -78,6 +101,7 @@ abstract class AbstractAdapter implements AdapterInterface, LoggerAwareInterface
         );
     }
 
+<<<<<<< HEAD
     /**
      * @param string               $namespace
      * @param int                  $defaultLifetime
@@ -87,6 +111,8 @@ abstract class AbstractAdapter implements AdapterInterface, LoggerAwareInterface
      *
      * @return AdapterInterface
      */
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     public static function createSystemCache($namespace, $defaultLifetime, $version, $directory, LoggerInterface $logger = null)
     {
         if (null === self::$apcuSupported) {
@@ -115,15 +141,20 @@ abstract class AbstractAdapter implements AdapterInterface, LoggerAwareInterface
         }
 
         $apcu = new ApcuAdapter($namespace, (int) $defaultLifetime / 5, $version);
+<<<<<<< HEAD
         if ('cli' === PHP_SAPI && !ini_get('apc.enable_cli')) {
             $apcu->setLogger(new NullLogger());
         } elseif (null !== $logger) {
+=======
+        if (null !== $logger) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             $apcu->setLogger($logger);
         }
 
         return new ChainAdapter(array($apcu, $fs));
     }
 
+<<<<<<< HEAD
     public static function createConnection($dsn, array $options = array())
     {
         if (!is_string($dsn)) {
@@ -138,6 +169,53 @@ abstract class AbstractAdapter implements AdapterInterface, LoggerAwareInterface
 
         throw new InvalidArgumentException(sprintf('Unsupported DSN: %s.', $dsn));
     }
+=======
+    /**
+     * Fetches several cache items.
+     *
+     * @param array $ids The cache identifiers to fetch
+     *
+     * @return array|\Traversable The corresponding values found in the cache
+     */
+    abstract protected function doFetch(array $ids);
+
+    /**
+     * Confirms if the cache contains specified cache item.
+     *
+     * @param string $id The identifier for which to check existence
+     *
+     * @return bool True if item exists in the cache, false otherwise
+     */
+    abstract protected function doHave($id);
+
+    /**
+     * Deletes all items in the pool.
+     *
+     * @param string The prefix used for all identifiers managed by this pool
+     *
+     * @return bool True if the pool was successfully cleared, false otherwise
+     */
+    abstract protected function doClear($namespace);
+
+    /**
+     * Removes multiple items from the pool.
+     *
+     * @param array $ids An array of identifiers that should be removed from the pool
+     *
+     * @return bool True if the items were successfully removed, false otherwise
+     */
+    abstract protected function doDelete(array $ids);
+
+    /**
+     * Persists several cache items immediately.
+     *
+     * @param array $values   The values to cache, indexed by their cache identifier
+     * @param int   $lifetime The lifetime of the cached values, 0 for persisting until manual cleaning
+     *
+     * @return array|bool The identifiers that failed to be cached or a boolean stating if caching succeeded or not
+     */
+    abstract protected function doSave(array $values, $lifetime);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
     /**
      * {@inheritdoc}
@@ -191,6 +269,90 @@ abstract class AbstractAdapter implements AdapterInterface, LoggerAwareInterface
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+=======
+    public function hasItem($key)
+    {
+        $id = $this->getId($key);
+
+        if (isset($this->deferred[$key])) {
+            $this->commit();
+        }
+
+        try {
+            return $this->doHave($id);
+        } catch (\Exception $e) {
+            CacheItem::log($this->logger, 'Failed to check if key "{key}" is cached', array('key' => $key, 'exception' => $e));
+
+            return false;
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function clear()
+    {
+        $this->deferred = array();
+
+        try {
+            return $this->doClear($this->namespace);
+        } catch (\Exception $e) {
+            CacheItem::log($this->logger, 'Failed to clear the cache', array('exception' => $e));
+
+            return false;
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function deleteItem($key)
+    {
+        return $this->deleteItems(array($key));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function deleteItems(array $keys)
+    {
+        $ids = array();
+
+        foreach ($keys as $key) {
+            $ids[$key] = $this->getId($key);
+            unset($this->deferred[$key]);
+        }
+
+        try {
+            if ($this->doDelete($ids)) {
+                return true;
+            }
+        } catch (\Exception $e) {
+        }
+
+        $ok = true;
+
+        // When bulk-delete failed, retry each item individually
+        foreach ($ids as $key => $id) {
+            try {
+                $e = null;
+                if ($this->doDelete(array($id))) {
+                    continue;
+                }
+            } catch (\Exception $e) {
+            }
+            CacheItem::log($this->logger, 'Failed to delete key "{key}"', array('key' => $key, 'exception' => $e));
+            $ok = false;
+        }
+
+        return $ok;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     public function save(CacheItemInterface $item)
     {
         if (!$item instanceof CacheItem) {
@@ -276,15 +438,62 @@ abstract class AbstractAdapter implements AdapterInterface, LoggerAwareInterface
         }
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * Like the native unserialize() function but throws an exception if anything goes wrong.
+     *
+     * @param string $value
+     *
+     * @return mixed
+     *
+     * @throws \Exception
+     */
+    protected static function unserialize($value)
+    {
+        if ('b:0;' === $value) {
+            return false;
+        }
+        $unserializeCallbackHandler = ini_set('unserialize_callback_func', __CLASS__.'::handleUnserializeCallback');
+        try {
+            if (false !== $value = unserialize($value)) {
+                return $value;
+            }
+            throw new \DomainException('Failed to unserialize cached value');
+        } catch (\Error $e) {
+            throw new \ErrorException($e->getMessage(), $e->getCode(), E_ERROR, $e->getFile(), $e->getLine());
+        } finally {
+            ini_set('unserialize_callback_func', $unserializeCallbackHandler);
+        }
+    }
+
+    private function getId($key)
+    {
+        CacheItem::validateKey($key);
+
+        if (null === $this->maxIdLength) {
+            return $this->namespace.$key;
+        }
+        if (strlen($id = $this->namespace.$key) > $this->maxIdLength) {
+            $id = $this->namespace.substr_replace(base64_encode(hash('sha256', $key, true)), ':', -22);
+        }
+
+        return $id;
+    }
+
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     private function generateItems($items, &$keys)
     {
         $f = $this->createCacheItem;
 
         try {
             foreach ($items as $id => $value) {
+<<<<<<< HEAD
                 if (!isset($keys[$id])) {
                     $id = key($keys);
                 }
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 $key = $keys[$id];
                 unset($keys[$id]);
                 yield $key => $f($key, $value, true);
@@ -297,4 +506,15 @@ abstract class AbstractAdapter implements AdapterInterface, LoggerAwareInterface
             yield $key => $f($key, null, false);
         }
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * @internal
+     */
+    public static function handleUnserializeCallback($class)
+    {
+        throw new \DomainException('Class not found: '.$class);
+    }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 }

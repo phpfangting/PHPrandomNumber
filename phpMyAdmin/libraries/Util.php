@@ -1017,14 +1017,24 @@ class Util
 
             if (! empty($GLOBALS['show_as_php'])) {
                 $new_line = '\\n"<br />' . "\n" . '&nbsp;&nbsp;&nbsp;&nbsp;. "';
+<<<<<<< HEAD
                 $query_base = htmlspecialchars(addslashes($query_base));
+=======
+                $query_base = '$sql  = \'' . $query_base;
+                $query_base = '<code class="php"><pre>' . "\n"
+                    . htmlspecialchars(addslashes($query_base));
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 $query_base = preg_replace(
                     '/((\015\012)|(\015)|(\012))/',
                     $new_line,
                     $query_base
                 );
+<<<<<<< HEAD
                 $query_base = '<code class="php"><pre>' . "\n"
                     . '$sql = "' . $query_base;
+=======
+                $query_base = '$sql  = \'' . $query_base . '"';
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             } elseif ($query_too_big) {
                 $query_base = htmlspecialchars($query_base);
             } else {
@@ -1061,18 +1071,30 @@ class Util
                 $explain_params = $url_params;
                 if ($is_select) {
                     $explain_params['sql_query'] = 'EXPLAIN ' . $sql_query;
+<<<<<<< HEAD
                     $explain_link = ' [&nbsp;'
                         . self::linkOrButton(
                             'import.php' . URL::getCommon($explain_params),
                             __('Explain SQL')
                         ) . '&nbsp;]';
+=======
+                    $explain_link = ' ['
+                        . self::linkOrButton(
+                            'import.php' . URL::getCommon($explain_params),
+                            __('Explain SQL')
+                        ) . ']';
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 } elseif (preg_match(
                     '@^EXPLAIN[[:space:]]+SELECT[[:space:]]+@i',
                     $sql_query
                 )) {
                     $explain_params['sql_query']
                         = mb_substr($sql_query, 8);
+<<<<<<< HEAD
                     $explain_link = ' [&nbsp;'
+=======
+                    $explain_link = ' ['
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                         . self::linkOrButton(
                             'import.php' . URL::getCommon($explain_params),
                             __('Skip Explain SQL')
@@ -1088,7 +1110,11 @@ class Util
                             true,
                             false,
                             '_blank'
+<<<<<<< HEAD
                         ) . '&nbsp;]';
+=======
+                        ) . ']';
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 }
             } //show explain
 
@@ -1101,9 +1127,15 @@ class Util
                 && empty($GLOBALS['show_as_php'])
             ) {
                 $edit_link .= URL::getCommon($url_params) . '#querybox';
+<<<<<<< HEAD
                 $edit_link = ' [&nbsp;'
                     . self::linkOrButton($edit_link, __('Edit'))
                     . '&nbsp;]';
+=======
+                $edit_link = ' ['
+                    . self::linkOrButton($edit_link, __('Edit'))
+                    . ']';
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             } else {
                 $edit_link = '';
             }
@@ -1113,7 +1145,11 @@ class Util
             if (! empty($cfg['SQLQuery']['ShowAsPHP']) && ! $query_too_big) {
 
                 if (! empty($GLOBALS['show_as_php'])) {
+<<<<<<< HEAD
                     $php_link = ' [&nbsp;'
+=======
+                    $php_link = ' ['
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                         . self::linkOrButton(
                             'import.php' . URL::getCommon($url_params),
                             __('Without PHP code'),
@@ -1123,9 +1159,15 @@ class Util
                             '',
                             true
                         )
+<<<<<<< HEAD
                         . '&nbsp;]';
 
                     $php_link .= ' [&nbsp;'
+=======
+                        . ']';
+
+                    $php_link .= ' ['
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                         . self::linkOrButton(
                             'import.php' . URL::getCommon($url_params),
                             __('Submit query'),
@@ -1135,17 +1177,29 @@ class Util
                             '',
                             true
                         )
+<<<<<<< HEAD
                         . '&nbsp;]';
+=======
+                        . ']';
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 } else {
                     $php_params = $url_params;
                     $php_params['show_as_php'] = 1;
                     $_message = __('Create PHP code');
+<<<<<<< HEAD
                     $php_link = ' [&nbsp;'
+=======
+                    $php_link = ' ['
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                         . self::linkOrButton(
                             'import.php' . URL::getCommon($php_params),
                             $_message
                         )
+<<<<<<< HEAD
                         . '&nbsp;]';
+=======
+                        . ']';
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 }
             } else {
                 $php_link = '';
@@ -1157,8 +1211,13 @@ class Util
                 && preg_match('@^(SELECT|SHOW)[[:space:]]+@i', $sql_query)
             ) {
                 $refresh_link = 'import.php' . URL::getCommon($url_params);
+<<<<<<< HEAD
                 $refresh_link = ' [&nbsp;'
                     . self::linkOrButton($refresh_link, __('Refresh')) . '&nbsp;]';
+=======
+                $refresh_link = ' ['
+                    . self::linkOrButton($refresh_link, __('Refresh')) . ']';
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             } else {
                 $refresh_link = '';
             } //refresh
@@ -1168,7 +1227,11 @@ class Util
 
             //Clean up the end of the PHP
             if (! empty($GLOBALS['show_as_php'])) {
+<<<<<<< HEAD
                 $retval .= '";' . "\n"
+=======
+                $retval .= '\';' . "\n"
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     . '</pre></code>';
             }
             $retval .= '</div>';
@@ -1768,6 +1831,14 @@ class Util
         $new_form = true, $strip_img = false, $target = '', $force_button = false
     ) {
         $url_length = mb_strlen($url);
+<<<<<<< HEAD
+=======
+        // with this we should be able to catch case of image upload
+        // into a (MEDIUM) BLOB; not worth generating even a form for these
+        if ($url_length > $GLOBALS['cfg']['LinkLengthLimit'] * 100) {
+            return '';
+        }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
         if (! is_array($tag_params)) {
             $tmp = $tag_params;
@@ -1833,9 +1904,15 @@ class Util
             }
 
             // no whitespace within an <a> else Safari will make it part of the link
+<<<<<<< HEAD
             $ret = '<a href="' . $url . '" '
                 . implode(' ', $tag_params_strings) . '>'
                 . $message . $displayed_message . '</a>';
+=======
+            $ret = "\n" . '<a href="' . $url . '" '
+                . implode(' ', $tag_params_strings) . '>'
+                . $message . $displayed_message . '</a>' . "\n";
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         } else {
             // no spaces (line breaks) at all
             // or after the hidden fields
@@ -1852,7 +1929,10 @@ class Util
                 }
                 $ret = '<form action="' . $url_parts['path'] . '" class="link"'
                      . ' method="post"' . $target . ' style="display: inline;">';
+<<<<<<< HEAD
                 $ret .= URL::getHiddenInputs();
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 $subname_open   = '';
                 $subname_close  = '';
                 $submit_link    = '#';
@@ -2408,6 +2488,7 @@ class Util
         $classes = array()
     ) {
 
+<<<<<<< HEAD
         // This is often coming from $cfg['MaxTableList'] and
         // people sometimes set it to empty string
         $max_count = intval($max_count);
@@ -2415,6 +2496,8 @@ class Util
             $max_count = 250;
         }
 
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         $class = $frame == 'frame_navigation' ? ' class="ajax"' : '';
 
         $list_navigator_html = '';
@@ -4172,6 +4255,33 @@ class Util
         }
         return $context;
     }
+<<<<<<< HEAD
+=======
+    /**
+     * Updates an existing curl as necessary
+     *
+     * @param resource $curl_handle A curl_handle resource
+     *                              created by curl_init which should
+     *                              have several options set
+     *
+     * @return resource curl_handle with updated options
+     */
+    public static function configureCurl($curl_handle)
+    {
+        if (strlen($GLOBALS['cfg']['ProxyUrl']) > 0) {
+            curl_setopt($curl_handle, CURLOPT_PROXY, $GLOBALS['cfg']['ProxyUrl']);
+            if (strlen($GLOBALS['cfg']['ProxyUser']) > 0) {
+                curl_setopt(
+                    $curl_handle,
+                    CURLOPT_PROXYUSERPWD,
+                    $GLOBALS['cfg']['ProxyUser'] . ':' . $GLOBALS['cfg']['ProxyPass']
+                );
+            }
+        }
+        curl_setopt($curl_handle, CURLOPT_USERAGENT, 'phpMyAdmin/' . PMA_VERSION);
+        return $curl_handle;
+    }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
     /**
      * Add fractional seconds to time, datetime and timestamp strings.
@@ -4741,16 +4851,24 @@ class Util
      * @param bool   $return_only_status If set to true, the method would only return response status
      * @param mixed  $content            Content to be sent with HTTP request
      * @param string $header             Header to be set for the HTTP request
+<<<<<<< HEAD
      * @param int    $ssl                SSL mode to use
      *
      * @return mixed
      */
     public static function httpRequestCurl($url, $method, $return_only_status = false, $content = null, $header = "", $ssl = 0)
+=======
+     *
+     * @return mixed
+     */
+    public static function httpRequestCurl($url, $method, $return_only_status = false, $content = null, $header = "")
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     {
         $curl_handle = curl_init($url);
         if ($curl_handle === false) {
             return null;
         }
+<<<<<<< HEAD
         $curl_status = true;
         if (strlen($GLOBALS['cfg']['ProxyUrl']) > 0) {
             $curl_status &= curl_setopt($curl_handle, CURLOPT_PROXY, $GLOBALS['cfg']['ProxyUrl']);
@@ -4822,6 +4940,32 @@ class Util
                     self::httpRequestCurl($url, $method, $return_only_status, $content, $header, CURLOPT_CAPATH);
                 }
             }
+=======
+        $curl_handle = Util::configureCurl($curl_handle);
+
+        if ($method != "GET") {
+            curl_setopt($curl_handle, CURLOPT_CUSTOMREQUEST, $method);
+        }
+        if ($header) {
+            curl_setopt($curl_handle, CURLOPT_HTTPHEADER, array($header));
+            curl_setopt($curl_handle, CURLOPT_HEADER, true);
+        }
+
+        if ($method == "POST") {
+            curl_setopt($curl_handle, CURLOPT_POSTFIELDS, $content);
+        }
+
+        curl_setopt($curl_handle, CURLOPT_SSL_VERIFYHOST, '2');
+        curl_setopt($curl_handle, CURLOPT_SSL_VERIFYPEER, '1');
+
+        curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER,true);
+        curl_setopt($curl_handle, CURLOPT_FOLLOWLOCATION, 0);
+        curl_setopt($curl_handle, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+        curl_setopt($curl_handle, CURLOPT_TIMEOUT, 10);
+        curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 10);
+        $response = @curl_exec($curl_handle);
+        if ($response === false) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             return null;
         }
         $http_status = curl_getinfo($curl_handle, CURLINFO_HTTP_CODE);
@@ -4891,6 +5035,7 @@ class Util
         }
         return null;
     }
+<<<<<<< HEAD
 
     /**
      * Wrapper around php's set_time_limit
@@ -4904,4 +5049,6 @@ class Util
             @set_time_limit($GLOBALS['cfg']['ExecTimeLimit']);
         }
     }
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 }

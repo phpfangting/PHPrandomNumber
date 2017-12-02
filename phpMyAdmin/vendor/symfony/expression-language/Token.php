@@ -32,7 +32,11 @@ class Token
     /**
      * Constructor.
      *
+<<<<<<< HEAD
      * @param string $type   The type of the token (self::*_TYPE)
+=======
+     * @param int    $type   The type of the token
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      * @param string $value  The token value
      * @param int    $cursor The cursor position in the source
      */

@@ -222,6 +222,7 @@ function PMA_fatalError($error_message, $message_args = null) {
     }
 
     /*
+<<<<<<< HEAD
      * Avoid using Response class as config does not have to be loaded yet
      * (this can happen on early fatal error)
      */
@@ -234,6 +235,19 @@ function PMA_fatalError($error_message, $message_args = null) {
                 'error' => Message::error($error_message)->getDisplay(),
             )
         );
+=======
+     * Avoid using Response if Config is not yet loaded
+     * (this can happen on early fatal error)
+     */
+    if (isset($GLOBALS['Config'])) {
+        $response = Response::getInstance();
+    } else {
+        $response = null;
+    }
+    if (! is_null($response) && $response->isAjax()) {
+        $response->setRequestStatus(false);
+        $response->addJSON('message', PMA\libraries\Message::error($error_message));
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     } else {
         $error_message = strtr($error_message, array('<br />' => '[br]'));
 
@@ -742,7 +756,10 @@ function PMA_isAllowedDomain($url)
         'mariadb.org', 'mariadb.com',
         /* php.net domains */
         'php.net',
+<<<<<<< HEAD
         'secure.php.net',
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         /* sourceforge.net domain */
         'sourceforge.net',
         /* Github domains*/

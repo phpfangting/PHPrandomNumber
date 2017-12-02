@@ -75,11 +75,15 @@ class UtfString implements \ArrayAccess
         $this->byteIdx = 0;
         $this->charIdx = 0;
         $this->byteLen = mb_strlen($str, '8bit');
+<<<<<<< HEAD
         if (! mb_check_encoding($str, 'UTF-8')) {
             $this->charLen = 0;
         } else {
             $this->charLen = mb_strlen($str, 'UTF-8');
         }
+=======
+        $this->charLen = mb_strlen($str, 'UTF-8');
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 
     /**

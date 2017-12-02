@@ -1387,7 +1387,11 @@ class ExportSql extends ExportPlugin
 
         // need to use PMA\libraries\DatabaseInterface::QUERY_STORE
         // with $GLOBALS['dbi']->numRows() in mysqli
+<<<<<<< HEAD
         $result = $GLOBALS['dbi']->tryQuery(
+=======
+        $result = $GLOBALS['dbi']->query(
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             'SHOW TABLE STATUS FROM ' . Util::backquote($db)
             . ' WHERE Name = \'' . $GLOBALS['dbi']->escapeString($table) . '\'',
             null,
@@ -1570,12 +1574,20 @@ class ExportSql extends ExportPlugin
                 if (empty($sql_backquotes)) {
                     // Option "Enclose table and column names with backquotes"
                     // was checked.
+<<<<<<< HEAD
                     Context::$MODE |= Context::SQL_MODE_NO_ENCLOSING_QUOTES;
+=======
+                    Context::$MODE |= Context::NO_ENCLOSING_QUOTES;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 }
 
                 // Using appropriate quotes.
                 if (($compat === 'MSSQL') || ($sql_backquotes === '"')) {
+<<<<<<< HEAD
                     Context::$MODE |= Context::SQL_MODE_ANSI_QUOTES;
+=======
+                    Context::$MODE |= Context::ANSI_QUOTES;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 }
             }
 
@@ -1771,7 +1783,11 @@ class ExportSql extends ExportPlugin
                         $sql_auto_increments_query .= ', AUTO_INCREMENT='
                             . $statement->entityOptions->has('AUTO_INCREMENT');
                     }
+<<<<<<< HEAD
                     $sql_auto_increments_query .= ';' . $crlf;
+=======
+                    $sql_auto_increments_query .= ';';
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
                     $sql_auto_increments = $this->generateComment(
                         $crlf,

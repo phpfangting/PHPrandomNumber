@@ -313,12 +313,16 @@ var AJAX = {
             if (typeof onsubmit !== 'function' || onsubmit.apply(this, [event])) {
                 AJAX.active = true;
                 AJAX.$msgbox = PMA_ajaxShowMessage();
+<<<<<<< HEAD
                 var method = $(this).attr('method');
                 if (typeof method !== 'undefined' && method.toLowerCase() === 'post') {
                     $.post(url, params, AJAX.responseHandler);
                 } else {
                     $.get(url, params, AJAX.responseHandler);
                 }
+=======
+                $.post(url, params, AJAX.responseHandler);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             }
         }
     },
@@ -578,19 +582,26 @@ var AJAX = {
                     needRequest = true;
                     this.add(script);
                     request.push("scripts%5B%5D=" + script);
+<<<<<<< HEAD
                     if (request.length >= 10) {
                         // Download scripts in chunks
                         this.appendScript(request);
                         request = [];
                         needRequest = false;
                     }
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 }
             }
             request.push("call_done=1");
             request.push("v=" + encodeURIComponent(PMA_commonParams.get('PMA_VERSION')));
             // Download the composite js file, if necessary
             if (needRequest) {
+<<<<<<< HEAD
                 this.appendScript(request);
+=======
+                this.appendScript("js/get_scripts.js.php?" + request.join("&"));
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             } else {
                 self.done(callback);
             }
@@ -617,6 +628,7 @@ var AJAX = {
          *
          * @return void
          */
+<<<<<<< HEAD
         appendScript: function (request) {
             var head = document.head || document.getElementsByTagName('head')[0];
             var script = document.createElement('script');
@@ -625,6 +637,13 @@ var AJAX = {
             request.push("v=" + encodeURIComponent(PMA_commonParams.get('PMA_VERSION')));
             script.type = 'text/javascript';
             script.src = "js/get_scripts.js.php?" + request.join("&");
+=======
+        appendScript: function (url) {
+            var head = document.head || document.getElementsByTagName('head')[0];
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = url;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             script.async = false;
             head.appendChild(script);
         },
@@ -795,11 +814,15 @@ $(document).on('submit', 'form', AJAX.requestHandler);
  * (e.g: 500 - Internal server error)
  */
 $(document).ajaxError(function (event, request, settings) {
+<<<<<<< HEAD
     if (AJAX._debug) {
         console.log('AJAX error: status=' + request.status + ', text=' + request.statusText);
     }
     // Don't handle aborted requests
     if (request.status !== 0 || request.statusText !== 'abort') {
+=======
+    if (request.status !== 0) { // Don't handle aborted requests
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         var errorCode = PMA_sprintf(PMA_messages.strErrorCode, request.status);
         var errorText = PMA_sprintf(PMA_messages.strErrorText, request.statusText);
         PMA_ajaxShowMessage(
@@ -811,6 +834,9 @@ $(document).ajaxError(function (event, request, settings) {
             false
         );
         AJAX.active = false;
+<<<<<<< HEAD
         AJAX.xhr = null;
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 });

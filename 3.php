@@ -65,13 +65,15 @@
 
     }
 
-    $data = [
-      'company'=>[],
-      'time'=>[]
-    ];
-    $url =  http_build_query($data);
+   function say(){
+       return 100;
+   }
 
-
-   
-
-    echo $url;
+   // $a = [1,2,3,4,566,78];
+   // $b=[1,2,37,878,567,9];
+   // $arr = array_diff($b,$a);
+   // print_r($arr); 
+    $im = new Imagick();
+    $im->readImage(realpath('.').'.\a.jpg');
+   $srcWH = $im->getImageGeometry();
+   var_dump($srcWH);

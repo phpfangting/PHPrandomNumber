@@ -6,7 +6,10 @@
 
 namespace PhpMyAdmin\SqlParser\Utils;
 
+<<<<<<< HEAD
 use PhpMyAdmin\SqlParser\Components\JoinKeyword;
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 use PhpMyAdmin\SqlParser\Lexer;
 use PhpMyAdmin\SqlParser\Parser;
 use PhpMyAdmin\SqlParser\Token;
@@ -29,6 +32,7 @@ class Formatter
     public $options;
 
     /**
+<<<<<<< HEAD
      * Clauses that are usually short.
      *
      * These clauses share the line with the next clause.
@@ -52,6 +56,8 @@ class Formatter
     );
 
     /**
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      * Clauses that must be inlined.
      *
      * These clauses usually are short and it's nicer to have them inline.
@@ -60,7 +66,10 @@ class Formatter
      */
     public static $INLINE_CLAUSES = array(
         'CREATE' => true,
+<<<<<<< HEAD
         'INTO' => true,
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         'LIMIT' => true,
         'PARTITION BY' => true,
         'PARTITION' => true,
@@ -347,7 +356,11 @@ class Formatter
         /**
          * Previously parsed token.
          *
+<<<<<<< HEAD
          * @var Token|null
+=======
+         * @var Token
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
          */
         $prev = null;
 
@@ -362,6 +375,7 @@ class Formatter
              * @var Token
              */
             $curr = $list->tokens[$list->idx];
+<<<<<<< HEAD
             if ($list->idx + 1 < $list->count) {
                 $next = $list->tokens[$list->idx + 1];
             } else {
@@ -377,6 +391,10 @@ class Formatter
                 ) {
                     $lineEnded = true;
                 }
+=======
+
+            if ($curr->type === Token::TYPE_WHITESPACE) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 // Whitespaces are skipped because the formatter adds its own.
                 continue;
             }
@@ -387,6 +405,12 @@ class Formatter
             }
 
             // Checking if pointers were initialized.
+<<<<<<< HEAD
+=======
+            /*
+             * Previous Token.
+             */
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             if ($prev !== null) {
                 // Checking if a new clause started.
                 if (static::isClause($prev) !== false) {
@@ -413,14 +437,21 @@ class Formatter
 
                 // Checking if this clause ended.
                 if ($tmp = static::isClause($curr)) {
+<<<<<<< HEAD
                     if (($tmp == 2 || $this->options['clause_newline']) && empty(self::$SHORT_CLAUSES[$lastClause])) {
                         $lineEnded = true;
                         if ($this->options['parts_newline'] && $indent > 0) {
+=======
+                    if ($tmp == 2 || $this->options['clause_newline']) {
+                        $lineEnded = true;
+                        if ($this->options['parts_newline']) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                             --$indent;
                         }
                     }
                 }
 
+<<<<<<< HEAD
                 // Inline JOINs
                 if (($prev->type === Token::TYPE_KEYWORD && isset(JoinKeyword::$JOINS[$prev->value]))
                     || (in_array($curr->value, array('ON', 'USING'), true) && isset(JoinKeyword::$JOINS[$list->tokens[$list->idx - 2]->value]))
@@ -436,6 +467,14 @@ class Formatter
                     array_push($blocksIndentation, $indent);
                     ++$indent;
                 } elseif ($curr->type === Token::TYPE_KEYWORD && $curr->keyword === 'END') {
+=======
+                // Indenting BEGIN ... END blocks.
+                if ($prev->type === Token::TYPE_KEYWORD && $prev->value === 'BEGIN') {
+                    $lineEnded = true;
+                    array_push($blocksIndentation, $indent);
+                    ++$indent;
+                } elseif ($curr->type === Token::TYPE_KEYWORD && $curr->value === 'END') {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     $lineEnded = true;
                     $indent = array_pop($blocksIndentation);
                 }
@@ -479,6 +518,14 @@ class Formatter
 
                 // Finishing the line.
                 if ($lineEnded) {
+<<<<<<< HEAD
+=======
+                    if ($indent < 0) {
+                        // TODO: Make sure this never occurs and delete it.
+                        $indent = 0;
+                    }
+
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     $ret .= $this->options['line_ending']
                         . str_repeat($this->options['indentation'], $indent);
 
@@ -488,7 +535,11 @@ class Formatter
                     // Also, some tokens do not have spaces before or after them.
                     if (
                         // A space after delimiters that are longer than 2 characters.
+<<<<<<< HEAD
                         $prev->keyword === 'DELIMITER'
+=======
+                        $prev->value === 'DELIMITER'
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                         || !(
                             ($prev->type === Token::TYPE_OPERATOR && ($prev->value === '.' || $prev->value === '('))
                             // No space after . (
@@ -518,11 +569,19 @@ class Formatter
         return str_replace(
             array(
                 "\x00", "\x01", "\x02", "\x03", "\x04", "\x05", "\x06", "\x07", "\x08", "\x09", "\x0A", "\x0B", "\x0C", "\x0D", "\x0E", "\x0F",
+<<<<<<< HEAD
                 "\x10", "\x11", "\x12", "\x13", "\x14", "\x15", "\x16", "\x17", "\x18", "\x19", "\x1A", "\x1B", "\x1C", "\x1D", "\x1E", "\x1F",
             ),
             array(
                 '\x00', '\x01', '\x02', '\x03', '\x04', '\x05', '\x06', '\x07', '\x08', '\x09', '\x0A', '\x0B', '\x0C', '\x0D', '\x0E', '\x0F',
                 '\x10', '\x11', '\x12', '\x13', '\x14', '\x15', '\x16', '\x17', '\x18', '\x19', '\x1A', '\x1B', '\x1C', '\x1D', '\x1E', '\x1F',
+=======
+                "\x10", "\x11", "\x12", "\x13", "\x14", "\x15", "\x16", "\x17", "\x18", "\x19", "\x1A", "\x1B", "\x1C",  "\x1D", "\x1E", "\x1F",
+            ),
+            array(
+                '\x00', '\x01', '\x02', '\x03', '\x04', '\x05', '\x06', '\x07', '\x08', '\x09', '\x0A', '\x0B', '\x0C', '\x0D', '\x0E', '\x0F',
+                '\x10', '\x11', '\x12', '\x13', '\x14', '\x15', '\x16', '\x17', '\x18', '\x19', '\x1A', '\x1B', '\x1C',  '\x1D', '\x1E', '\x1F',
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             ),
             $string
         );
@@ -538,7 +597,10 @@ class Formatter
     public function toString($token)
     {
         $text = $token->token;
+<<<<<<< HEAD
         static $prev;
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
         foreach ($this->options['formats'] as $format) {
             if ($token->type === $format['type']
@@ -554,12 +616,16 @@ class Formatter
                 if ($this->options['type'] === 'html') {
                     return '<span ' . $format['html'] . '>' . htmlspecialchars($text, ENT_NOQUOTES) . '</span>';
                 } elseif ($this->options['type'] === 'cli') {
+<<<<<<< HEAD
                     if ($prev != $format['cli']) {
                         $prev = $format['cli'];
                         return $format['cli'] . $this->escapeConsole($text);
                     }
 
                     return $this->escapeConsole($text);
+=======
+                    return $format['cli'] . $this->escapeConsole($text);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 }
 
                 break;
@@ -567,12 +633,16 @@ class Formatter
         }
 
         if ($this->options['type'] === 'cli') {
+<<<<<<< HEAD
             if ($prev != "\x1b[39m") {
                 $prev = "\x1b[39m";
                 return "\x1b[39m" . $this->escapeConsole($text);
             }
 
             return $this->escapeConsole($text);
+=======
+            return "\x1b[39m" . $this->escapeConsole($text);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         } elseif ($this->options['type'] === 'html') {
             return htmlspecialchars($text, ENT_NOQUOTES);
         }
@@ -654,12 +724,20 @@ class Formatter
     public static function isClause($token)
     {
         if (
+<<<<<<< HEAD
             ($token->type === Token::TYPE_KEYWORD && isset(Parser::$STATEMENT_PARSERS[$token->keyword]))
+=======
+            ($token->type === Token::TYPE_KEYWORD && isset(Parser::$STATEMENT_PARSERS[$token->value]))
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             || ($token->type === Token::TYPE_NONE && strtoupper($token->token) === 'DELIMITER')
         ) {
             return 2;
         } elseif (
+<<<<<<< HEAD
             $token->type === Token::TYPE_KEYWORD && isset(Parser::$KEYWORD_PARSERS[$token->keyword])
+=======
+            $token->type === Token::TYPE_KEYWORD && isset(Parser::$KEYWORD_PARSERS[$token->value])
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         ) {
             return 1;
         }

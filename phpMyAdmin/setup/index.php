@@ -12,7 +12,11 @@
  */
 require './lib/common.inc.php';
 
+<<<<<<< HEAD
 if (@file_exists(CONFIG_FILE) && ! $cfg['DBG']['demo']) {
+=======
+if (file_exists(CONFIG_FILE)) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     PMA_fatalError(__('Configuration already exists, setup is disabled!'));
 }
 
@@ -21,7 +25,11 @@ $page = preg_replace('/[^a-z]/', '', $page);
 if ($page === '') {
     $page = 'index';
 }
+<<<<<<< HEAD
 if (!@file_exists("./setup/frames/$page.inc.php")) {
+=======
+if (!file_exists("./setup/frames/$page.inc.php")) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     // it will happen only when entering URL by hand, we don't care for these cases
     PMA_fatalError(__('Wrong GET file attribute value'));
 }

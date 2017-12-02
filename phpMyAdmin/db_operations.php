@@ -37,7 +37,11 @@ $sql_query = '';
 /**
  * Rename/move or copy database
  */
+<<<<<<< HEAD
 if (strlen($GLOBALS['db']) > 0
+=======
+if (strlen($GLOBALS['db'] > 0)
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     && (! empty($_REQUEST['db_rename']) || ! empty($_REQUEST['db_copy']))
 ) {
     if (! empty($_REQUEST['db_rename'])) {

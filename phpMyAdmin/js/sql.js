@@ -214,6 +214,7 @@ AJAX.registerOnload('sql.js', function () {
     $(document).on('click', "#copyToClipBoard", function (event) {
         event.preventDefault();
 
+<<<<<<< HEAD
         var textArea = document.createElement("textarea");
 
         //
@@ -292,6 +293,10 @@ AJAX.registerOnload('sql.js', function () {
 
         document.body.removeChild(textArea);
 
+=======
+        // Print the page
+        copyToClipboard();
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }); //end of Copy to Clipboard action
 
     /**
@@ -661,8 +666,12 @@ AJAX.registerOnload('sql.js', function () {
             type: 'POST',
             url: $form.attr('action'),
             data: {
+<<<<<<< HEAD
                 token: PMA_commonParams.get('token'),
                 server: PMA_commonParams.get('server'),
+=======
+                token: $form.find('input[name="token"]').val(),
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 db: db_name,
                 ajax_request: '1',
                 simulate_dml: '1',

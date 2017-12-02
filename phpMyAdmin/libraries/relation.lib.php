@@ -860,6 +860,7 @@ function PMA_getDisplayField($db, $table)
     }
 
     /**
+<<<<<<< HEAD
      * Pick first char field
      */
     $columns = $GLOBALS['dbi']->getColumnsFull($db, $table);
@@ -872,6 +873,8 @@ function PMA_getDisplayField($db, $table)
     }
 
     /**
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      * No Luck...
      */
     return false;

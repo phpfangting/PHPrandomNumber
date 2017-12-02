@@ -8,7 +8,10 @@
 namespace PMA\libraries;
 
 use PMA\libraries\URL;
+<<<<<<< HEAD
 use PMA\libraries\Util;
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 /**
  * Class to handle database QBE search
@@ -1562,7 +1565,11 @@ class DbQbe
         if (empty($from_clause)) {
             // Create cartesian product
             $from_clause = implode(
+<<<<<<< HEAD
                 ", ", array_map(array('PMA\libraries\Util', 'backquote'), $search_tables)
+=======
+                ", ", array_map('PMA\libraries\Util::backquote', $search_tables)
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             );
         }
 
@@ -1668,7 +1675,11 @@ class DbQbe
             if (count($unfinalized) > 0) {
                 // Add these tables as cartesian product before joined tables
                 $join .= implode(
+<<<<<<< HEAD
                     ', ', array_map(array('PMA\libraries\Util', 'backquote'), $unfinalized)
+=======
+                    ', ', array_map('Util::backquote', $unfinalized)
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 );
             }
         }

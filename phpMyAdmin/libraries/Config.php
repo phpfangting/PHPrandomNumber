@@ -103,7 +103,11 @@ class Config
      */
     public function checkSystem()
     {
+<<<<<<< HEAD
         $this->set('PMA_VERSION', '4.7.4');
+=======
+        $this->set('PMA_VERSION', '4.7.0-beta1');
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         /**
          * @deprecated
          */
@@ -453,7 +457,11 @@ class Config
         } elseif (function_exists('gzuncompress')) {
             $git_file_name = $git_folder . '/objects/'
                 . substr($hash, 0, 2) . '/' . substr($hash, 2);
+<<<<<<< HEAD
             if (@file_exists($git_file_name) ) {
+=======
+            if (file_exists($git_file_name) ) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 if (! $commit = @file_get_contents($git_file_name)) {
                     return;
                 }
@@ -464,7 +472,11 @@ class Config
                 $pack_names = array();
                 // work with packed data
                 $packs_file = $git_folder . '/objects/info/packs';
+<<<<<<< HEAD
                 if (@file_exists($packs_file)
+=======
+                if (file_exists($packs_file)
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     && $packs = @file_get_contents($packs_file)
                 ) {
                     // File exists. Read it, parse the file to get the names of the
@@ -606,7 +618,12 @@ class Config
         ) {
             $is_remote_commit = $_SESSION['PMA_VERSION_REMOTECOMMIT_' . $hash];
         } else {
+<<<<<<< HEAD
             $link = 'https://www.phpmyadmin.net/api/commit/' . $hash . '/';
+=======
+            $link = 'https://api.github.com/repos/phpmyadmin/phpmyadmin/git/commits/'
+                . $hash;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             $is_found = Util::httpRequest($link, "GET");
             switch($is_found) {
             case false:
@@ -634,7 +651,12 @@ class Config
             if (isset($_SESSION['PMA_VERSION_REMOTEBRANCH_' . $hash])) {
                 $is_remote_branch = $_SESSION['PMA_VERSION_REMOTEBRANCH_' . $hash];
             } else {
+<<<<<<< HEAD
                 $link = 'https://www.phpmyadmin.net/api/tree/' . $branch . '/';
+=======
+                $link = 'https://api.github.com/repos/phpmyadmin/phpmyadmin'
+                    . '/git/trees/' . $branch;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 $is_found = Util::httpRequest($link, "GET", true);
                 switch($is_found) {
                 case true:
@@ -788,6 +810,7 @@ class Config
         }
 
         /**
+<<<<<<< HEAD
          * Ignore keys with / as we do not use these
          *
          * These can be confusing for user configuration layer as it
@@ -809,6 +832,8 @@ class Config
         $cfg = array_intersect_key($cfg, array_flip($matched_keys));
 
         /**
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
          * Backward compatibility code
          */
         if (!empty($cfg['DefaultTabTable'])) {
@@ -1137,7 +1162,11 @@ class Config
     public function checkPermissions()
     {
         // Check for permissions (on platforms that support it):
+<<<<<<< HEAD
         if ($this->get('CheckConfigurationPermissions') && @file_exists($this->getSource())) {
+=======
+        if ($this->get('CheckConfigurationPermissions')) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             $perms = @fileperms($this->getSource());
             if (!($perms === false) && ($perms & 2)) {
                 // This check is normally done after loading configuration
@@ -1495,7 +1524,10 @@ class Config
             $factors[] = 1;
             $factors[] = 5;
             $factors[] = 10;
+<<<<<<< HEAD
             $options['100'] = '100%';
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         } elseif ($unit === 'em') {
             $factors[] = 0.05;
             $factors[] = 0.2;
@@ -1714,7 +1746,11 @@ class Config
     private static function _renderCustom($filename, $id)
     {
         $retval = '';
+<<<<<<< HEAD
         if (@file_exists($filename)) {
+=======
+        if (file_exists($filename)) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             $retval .= '<div id="' . $id . '">';
             ob_start();
             include $filename;

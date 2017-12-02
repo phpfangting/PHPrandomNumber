@@ -9,7 +9,10 @@ A validating SQL lexer and parser with a focus on MySQL dialect.
 [![codecov.io](https://codecov.io/github/phpmyadmin/sql-parser/coverage.svg?branch=master)](https://codecov.io/github/phpmyadmin/sql-parser?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/phpmyadmin/sql-parser/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/phpmyadmin/sql-parser/?branch=master)
 [![Translation status](https://hosted.weblate.org/widgets/phpmyadmin/-/svg-badge.svg)](https://hosted.weblate.org/engage/phpmyadmin/?utm_source=widget)
+<<<<<<< HEAD
 [![Packagist](https://img.shields.io/packagist/dt/phpmyadmin/sql-parser.svg)](https://packagist.org/packages/phpmyadmin/sql-parser)
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 ## Installation
 
@@ -40,6 +43,7 @@ Command line utility to lint SQL query:
 ./vendor/bin/lint-query --query "SELECT 1"
 ```
 
+<<<<<<< HEAD
 Command line utility to tokenize SQL query:
 
 ```sh
@@ -50,6 +54,12 @@ Command line utility to tokenize SQL query:
 
 ```php
 echo PhpMyAdmin\SqlParser\Utils\Formatter::format($query, array('type' => 'html'));
+=======
+### Formatting SQL query
+
+```php
+echo SqlParser\Utils\Formatter::format($query, array('type' => 'html'));
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 ```
 
 ### Discoverying query type
@@ -86,13 +96,18 @@ $query2 = $statement->build();
 var_dump($query2); // outputs string(19) "SELECT  * FROM `b` "
 
 // Change SQL mode
+<<<<<<< HEAD
 PhpMyAdmin\SqlParser\Context::setMode('ANSI_QUOTES');
+=======
+SqlParser\Context::setMode('ANSI_QUOTES');
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 // build the query again using different quotes
 $query2 = $statement->build();
 var_dump($query2); // outputs string(19) "SELECT  * FROM "b" "
 ```
 
+<<<<<<< HEAD
 ## Localization
 
 You can localize error messages installing `phpmyadmin/motranslator` version `3.0` or newer:
@@ -117,6 +132,8 @@ $query1 = "select * from a";
 $parser = new PhpMyAdmin\SqlParser\Parser($query1);
 ```
 
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 ## More information
 
 This library was originally created during the Google Summer of Code 2015 and has been used by phpMyAdmin since version 4.5.

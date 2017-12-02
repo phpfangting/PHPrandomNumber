@@ -74,6 +74,7 @@ class JoinKeyword extends Component
     public $using;
 
     /**
+<<<<<<< HEAD
      * Constructor.
      *
      * @param string $type Join type
@@ -92,6 +93,8 @@ class JoinKeyword extends Component
     }
 
     /**
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      * @param Parser     $parser  the parser that serves as context
      * @param TokensList $list    the list of tokens that are being parsed
      * @param array      $options parameters for parsing
@@ -151,9 +154,15 @@ class JoinKeyword extends Component
 
             if ($state === 0) {
                 if (($token->type === Token::TYPE_KEYWORD)
+<<<<<<< HEAD
                     && (!empty(static::$JOINS[$token->keyword]))
                 ) {
                     $expr->type = static::$JOINS[$token->keyword];
+=======
+                    && (!empty(static::$JOINS[$token->value]))
+                ) {
+                    $expr->type = static::$JOINS[$token->value];
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     $state = 1;
                 } else {
                     break;
@@ -163,6 +172,7 @@ class JoinKeyword extends Component
                 $state = 2;
             } elseif ($state === 2) {
                 if ($token->type === Token::TYPE_KEYWORD) {
+<<<<<<< HEAD
                     if ($token->keyword === 'ON') {
                         $state = 3;
                     } elseif ($token->keyword === 'USING') {
@@ -174,6 +184,19 @@ class JoinKeyword extends Component
                             $ret[] = $expr;
                             $expr = new self();
                             $expr->type = static::$JOINS[$token->keyword];
+=======
+                    if ($token->value === 'ON') {
+                        $state = 3;
+                    } elseif ($token->value === 'USING') {
+                        $state = 4;
+                    } else {
+                        if (($token->type === Token::TYPE_KEYWORD)
+                            && (!empty(static::$JOINS[$token->value]))
+                        ) {
+                            $ret[] = $expr;
+                            $expr = new self();
+                            $expr->type = static::$JOINS[$token->value];
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                             $state = 1;
                         } else {
                             /* Next clause is starting */
