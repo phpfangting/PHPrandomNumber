@@ -6,5 +6,4 @@
  * Time: 17:24
  */
 
-echo '1';
-echo '2';
+ error_log("Big trouble, we're all out of FOOs!", 1,"1018733470@qq.com");

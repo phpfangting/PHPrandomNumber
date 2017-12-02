@@ -69,6 +69,9 @@ $teSeParty = [
 
 
 $data = $_GET;
+
+$data['company']=!empty($data['company'])?explode(',',$data['company']):[];
+$data['companyName']=!empty($data['companyName'])?explode(',',$data['companyName']):[];
 //定义参数类型,用于区分不同的查询类型
 $types = [
     1, //国家
@@ -89,9 +92,15 @@ $searchParam = [
     'teSeParty'
 
 ];
+var_dump($data);
 //把types当做key  把$searchParam当做值合并返回新的数组
 $paramConfig = array_combine($types, $searchParam);
+<<<<<<< HEAD
 print_r($_GET);EXIT;
+=======
+
+
+>>>>>>> dev
 ?>
 
 <!doctype html>
@@ -160,9 +169,25 @@ print_r($_GET);EXIT;
             cursor: pointer;
         }
 
-        .search .label{background: limegreen;position: relative;}
-        .search .label:hover{background: red;cursor: pointer;}
-        .search .label:hover::after{content:'X';position: absolute;left:190px;height: 20px;top:-8px; width:20px;padding-bottom: 10px;}
+        .search .label {
+            background: limegreen;
+            position: relative;
+        }
+
+        .search .label:hover {
+            background: red;
+            cursor: pointer;
+        }
+
+        .search .label:hover::after {
+            content: 'X';
+            position: absolute;
+            left: 190px;
+            height: 20px;
+            top: -8px;
+            width: 20px;
+            padding-bottom: 10px;
+        }
 
 
     </style>
@@ -178,7 +203,7 @@ print_r($_GET);EXIT;
 
             <ul class="city">
                 <?php foreach ($item['childList'] as $cityid => $val): ?>
-                    <li type="1" contryId="<?= $contryId ?>" contryName="<?= $item['contryName'] ?>"
+                    <li type="2" contryId="<?= $contryId ?>" contryName="<?= $item['contryName'] ?>"
                         cityId="<?= $cityid ?>"><?= $val ?></li>
                 <?php endforeach; ?>
             </ul>
@@ -241,9 +266,16 @@ print_r($_GET);EXIT;
     <?php foreach ($data as $k => $val): ?>
         <?php if (in_array($k, $paramConfig)): ?>
             <?php $type = array_search($k, $paramConfig); ?>
-            <li class="label" type='<?= $type ?>' onclick='searchObj.delLabel(this,<?= $type ?>)'>
-                <?= str_replace('-', '&', $data[$k . 'Name']) ?></li>
+            <?php if (is_array($val)):?>
+                <?php foreach ($val as $kk=>$item):?>
+                <li class="label" type='<?= $type ?>' onclick='searchObj.delLabel(this,<?= $type ?>)'><?= str_replace('-', '&', $kk) ?></li>
+                <?php endforeach;?>
+            <?php else: ?>
+                <li class="label" type='<?= $type ?>' onclick='searchObj.delLabel(this,<?= $type ?>)'><?= str_replace('-', '&', $data[$k . 'Name']) ?></li>
+
+            <?php endif;?>
         <?php endif; ?>
+
     <?php endforeach; ?>
 
 
@@ -257,8 +289,8 @@ print_r($_GET);EXIT;
         'contryName': "<?=isset($data['contryName']) ? $data['contryName'] : ''?>",
         'city': "<?=isset($data['city']) ? $data['city'] : ''?>",
         'cityName': "<?=isset($data['cityName']) ? $data['cityName'] : ''?>",
-        'company': "<?=isset($data['company']) ? $data['company'] : ''?>",
-        'companyName': "<?=isset($data['companyName']) ? $data['companyName'] : ''?>",
+        'company': <?=!empty($data['company']) ? json_encode($data['company']) : json_encode([])?>,
+        'companyName': <?=!empty($data['companyName']) ? json_encode($data['companyName']) : json_encode([])?>,
         'partyCategory': "<?=isset($data['partyCategory']) ? $data['partyCategory'] : ''?>",
         'partyCategoryName': "<?=isset($data['partyCategoryName']) ? $data['partyCategoryName'] : ''?>",
         'startTime': "<?=isset($data['startTime']) ? $data['startTime'] : ''?>",
@@ -266,6 +298,7 @@ print_r($_GET);EXIT;
         'teSeParty': "<?=isset($data['teSeParty']) ? $data['teSeParty'] : ''?>",
         'teSePartyName': "<?=isset($data['teSePartyName']) ? $data['teSePartyName'] : ''?>",
     };
+
     //要跳转的地址
     var _url = 'searchPage.php';
     //标签操作
@@ -274,11 +307,15 @@ print_r($_GET);EXIT;
         delLabel: function (e, type) {
             //判断是否是国家分类标签
             //type 查询类型  1 国家 2 城市 3 拍行 4 分类
-
+            $(e).remove();
             switch (type) {
                 case 1:
                     //type 为1时说明用户点击的是国家标签,那么可以将子类删除
+<<<<<<< HEAD
 //                    $(e).remove();
+=======
+
+>>>>>>> dev
                     $('.search li[type="2"]').remove();
                     _json.contry = '';//国家编号
                     _json.contryName = '';//国家名称
@@ -317,11 +354,20 @@ print_r($_GET);EXIT;
         },
         //参数拼接
         getUrl: function () {
+
+//            console.log(_json.companyName);
+//            console.log(_json.company);
+
             var param = '';
             for (k in _json) {
                 //值不为空的时候才能拼接
+
                 if (_json[k] != "") {
-                    param += k + '=' + _json[k] + '&';
+                    if ($.isArray(_json[k])) {
+                        param += k + '=' + _json[k].join(',') + '&';
+                    } else {
+                        param += k + '=' + _json[k] + '&';
+                    }
                 }
             }
             //去除多余的&符
@@ -340,9 +386,16 @@ print_r($_GET);EXIT;
     });
     //拍行公司查询
     $('.company .comp').click(function () {
-        _json.company = $(this).attr('companyId');
-        _json.companyName = $(this).html().replace('&', "-");
-        window.location.href = searchObj.getUrl();
+        if ($.inArray($(this).attr('companyId'), _json.company) == -1) {
+            _json.company.push($(this).attr('companyId'));
+        }
+        if ($.inArray($(this).html().replace('&', "-"), _json.companyName) == -1) {
+            _json.companyName.push($(this).html().replace('&', "-"));
+        }
+
+        url = searchObj.getUrl();
+        console.log(url);
+        //window.location.href = searchObj.getUrl();
     });
     //专场分类查询
     $('.partyCategory .party').click(function () {
@@ -351,11 +404,10 @@ print_r($_GET);EXIT;
         ;
         window.location.href = searchObj.getUrl();
     });
-    //专场分类查询
+    //按时间分类查询
     $('.startTime .start').click(function () {
         _json.startTime = $(this).attr('startTimeId');
         _json.startTimeName = $(this).html().replace('&', "-");
-        ;
         window.location.href = searchObj.getUrl();
     });
     //特色专场
@@ -364,6 +416,6 @@ print_r($_GET);EXIT;
         _json.teSePartyName = $(this).html().replace('&', "-");
         window.location.href = searchObj.getUrl();
     });
-
+window.history.pushState(null,'','http://www.baidu.com')
 </script>
 

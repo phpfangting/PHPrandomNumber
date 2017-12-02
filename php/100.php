@@ -15,7 +15,10 @@
 // print_r($_GET);
 $s=microtime(true);
 echo "<a href='/php/100.php?" . http_build_query(['company' => '反而无法']) . "' >", 'dssdsd', "</a>";
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
 $e=microtime(true);
 
 echo $e-$s;

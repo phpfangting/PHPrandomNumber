@@ -1,14 +1,14 @@
 #!/bin/bash
 
 
-i=1
-while (($i <= 5)) 
+# i=1
+# while (($i <= 5)) 
 
-do
+# do
 
-	echo 'hello'
+# 	echo 'hello'
 	
-	let "i++"
+# 	let "i++"
 
 
-done
+# done
