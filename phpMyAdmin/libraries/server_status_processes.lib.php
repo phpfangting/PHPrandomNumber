@@ -228,8 +228,13 @@ function PMA_getHtmlForProcessListFilter()
     $retval  = '';
     $retval .= '<fieldset id="tableFilter">';
     $retval .= '<legend>' . __('Filters') . '</legend>';
+<<<<<<< HEAD
+    $retval .= '<form action="server_status_processes.php">';
+    $retval .= URL::getHiddenInputs($url_params);
+=======
     $retval .= '<form action="server_status_processes.php'
         . URL::getCommon($url_params) . '">';
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     $retval .= '<input type="submit" value="' . __('Refresh') . '" />';
     $retval .= '<div class="formelement">';
     $retval .= '<input' . $showExecuting . ' type="checkbox" name="showExecuting"'

@@ -13,19 +13,29 @@ namespace Symfony\Component\Cache\Adapter;
 
 use Psr\Cache\CacheItemInterface;
 use Psr\Log\LoggerAwareInterface;
+<<<<<<< HEAD
+use Symfony\Component\Cache\CacheItem;
+use Symfony\Component\Cache\Traits\ArrayTrait;
+=======
 use Psr\Log\LoggerAwareTrait;
 use Symfony\Component\Cache\CacheItem;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 /**
  * @author Nicolas Grekas <p@tchwork.com>
  */
 class ArrayAdapter implements AdapterInterface, LoggerAwareInterface
 {
+<<<<<<< HEAD
+    use ArrayTrait;
+
+=======
     use LoggerAwareTrait;
 
     private $storeSerialized;
     private $values = array();
     private $expiries = array();
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     private $createCacheItem;
 
     /**
@@ -86,6 +96,9 @@ class ArrayAdapter implements AdapterInterface, LoggerAwareInterface
             CacheItem::validateKey($key);
         }
 
+<<<<<<< HEAD
+        return $this->generateItems($keys, time(), $this->createCacheItem);
+=======
         return $this->generateItems($keys, time());
     }
 
@@ -129,6 +142,7 @@ class ArrayAdapter implements AdapterInterface, LoggerAwareInterface
         unset($this->values[$key], $this->expiries[$key]);
 
         return true;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 
     /**
@@ -196,6 +210,8 @@ class ArrayAdapter implements AdapterInterface, LoggerAwareInterface
     {
         return true;
     }
+<<<<<<< HEAD
+=======
 
     private function generateItems(array $keys, $now)
     {
@@ -227,4 +243,5 @@ class ArrayAdapter implements AdapterInterface, LoggerAwareInterface
             yield $key => $f($key, null, false);
         }
     }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 }

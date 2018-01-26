@@ -548,7 +548,11 @@ function PMA_pluginGetOptions($section, &$list)
         $ret .= '<h3>' . PMA_getString($text) . '</h3>';
 
         $no_options = true;
+<<<<<<< HEAD
+        if (! is_null($options) && count($options) > 0) {
+=======
         if ($options != null && count($options) > 0) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             foreach ($options->getProperties()
                 as $propertyMainGroup
             ) {

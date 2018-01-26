@@ -4,7 +4,11 @@
 
 namespace Composer\Autoload;
 
+<<<<<<< HEAD
+class ComposerStaticInit8276cfd74868925e84b4eaf5cfa75af1
+=======
 class ComposerStaticInitead9bdfd84e94d182dac8030effe88fb
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 {
     public static $files = array (
         'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
@@ -26,6 +30,10 @@ class ComposerStaticInitead9bdfd84e94d182dac8030effe88fb
         ),
         'P' => 
         array (
+<<<<<<< HEAD
+            'Psr\\SimpleCache\\' => 16,
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             'Psr\\Log\\' => 8,
             'Psr\\Cache\\' => 10,
             'PhpMyAdmin\\SqlParser\\' => 21,
@@ -52,6 +60,13 @@ class ComposerStaticInitead9bdfd84e94d182dac8030effe88fb
         array (
             0 => __DIR__ . '/..' . '/google/recaptcha/src/ReCaptcha',
         ),
+<<<<<<< HEAD
+        'Psr\\SimpleCache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/simple-cache/src',
+        ),
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
@@ -98,9 +113,15 @@ class ComposerStaticInitead9bdfd84e94d182dac8030effe88fb
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+<<<<<<< HEAD
+            $loader->prefixLengthsPsr4 = ComposerStaticInit8276cfd74868925e84b4eaf5cfa75af1::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit8276cfd74868925e84b4eaf5cfa75af1::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit8276cfd74868925e84b4eaf5cfa75af1::$classMap;
+=======
             $loader->prefixLengthsPsr4 = ComposerStaticInitead9bdfd84e94d182dac8030effe88fb::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitead9bdfd84e94d182dac8030effe88fb::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInitead9bdfd84e94d182dac8030effe88fb::$classMap;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
         }, null, ClassLoader::class);
     }

@@ -105,7 +105,11 @@ class ListDatabase extends ListAbstract
         }
 
         if ($GLOBALS['cfg']['NaturalOrder']) {
+<<<<<<< HEAD
+            usort($database_list, 'strnatcasecmp');
+=======
             natsort($database_list);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         } else {
             // need to sort anyway, otherwise information_schema
             // goes at the top

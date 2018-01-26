@@ -8,6 +8,10 @@
 use PMA\libraries\Encoding;
 use PMA\libraries\plugins\ExportPlugin;
 use PMA\libraries\URL;
+<<<<<<< HEAD
+use PMA\libraries\Util;
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 use PMA\libraries\Sanitize;
 
 /**
@@ -292,7 +296,11 @@ if (!empty($_REQUEST['aliases'])) {
 /**
  * Increase time limit for script execution and initializes some variables
  */
+<<<<<<< HEAD
+Util::setTimeLimit();
+=======
 @set_time_limit($cfg['ExecTimeLimit']);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 if (! empty($cfg['MemoryLimit'])) {
     @ini_set('memory_limit', $cfg['MemoryLimit']);
 }

@@ -14,7 +14,11 @@ namespace PMA\libraries\properties\options;
  * @todo    modify descriptions if needed, when the options are integrated
  * @package PhpMyAdmin
  */
+<<<<<<< HEAD
+abstract class OptionsPropertyGroup extends OptionsPropertyItem implements \Countable
+=======
 abstract class OptionsPropertyGroup extends OptionsPropertyItem
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 {
     /**
      * Holds a group of properties (PMA\libraries\properties\options\OptionsPropertyItem instances)
@@ -87,6 +91,23 @@ abstract class OptionsPropertyGroup extends OptionsPropertyItem
      */
     public function getNrOfProperties()
     {
+<<<<<<< HEAD
+        if (is_null($this->_properties)) {
+            return 0;
+        }
         return count($this->_properties);
     }
+
+    /**
+     * Countable interface implementation.
+     *
+     * @return int
+     */
+    public function count() {
+        return $this->getNrOfProperties();
+    }
+=======
+        return count($this->_properties);
+    }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 }

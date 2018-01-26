@@ -27,7 +27,11 @@
                 <?php endif; ?>
                 <td class="small_tab"
                     title="<?= __('Show/hide columns'); ?>"
+<<<<<<< HEAD
+                    id="id_hide_tbody_<?= htmlspecialchars($t_n_url) ?>"
+=======
                     id="id_hide_tbody_<?= $t_n_url; ?>"
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     table_name="<?= htmlspecialchars($t_n_url); ?>"
                     onmouseover="this.className='small_tab2';"
                     onmouseout="this.className='small_tab';" ><?= (! isset($tab_pos[$t_n]) || ! empty($tab_pos[$t_n]["V"])) ? 'v' : '&gt;'; ?>

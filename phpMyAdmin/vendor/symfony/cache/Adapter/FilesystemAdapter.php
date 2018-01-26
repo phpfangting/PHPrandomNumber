@@ -11,6 +11,19 @@
 
 namespace Symfony\Component\Cache\Adapter;
 
+<<<<<<< HEAD
+use Symfony\Component\Cache\Traits\FilesystemTrait;
+
+class FilesystemAdapter extends AbstractAdapter
+{
+    use FilesystemTrait;
+
+    /**
+     * @param string      $namespace
+     * @param int         $defaultLifetime
+     * @param string|null $directory
+     */
+=======
 /**
  * @author Nicolas Grekas <p@tchwork.com>
  */
@@ -18,11 +31,14 @@ class FilesystemAdapter extends AbstractAdapter
 {
     use FilesystemAdapterTrait;
 
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     public function __construct($namespace = '', $defaultLifetime = 0, $directory = null)
     {
         parent::__construct('', $defaultLifetime);
         $this->init($namespace, $directory);
     }
+<<<<<<< HEAD
+=======
 
     /**
      * {@inheritdoc}
@@ -83,4 +99,5 @@ class FilesystemAdapter extends AbstractAdapter
 
         return $ok;
     }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 }

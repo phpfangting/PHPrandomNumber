@@ -146,6 +146,21 @@ class DatabaseStructureController extends DatabaseController
         // Gets the database structure
         $this->_getDbInfo('_structure');
 
+<<<<<<< HEAD
+        // Checks if there are any tables to be shown on current page.
+        // If there are no tables, the user is redirected to the last page
+        // having any.
+        if ($this->_total_num_tables > 0 && $this->_pos > $this->_total_num_tables) {
+            $uri = './db_structure.php' . URL::getCommonRaw(array(
+                'db' => $this->db,
+                'pos' => max(0, $this->_total_num_tables - $GLOBALS['cfg']['MaxTableList']),
+                'reload' => 1
+            ));
+            PMA_sendHeaderLocation($uri);
+        }
+
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         include_once 'libraries/replication.inc.php';
 
         PageSettings::showGroup('DbStructure');
@@ -233,7 +248,14 @@ class DatabaseStructureController extends DatabaseController
 
         // Request for Synchronization of favorite tables.
         if (isset($_REQUEST['sync_favorite_tables'])) {
+<<<<<<< HEAD
+            $cfgRelation = PMA_getRelationsParam();
+            if ($cfgRelation['favoritework']) {
+                $this->synchronizeFavoriteTables($fav_instance, $user, $favorite_tables);
+            }
+=======
             $this->synchronizeFavoriteTables($fav_instance, $user, $favorite_tables);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             return;
         }
         $changes = true;
@@ -402,9 +424,15 @@ class DatabaseStructureController extends DatabaseController
             $overhead = '';
 
             $table_is_view = false;
+<<<<<<< HEAD
+            // Sets parameters for links
+            $tbl_url_query = $this->_url_query
+                . '&amp;table=' . htmlspecialchars($current_table['TABLE_NAME']);
+=======
             $table_encoded = urlencode($current_table['TABLE_NAME']);
             // Sets parameters for links
             $tbl_url_query = $this->_url_query . '&amp;table=' . $table_encoded;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             // do not list the previous table's size info for a view
 
             list($current_table, $formatted_size, $unit, $formatted_overhead,
@@ -754,9 +782,15 @@ class DatabaseStructureController extends DatabaseController
         if (isset($current_table['TABLE_ROWS'])
             && ($current_table['ENGINE'] != null || $table_is_view)
         ) {
+<<<<<<< HEAD
+            // InnoDB/TokuDB table: we did not get an accurate row count
+            $approx_rows = !$table_is_view
+                && in_array($current_table['ENGINE'], array('InnoDB', 'TokuDB'))
+=======
             // InnoDB table: we did not get an accurate row count
             $approx_rows = !$table_is_view
                 && $current_table['ENGINE'] == 'InnoDB'
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 && !$current_table['COUNTED'];
 
             if ($table_is_view
@@ -943,7 +977,10 @@ class DatabaseStructureController extends DatabaseController
         case 'ARCHIVE' :
         case 'Aria' :
         case 'Maria' :
+<<<<<<< HEAD
+=======
         case 'TokuDB' :
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             list($current_table, $formatted_size, $unit, $formatted_overhead,
                 $overhead_unit, $overhead_size, $sum_size)
                     = $this->getValuesForAriaTable(
@@ -953,6 +990,10 @@ class DatabaseStructureController extends DatabaseController
             break;
         case 'InnoDB' :
         case 'PBMS' :
+<<<<<<< HEAD
+        case 'TokuDB' :
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             // InnoDB table: Row count is not accurate but data and index sizes are.
             // PBMS table in Drizzle: TABLE_ROWS is taken from table cache,
             // so it may be unavailable
@@ -1062,7 +1103,11 @@ class DatabaseStructureController extends DatabaseController
     ) {
         $formatted_size = $unit = '';
 
+<<<<<<< HEAD
+        if ((in_array($current_table['ENGINE'], array('InnoDB', 'TokuDB'))
+=======
         if (($current_table['ENGINE'] == 'InnoDB'
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             && $current_table['TABLE_ROWS'] < $GLOBALS['cfg']['MaxExactCount'])
             || !isset($current_table['TABLE_ROWS'])
         ) {

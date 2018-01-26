@@ -84,11 +84,18 @@ exit;
  */
 function PMA_getChangePassMessage($change_password_message, $sql_query = '')
 {
+<<<<<<< HEAD
+    $response = Response::getInstance();
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     if ($response->isAjax()) {
         /**
          * If in an Ajax request, we don't need to show the rest of the page
          */
+<<<<<<< HEAD
+=======
         $response = Response::getInstance();
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         if ($change_password_message['error']) {
             $response->addJSON('message', $change_password_message['msg']);
             $response->setRequestStatus(false);

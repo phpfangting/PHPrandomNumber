@@ -12,6 +12,19 @@
 namespace Symfony\Component\Cache\Adapter;
 
 use Doctrine\Common\Cache\CacheProvider;
+<<<<<<< HEAD
+use Symfony\Component\Cache\Traits\DoctrineTrait;
+
+class DoctrineAdapter extends AbstractAdapter
+{
+    use DoctrineTrait;
+
+    /**
+     * @param CacheProvider $provider
+     * @param string        $namespace
+     * @param int           $defaultLifetime
+     */
+=======
 
 /**
  * @author Nicolas Grekas <p@tchwork.com>
@@ -20,12 +33,15 @@ class DoctrineAdapter extends AbstractAdapter
 {
     private $provider;
 
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     public function __construct(CacheProvider $provider, $namespace = '', $defaultLifetime = 0)
     {
         parent::__construct('', $defaultLifetime);
         $this->provider = $provider;
         $provider->setNamespace($namespace);
     }
+<<<<<<< HEAD
+=======
 
     /**
      * {@inheritdoc}
@@ -93,4 +109,5 @@ class DoctrineAdapter extends AbstractAdapter
     {
         return $this->provider->saveMultiple($values, $lifetime);
     }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 }

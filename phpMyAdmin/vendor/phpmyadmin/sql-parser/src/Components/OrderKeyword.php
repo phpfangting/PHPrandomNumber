@@ -96,9 +96,15 @@ class OrderKeyword extends Component
                 $state = 1;
             } elseif ($state === 1) {
                 if (($token->type === Token::TYPE_KEYWORD)
+<<<<<<< HEAD
+                    && (($token->keyword === 'ASC') || ($token->keyword === 'DESC'))
+                ) {
+                    $expr->type = $token->keyword;
+=======
                     && (($token->value === 'ASC') || ($token->value === 'DESC'))
                 ) {
                     $expr->type = $token->value;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 } elseif (($token->type === Token::TYPE_OPERATOR)
                     && ($token->value === ',')
                 ) {
@@ -133,8 +139,14 @@ class OrderKeyword extends Component
     {
         if (is_array($component)) {
             return implode(', ', $component);
+<<<<<<< HEAD
+        }
+
+        return $component->expr . ' ' . $component->type;
+=======
         } else {
             return $component->expr . ' ' . $component->type;
         }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 }

@@ -189,16 +189,27 @@ var PMA_console = {
                 if (ajaxOptions.dataType && ajaxOptions.dataType.indexOf('json') != -1) {
                     return;
                 }
+<<<<<<< HEAD
+                if (xhr.status !== 200) {
+                    return;
+                }
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 try {
                     var data = JSON.parse(xhr.responseText);
                     PMA_console.ajaxCallback(data);
                 } catch (e) {
+<<<<<<< HEAD
+                    console.trace();
+                    console.log("Failed to parse JSON: " + e.message);
+=======
                     console.log("Invalid JSON!" + e.message);
                     if (AJAX.xhr && AJAX.xhr.status === 0 && AJAX.xhr.statusText !== 'abort') {
                         PMA_ajaxShowMessage($('<div />',{'class':'error','html':PMA_messages.strRequestFailed+' ( '+escapeHtml(AJAX.xhr.statusText)+' )'}));
                         AJAX.active = false;
                         AJAX.xhr = null;
                     }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 }
             });
 
@@ -249,7 +260,11 @@ var PMA_console = {
         if (options && options.profiling === true) {
             PMA_console.$requestForm.append('<input name="profiling" value="on">');
         }
+<<<<<<< HEAD
+        if (! confirmQuery(PMA_console.$requestForm[0], PMA_console.$requestForm.children('textarea')[0].value)) {
+=======
         if (! confirmQuery(PMA_console.$requestForm[0], PMA_console.$requestForm.children('textarea')[0])) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             return;
         }
         PMA_console.$requestForm.children('[name=console_message_id]')

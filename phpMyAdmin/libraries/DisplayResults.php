@@ -793,9 +793,14 @@ class DisplayResults
 
             //<form> to keep the form alignment of button < and <<
             // and also to know what to execute when the selector changes
+<<<<<<< HEAD
+            $table_navigation_html .= '<form action="sql.php" method="post">';
+            $table_navigation_html .= URL::getHiddenInputs($_url_params);
+=======
             $table_navigation_html .= '<form action="sql.php'
                 . URL::getCommon($_url_params)
                 . '" method="post">';
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
             $table_navigation_html .= Util::pageselector(
                 'pos',
@@ -867,6 +872,12 @@ class DisplayResults
         }
 
         // Move to the next page or to the last one
+<<<<<<< HEAD
+        if ($this->__get('unlim_num_rows') === false // view with unknown number of rows
+            || ($_SESSION['tmpval']['max_rows'] != self::ALL_ROWS
+            && $_SESSION['tmpval']['pos'] + $_SESSION['tmpval']['max_rows'] < $this->__get('unlim_num_rows')
+            && $this->__get('num_rows') >= $_SESSION['tmpval']['max_rows'])
+=======
         $endpos = $_SESSION['tmpval']['pos']
             + $_SESSION['tmpval']['max_rows'];
 
@@ -874,6 +885,7 @@ class DisplayResults
             || ($endpos < $this->__get('unlim_num_rows')
             && $this->__get('num_rows') >= $_SESSION['tmpval']['max_rows']
             && $_SESSION['tmpval']['max_rows'] != self::ALL_ROWS)
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         ) {
 
             $table_navigation_html
@@ -2132,7 +2144,11 @@ class DisplayResults
             // Incase this is the current column save $single_sort_order
             if ($current_name == $name_to_use_in_sort) {
                 if (mb_strpos($current_name, '(') !== false) {
+<<<<<<< HEAD
+                    $single_sort_order = "\n" . 'ORDER BY ' . Util::backquote($current_name) . ' ';
+=======
                     $single_sort_order = "\n" . 'ORDER BY ' . $current_name . ' ';
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 } else {
                     $single_sort_order = "\n" . 'ORDER BY ' . $sort_tbl
                         . Util::backquote(
@@ -3061,7 +3077,11 @@ class DisplayResults
                     $file = $mime_map[$orgFullColName]['transformation'];
                     $include_file = 'libraries/plugins/transformations/' . $file;
 
+<<<<<<< HEAD
+                    if (@file_exists($include_file)) {
+=======
                     if (file_exists($include_file)) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
                         include_once $include_file;
                         $class_name = PMA_getTransformationClassName($include_file);

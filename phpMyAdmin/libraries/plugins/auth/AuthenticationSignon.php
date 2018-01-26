@@ -82,7 +82,11 @@ class AuthenticationSignon extends AuthenticationPlugin
 
         /* Handle script based auth */
         if (!empty($script_name)) {
+<<<<<<< HEAD
+            if (!@file_exists($script_name)) {
+=======
             if (!file_exists($script_name)) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 PMA_fatalError(
                     __('Can not find signon authentication script:')
                     . ' ' . $script_name
@@ -118,10 +122,17 @@ class AuthenticationSignon extends AuthenticationPlugin
             }
 
             /* Load single signon session */
+<<<<<<< HEAD
+            if (!defined('TESTSUITE')) {
+                session_set_cookie_params($session_cookie_params['lifetime'], $session_cookie_params['path'], $session_cookie_params['domain'], $session_cookie_params['secure'], $session_cookie_params['httponly']);
+                session_name($session_name);
+                session_id($_COOKIE[$session_name]);
+=======
             session_set_cookie_params($session_cookie_params['lifetime'], $session_cookie_params['path'], $session_cookie_params['domain'], $session_cookie_params['secure'], $session_cookie_params['httponly']);
             session_name($session_name);
             session_id($_COOKIE[$session_name]);
             if (!defined('TESTSUITE')) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 session_start();
             }
 
@@ -159,12 +170,21 @@ class AuthenticationSignon extends AuthenticationPlugin
             }
 
             /* Restart phpMyAdmin session */
+<<<<<<< HEAD
+            if (!defined('TESTSUITE')) {
+                session_set_cookie_params($old_cookie_params['lifetime'], $old_cookie_params['path'], $old_cookie_params['domain'], $old_cookie_params['secure'], $old_cookie_params['httponly']);
+                session_name($old_session);
+                if (!empty($old_id)) {
+                    session_id($old_id);
+                }
+=======
             session_set_cookie_params($old_cookie_params['lifetime'], $old_cookie_params['path'], $old_cookie_params['domain'], $old_cookie_params['secure'], $old_cookie_params['httponly']);
             session_name($old_session);
             if (!empty($old_id)) {
                 session_id($old_id);
             }
             if (!defined('TESTSUITE')) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 session_start();
             }
 
@@ -235,6 +255,15 @@ class AuthenticationSignon extends AuthenticationPlugin
 
         /* Does session exist? */
         if (isset($_COOKIE[$session_name])) {
+<<<<<<< HEAD
+            if (!defined('TESTSUITE')) {
+                /* End current session */
+                session_write_close();
+
+                /* Load single signon session */
+                session_name($session_name);
+                session_id($_COOKIE[$session_name]);
+=======
             /* End current session */
             if (!defined('TESTSUITE')) {
                 session_write_close();
@@ -244,6 +273,7 @@ class AuthenticationSignon extends AuthenticationPlugin
             session_name($session_name);
             session_id($_COOKIE[$session_name]);
             if (!defined('TESTSUITE')) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 session_start();
             }
 

@@ -17,12 +17,26 @@
     },
     "require": {
         "php": ">=5.3.0",
+<<<<<<< HEAD
+        "ext-mbstring": "*"
+    },
+    "require-dev": {
+        "phpunit/php-code-coverage": "*",
+        "phpunit/phpunit": "~4.8 || ~5.7"
+    },
+    "conflict": {
+        "phpmyadmin/motranslator": "<3.0"
+    },
+    "suggest": {
+        "phpmyadmin/motranslator": "Translate messages to your favorite locale"
+=======
         "phpmyadmin/motranslator": "~3.0",
         "ext-mbstring": "*"
     },
     "require-dev": {
         "phpunit/php-code-coverage": "~2.0 || ~3.0",
         "phpunit/phpunit": "~4.8 || ~5.1"
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     },
     "bin": [
         "bin/highlight-query",

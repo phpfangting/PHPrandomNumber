@@ -12,6 +12,21 @@
 namespace Symfony\Component\Cache\Adapter;
 
 use Symfony\Component\Cache\Exception\CacheException;
+<<<<<<< HEAD
+use Symfony\Component\Cache\Traits\PhpFilesTrait;
+
+class PhpFilesAdapter extends AbstractAdapter
+{
+    use PhpFilesTrait;
+
+    /**
+     * @param string      $namespace
+     * @param int         $defaultLifetime
+     * @param string|null $directory
+     *
+     * @throws CacheException if OPcache is not enabled
+     */
+=======
 use Symfony\Component\Cache\Exception\InvalidArgumentException;
 
 /**
@@ -29,6 +44,7 @@ class PhpFilesAdapter extends AbstractAdapter
         return function_exists('opcache_compile_file') && ini_get('opcache.enable');
     }
 
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     public function __construct($namespace = '', $defaultLifetime = 0, $directory = null)
     {
         if (!static::isSupported()) {
@@ -40,6 +56,8 @@ class PhpFilesAdapter extends AbstractAdapter
         $e = new \Exception();
         $this->includeHandler = function () use ($e) { throw $e; };
     }
+<<<<<<< HEAD
+=======
 
     /**
      * {@inheritdoc}
@@ -128,4 +146,5 @@ class PhpFilesAdapter extends AbstractAdapter
 
         return $ok;
     }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 }

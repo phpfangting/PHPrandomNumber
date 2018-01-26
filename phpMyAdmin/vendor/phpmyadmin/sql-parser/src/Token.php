@@ -183,6 +183,16 @@ class Token
     public $value;
 
     /**
+<<<<<<< HEAD
+     * The keyword value this token contains, always uppercase.
+     *
+     * @var mixed
+     */
+    public $keyword;
+
+    /**
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      * The type of this token.
      *
      * @var int
@@ -215,6 +225,10 @@ class Token
         $this->token = $token;
         $this->type = $type;
         $this->flags = $flags;
+<<<<<<< HEAD
+        $this->keyword = null;
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         $this->value = $this->extract();
     }
 
@@ -229,13 +243,21 @@ class Token
     {
         switch ($this->type) {
             case self::TYPE_KEYWORD:
+<<<<<<< HEAD
+                $this->keyword = strtoupper($this->token);
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 if (!($this->flags & self::FLAG_KEYWORD_RESERVED)) {
                     // Unreserved keywords should stay the way they are because they
                     // might represent field names.
                     return $this->token;
                 }
 
+<<<<<<< HEAD
+                return $this->keyword;
+=======
                 return strtoupper($this->token);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             case self::TYPE_WHITESPACE:
                 return ' ';
             case self::TYPE_BOOL:
@@ -260,10 +282,33 @@ class Token
 
                 return $ret;
             case self::TYPE_STRING:
+<<<<<<< HEAD
+                // Trims quotes.
+                $str = $this->token;
+                $str = mb_substr($str, 1, -1, 'UTF-8');
+
+                // Removes surrounding quotes.
+                $quote = $this->token[0];
+                $str = str_replace($quote . $quote, $quote, $str);
+
+                // Finally unescapes the string.
+                //
+                // `stripcslashes` replaces escape sequences with their
+                // representation.
+                //
+                // NOTE: In MySQL, `\f` and `\v` have no representation,
+                // even they usually represent: form-feed and vertical tab.
+                $str = str_replace('\f', 'f', $str);
+                $str = str_replace('\v', 'v', $str);
+                $str = stripcslashes($str);
+
+                return $str;
+=======
                 $quote = $this->token[0];
                 $str = str_replace($quote . $quote, $quote, $this->token);
 
                 return mb_substr($str, 1, -1, 'UTF-8'); // trims quotes
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             case self::TYPE_SYMBOL:
                 $str = $this->token;
                 if ((isset($str[0])) && ($str[0] === '@')) {

@@ -7,8 +7,13 @@
 
 namespace PhpMyAdmin\SqlParser\Components;
 
+<<<<<<< HEAD
+use PhpMyAdmin\SqlParser\Component;
+use PhpMyAdmin\SqlParser\Context;
+=======
 use PhpMyAdmin\SqlParser\Context;
 use PhpMyAdmin\SqlParser\Component;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 use PhpMyAdmin\SqlParser\Parser;
 use PhpMyAdmin\SqlParser\Token;
 use PhpMyAdmin\SqlParser\TokensList;
@@ -216,11 +221,19 @@ class Expression extends Component
 
             if ($token->type === Token::TYPE_KEYWORD) {
                 if (($brackets > 0) && (empty($ret->subquery))
+<<<<<<< HEAD
+                    && (!empty(Parser::$STATEMENT_PARSERS[$token->keyword]))
+                ) {
+                    // A `(` was previously found and this keyword is the
+                    // beginning of a statement, so this is a subquery.
+                    $ret->subquery = $token->keyword;
+=======
                     && (!empty(Parser::$STATEMENT_PARSERS[$token->value]))
                 ) {
                     // A `(` was previously found and this keyword is the
                     // beginning of a statement, so this is a subquery.
                     $ret->subquery = $token->value;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 } elseif (($token->flags & Token::FLAG_KEYWORD_FUNCTION)
                     && (empty($options['parseField'])
                     && !$alias)
@@ -229,13 +242,21 @@ class Expression extends Component
                 } elseif (($token->flags & Token::FLAG_KEYWORD_RESERVED)
                     && ($brackets === 0)
                 ) {
+<<<<<<< HEAD
+                    if (empty(self::$ALLOWED_KEYWORDS[$token->keyword])) {
+=======
                     if (empty(self::$ALLOWED_KEYWORDS[$token->value])) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                         // A reserved keyword that is not allowed in the
                         // expression was found so the expression must have
                         // ended and a new clause is starting.
                         break;
                     }
+<<<<<<< HEAD
+                    if ($token->keyword === 'AS') {
+=======
                     if ($token->value === 'AS') {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                         if (!empty($options['breakOnAlias'])) {
                             break;
                         }
@@ -248,7 +269,11 @@ class Expression extends Component
                         }
                         $alias = true;
                         continue;
+<<<<<<< HEAD
+                    } elseif ($token->keyword === 'CASE') {
+=======
                     } elseif ($token->value === 'CASE') {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                         // For a use of CASE like
                         // 'SELECT a = CASE .... END, b=1, `id`, ... FROM ...'
                         $tempCaseExpr = CaseExpression::parse($parser, $list);
@@ -418,6 +443,31 @@ class Expression extends Component
     {
         if (is_array($component)) {
             return implode($component, ', ');
+<<<<<<< HEAD
+        }
+
+        if ($component->expr !== '' && !is_null($component->expr)) {
+            $ret = $component->expr;
+        } else {
+            $fields = array();
+            if ((isset($component->database)) && ($component->database !== '')) {
+                $fields[] = $component->database;
+            }
+            if ((isset($component->table)) && ($component->table !== '')) {
+                $fields[] = $component->table;
+            }
+            if ((isset($component->column)) && ($component->column !== '')) {
+                $fields[] = $component->column;
+            }
+            $ret = implode('.', Context::escape($fields));
+        }
+
+        if (!empty($component->alias)) {
+            $ret .= ' AS ' . Context::escape($component->alias);
+        }
+
+        return $ret;
+=======
         } else {
             if ($component->expr !== '' && !is_null($component->expr)) {
                 $ret = $component->expr;
@@ -441,5 +491,6 @@ class Expression extends Component
 
             return $ret;
         }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 }

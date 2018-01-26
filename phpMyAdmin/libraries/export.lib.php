@@ -327,7 +327,11 @@ function PMA_openExportFile($filename, $quick_export)
     $save_filename = PMA\libraries\Util::userDir($GLOBALS['cfg']['SaveDir'])
         . preg_replace('@[/\\\\]@', '_', $filename);
 
+<<<<<<< HEAD
+    if (@file_exists($save_filename)
+=======
     if (file_exists($save_filename)
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         && ((! $quick_export && empty($_REQUEST['onserver_overwrite']))
         || ($quick_export
         && $_REQUEST['quick_export_onserver_overwrite'] != 'saveitover'))

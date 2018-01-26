@@ -103,10 +103,22 @@ class Error extends Message
         $this->setFile($errfile);
         $this->setLine($errline);
 
+<<<<<<< HEAD
+        // This function can be disabled in php.ini
+        if (function_exists('debug_backtrace')) {
+            $backtrace = @debug_backtrace();
+            // remove last three calls:
+            // debug_backtrace(), handleError() and addError()
+            $backtrace = array_slice($backtrace, 3);
+        } else {
+            $backtrace = array();
+        }
+=======
         $backtrace = debug_backtrace();
         // remove last three calls:
         // debug_backtrace(), handleError() and addError()
         $backtrace = array_slice($backtrace, 3);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
         $this->setBacktrace($backtrace);
     }
@@ -130,7 +142,11 @@ class Error extends Message
 
             /* Make path relative */
             if (isset($step['file'])) {
+<<<<<<< HEAD
+                $result[$idx]['file'] = self::relPath($step['file']);
+=======
                 $result[$idx]['file'] = Error::relPath($step['file']);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             }
 
             /* Store members we want */
@@ -143,7 +159,11 @@ class Error extends Message
             /* Store simplified args */
             if (isset($step['args'])) {
                 foreach ($step['args'] as $key => $arg) {
+<<<<<<< HEAD
+                    $result[$idx]['args'][$key] = self::getArg($arg, $step['function']);
+=======
                     $result[$idx]['args'][$key] = Error::getArg($arg, $step['function']);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 }
             }
         }
@@ -174,7 +194,11 @@ class Error extends Message
      */
     public function setBacktrace($backtrace)
     {
+<<<<<<< HEAD
+        $this->backtrace = self::processBacktrace($backtrace);
+=======
         $this->backtrace = Error::processBacktrace($backtrace);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 
     /**
@@ -198,7 +222,11 @@ class Error extends Message
      */
     public function setFile($file)
     {
+<<<<<<< HEAD
+        $this->file = self::relPath($file);
+=======
         $this->file = Error::relPath($file);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 
 
@@ -271,7 +299,11 @@ class Error extends Message
      */
     public function getType()
     {
+<<<<<<< HEAD
+        return self::$errortype[$this->getNumber()];
+=======
         return Error::$errortype[$this->getNumber()];
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 
     /**
@@ -281,7 +313,11 @@ class Error extends Message
      */
     public function getLevel()
     {
+<<<<<<< HEAD
+        return self::$errorlevel[$this->getNumber()];
+=======
         return Error::$errorlevel[$this->getNumber()];
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 
     /**
@@ -313,7 +349,11 @@ class Error extends Message
      */
     public function getBacktraceDisplay()
     {
+<<<<<<< HEAD
+        return self::formatBacktrace(
+=======
         return Error::formatBacktrace(
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             $this->getBacktrace(),
             "<br />\n",
             "<br />\n"
@@ -335,13 +375,21 @@ class Error extends Message
 
         foreach ($backtrace as $step) {
             if (isset($step['file']) && isset($step['line'])) {
+<<<<<<< HEAD
+                $retval .= self::relPath($step['file'])
+=======
                 $retval .= Error::relPath($step['file'])
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     . '#' . $step['line'] . ': ';
             }
             if (isset($step['class'])) {
                 $retval .= $step['class'] . $step['type'];
             }
+<<<<<<< HEAD
+            $retval .= self::getFunctionCall($step, $separator);
+=======
             $retval .= Error::getFunctionCall($step, $separator);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             $retval .= $lines;
         }
 
@@ -407,7 +455,11 @@ class Error extends Message
         );
 
         if (in_array($function, $include_functions)) {
+<<<<<<< HEAD
+            $retval .= self::relPath($arg);
+=======
             $retval .= Error::relPath($arg);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         } elseif (in_array($function, $connect_functions)
             && getType($arg) === 'string'
         ) {

@@ -5,6 +5,10 @@
  *
  * @package PhpMyAdmin
  */
+<<<<<<< HEAD
+use PMA\libraries\Message;
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 use PMA\libraries\Response;
 use PMA\libraries\RecentFavoriteTable;
 use PMA\libraries\URL;
@@ -110,6 +114,15 @@ if (! empty($message)) {
     echo PMA\libraries\Util::getMessage($message);
     unset($message);
 }
+<<<<<<< HEAD
+if (isset($_SESSION['partial_logout'])) {
+    Message::success(
+        __('You were logged out from one server, to logout completely from phpMyAdmin, you need to logout from all servers.')
+    )->display();
+    unset($_SESSION['partial_logout']);
+}
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 $common_url_query =  URL::getCommon();
 $mysql_cur_user_and_host = '';
@@ -236,11 +249,20 @@ echo '<h2>' , __('Appearance settings') , '</h2>';
 echo '  <ul>';
 
 // Displays language selection combo
+<<<<<<< HEAD
+$language_manager = LanguageManager::getInstance();
+if (empty($cfg['Lang']) && $language_manager->hasChoice()) {
+    echo '<li id="li_select_lang" class="no_bullets">';
+
+    echo PMA\libraries\Util::getImage('s_lang.png') , " "
+        , $language_manager->getSelectorDisplay();
+=======
 if (empty($cfg['Lang'])) {
     echo '<li id="li_select_lang" class="no_bullets">';
 
     echo PMA\libraries\Util::getImage('s_lang.png') , " "
         , LanguageManager::getInstance()->getSelectorDisplay();
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     echo '</li>';
 }
 
@@ -574,6 +596,8 @@ if ($server > 0) {
 }
 
 /**
+<<<<<<< HEAD
+=======
  * Warning about different MySQL library and server version
  * (a difference on the third digit does not count).
  * If someday there is a constant that we can check about mysqlnd,
@@ -616,6 +640,7 @@ if (isset($GLOBALS['dbi'])
 }
 
 /**
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
  * Warning about Suhosin only if its simulation mode is not enabled
  */
 if ($cfg['SuhosinDisableWarning'] == false

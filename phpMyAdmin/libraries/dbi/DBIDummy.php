@@ -866,6 +866,13 @@ $GLOBALS['dummy_queries'] = array(
         'query' => 'SELECT @@ndb_version_string',
         'result' => array(array('ndb-7.4.10')),
     ),
+<<<<<<< HEAD
+    array(
+        'query' => "SELECT *, `COLUMN_NAME` AS `Field`, `COLUMN_TYPE` AS `Type`, `COLLATION_NAME` AS `Collation`, `IS_NULLABLE` AS `Null`, `COLUMN_KEY` AS `Key`, `COLUMN_DEFAULT` AS `Default`, `EXTRA` AS `Extra`, `PRIVILEGES` AS `Privileges`, `COLUMN_COMMENT` AS `Comment` FROM `information_schema`.`COLUMNS` WHERE `TABLE_SCHEMA` = 'information_schema' AND `TABLE_NAME` = 'PMA'",
+        'result' => array(),
+    ),
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 );
 /**
  * Current database.
@@ -892,6 +899,12 @@ if (!defined('PMA_MARIADB')) {
  */
 class DBIDummy implements DBIExtension
 {
+<<<<<<< HEAD
+    private $_queries = array();
+    const OFFSET_GLOBAL = 1000;
+
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     /**
      * connects to the database server
      *
@@ -936,6 +949,21 @@ class DBIDummy implements DBIExtension
     public function realQuery($query, $link = null, $options = 0)
     {
         $query = trim(preg_replace('/  */', ' ', str_replace("\n", ' ', $query)));
+<<<<<<< HEAD
+        for ($i = 0, $nb = count($this->_queries); $i < $nb; $i++) {
+            if ($this->_queries[$i]['query'] != $query) {
+                continue;
+            }
+
+            $this->_queries[$i]['pos'] = 0;
+            if (!is_array($this->_queries[$i]['result'])) {
+                return false;
+            }
+
+            return $i;
+        }
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         for ($i = 0, $nb = count($GLOBALS['dummy_queries']); $i < $nb; $i++) {
             if ($GLOBALS['dummy_queries'][$i]['query'] != $query) {
                 continue;
@@ -946,7 +974,11 @@ class DBIDummy implements DBIExtension
                 return false;
             }
 
+<<<<<<< HEAD
+            return $i + self::OFFSET_GLOBAL;
+=======
             return $i;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         }
         echo "Not supported query: $query\n";
 
@@ -975,12 +1007,20 @@ class DBIDummy implements DBIExtension
      */
     public function fetchAny($result)
     {
+<<<<<<< HEAD
+        $query_data = &$this->getQueryData($result);
+=======
         $query_data = $GLOBALS['dummy_queries'][$result];
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         if ($query_data['pos'] >= count($query_data['result'])) {
             return false;
         }
         $ret = $query_data['result'][$query_data['pos']];
+<<<<<<< HEAD
+        $query_data['pos'] += 1;
+=======
         $GLOBALS['dummy_queries'][$result]['pos'] += 1;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
         return $ret;
     }
@@ -994,15 +1034,26 @@ class DBIDummy implements DBIExtension
      */
     public function fetchArray($result)
     {
+<<<<<<< HEAD
+        $query_data = &$this->getQueryData($result);
+        $data = $this->fetchAny($result);
+        if (!is_array($data)
+            || !isset($query_data['columns'])
+=======
         $data = $this->fetchAny($result);
         if (!is_array($data)
             || !isset($GLOBALS['dummy_queries'][$result]['columns'])
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         ) {
             return $data;
         }
 
         foreach ($data as $key => $val) {
+<<<<<<< HEAD
+            $data[$query_data['columns'][$key]] = $val;
+=======
             $data[$GLOBALS['dummy_queries'][$result]['columns'][$key]] = $val;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         }
 
         return $data;
@@ -1018,15 +1069,24 @@ class DBIDummy implements DBIExtension
     public function fetchAssoc($result)
     {
         $data = $this->fetchAny($result);
+<<<<<<< HEAD
+        $query_data = &$this->getQueryData($result);
+        if (!is_array($data) || !isset($query_data['columns'])) {
+=======
         if (!is_array($data)
             || !isset($GLOBALS['dummy_queries'][$result]['columns'])
         ) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             return $data;
         }
 
         $ret = array();
         foreach ($data as $key => $val) {
+<<<<<<< HEAD
+            $ret[$query_data['columns'][$key]] = $val;
+=======
             $ret[$GLOBALS['dummy_queries'][$result]['columns'][$key]] = $val;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         }
 
         return $ret;
@@ -1056,10 +1116,18 @@ class DBIDummy implements DBIExtension
      */
     public function dataSeek($result, $offset)
     {
+<<<<<<< HEAD
+        $query_data = &$this->getQueryData($result);
+        if ($offset > count($query_data['result'])) {
+            return false;
+        }
+        $query_data['pos'] = $offset;
+=======
         if ($offset > count($GLOBALS['dummy_queries'][$result]['result'])) {
             return false;
         }
         $GLOBALS['dummy_queries'][$result]['pos'] = $offset;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
         return true;
     }
@@ -1171,7 +1239,13 @@ class DBIDummy implements DBIExtension
             return 0;
         }
 
+<<<<<<< HEAD
+        $query_data = &$this->getQueryData($result);
+
+        return count($query_data['result']);
+=======
         return count($GLOBALS['dummy_queries'][$result]['result']);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 
     /**
@@ -1208,11 +1282,20 @@ class DBIDummy implements DBIExtension
      */
     public function numFields($result)
     {
+<<<<<<< HEAD
+        $query_data = &$this->getQueryData($result);
+        if (!isset($query_data['columns'])) {
+            return 0;
+        }
+
+        return count($query_data['columns']);
+=======
         if (!isset($GLOBALS['dummy_queries'][$result]['columns'])) {
             return 0;
         }
 
         return count($GLOBALS['dummy_queries'][$result]['columns']);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 
     /**
@@ -1266,4 +1349,39 @@ class DBIDummy implements DBIExtension
     {
         return $str;
     }
+<<<<<<< HEAD
+
+    /**
+     * Adds query result for testing
+     *
+     * @param string $query  SQL
+     * @param array  $result Expected result
+     *
+     * @return void
+     */
+    public function setResult($query, $result)
+    {
+        $this->_queries[] = array(
+            'query' => $query,
+            'result' => $result,
+        );
+    }
+
+    /**
+     * Return query data for ID
+     *
+     * @param object $result result set identifier
+     *
+     * @return array
+     */
+    private function &getQueryData($result)
+    {
+        if ($result >= self::OFFSET_GLOBAL) {
+            return $GLOBALS['dummy_queries'][$result - self::OFFSET_GLOBAL];
+        } else {
+            return $this->_queries[$result];
+        }
+    }
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 }

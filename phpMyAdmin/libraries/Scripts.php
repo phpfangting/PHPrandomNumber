@@ -48,9 +48,14 @@ class Scripts
         $scripts = array();
         $separator = URL::getArgSeparator();
         foreach ($files as $value) {
+<<<<<<< HEAD
+            if (mb_strpos($value['filename'], ".php") !== false) {
+                $file_name = $value['filename'] . URL::getCommon($value['params'] + array('v' => PMA_VERSION));
+=======
             if (mb_strpos($value['filename'], "?") !== false) {
                 $file_name = $value['filename'] . $separator
                     . Header::getVersionParameter();
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 if ($value['before_statics'] === true) {
                     $first_dynamic_scripts
                         .= "<script data-cfasync='false' type='text/javascript' "
@@ -108,7 +113,12 @@ class Scripts
      */
     public function addFile(
         $filename,
+<<<<<<< HEAD
+        $before_statics = false,
+        $params = array()
+=======
         $before_statics = false
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     ) {
         $hash = md5($filename);
         if (!empty($this->_files[$hash])) {
@@ -119,6 +129,10 @@ class Scripts
         $this->_files[$hash] = array(
             'has_onload' => $has_onload,
             'filename' => $filename,
+<<<<<<< HEAD
+            'params' => $params,
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             'before_statics' => $before_statics
         );
     }

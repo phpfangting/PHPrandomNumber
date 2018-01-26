@@ -11,6 +11,16 @@
 
 namespace Symfony\Component\Cache\Adapter;
 
+<<<<<<< HEAD
+use Symfony\Component\Cache\Traits\PdoTrait;
+
+class PdoAdapter extends AbstractAdapter
+{
+    use PdoTrait;
+
+    protected $maxIdLength = 255;
+
+=======
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Driver\ServerInfoAwareConnection;
 use Doctrine\DBAL\DBALException;
@@ -34,6 +44,7 @@ class PdoAdapter extends AbstractAdapter
     private $password = '';
     private $connectionOptions = array();
 
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     /**
      * Constructor.
      *
@@ -62,6 +73,9 @@ class PdoAdapter extends AbstractAdapter
      */
     public function __construct($connOrDsn, $namespace = '', $defaultLifetime = 0, array $options = array())
     {
+<<<<<<< HEAD
+        $this->init($connOrDsn, $namespace, $defaultLifetime, $options);
+=======
         if (isset($namespace[0]) && preg_match('#[^-+.A-Za-z0-9]#', $namespace, $match)) {
             throw new InvalidArgumentException(sprintf('Namespace contains "%s" but only characters in [-+.A-Za-z0-9] are allowed.', $match[0]));
         }
@@ -391,5 +405,6 @@ class PdoAdapter extends AbstractAdapter
         }
 
         return $this->serverVersion;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 }

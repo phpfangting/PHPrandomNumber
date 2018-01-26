@@ -8,6 +8,10 @@
 namespace PMA\libraries\plugins;
 
 use PMA\libraries\Sanitize;
+<<<<<<< HEAD
+use PMA\libraries\URL;
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 /**
  * Provides a common interface that will have to be implemented by all of the
@@ -74,6 +78,38 @@ abstract class AuthenticationPlugin
         $PHP_AUTH_USER = '';
         $PHP_AUTH_PW = '';
 
+<<<<<<< HEAD
+        /*
+         * Get a logged-in server count in case of LoginCookieDeleteAll is disabled.
+         */
+        $server = 0;
+        if ($GLOBALS['cfg']['LoginCookieDeleteAll'] === false
+            && $GLOBALS['cfg']['Server']['auth_type'] == 'cookie'
+        ) {
+            foreach ($GLOBALS['cfg']['Servers'] as $key => $val) {
+                if (isset($_COOKIE['pmaAuth-' . $key])) {
+                    $server = $key;
+                }
+            }
+        }
+
+        if ($server === 0) {
+            /* delete user's choices that were stored in session */
+            if (! defined('TESTSUITE')) {
+                $_SESSION = array();
+                session_destroy();
+            }
+
+            /* Redirect to login form (or configured URL) */
+            PMA_sendHeaderLocation($redirect_url);
+        } else {
+            /* Redirect to other autenticated server */
+            $_SESSION['partial_logout'] = true;
+            PMA_sendHeaderLocation(
+                './index.php' . URL::getCommonRaw(array('server' => $server))
+            );
+        }
+=======
         /* delete user's choices that were stored in session */
         $_SESSION = array();
         if (!defined('TESTSUITE')) {
@@ -82,6 +118,7 @@ abstract class AuthenticationPlugin
 
         /* Redirect to login form (or configured URL) */
         PMA_sendHeaderLocation($redirect_url);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 
     /**
@@ -145,17 +182,35 @@ abstract class AuthenticationPlugin
      *
      * @return void
      */
+<<<<<<< HEAD
+    public function setSessionAccessTime()
+    {
+        if (isset($_REQUEST['guid'])) {
+            $guid = (string)$_REQUEST['guid'];
+        } else {
+            $guid = 'default';
+        }
+=======
      public function setSessionAccessTime()
      {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         if (isset($_REQUEST['access_time'])) {
             // Ensure access_time is in range <0, LoginCookieValidity + 1>
             // to avoid excessive extension of validity.
             //
             // Negative values can cause session expiry extension
             // Too big values can cause overflow and lead to same
+<<<<<<< HEAD
+            $time = time() - min(max(0, intval($_REQUEST['access_time'])), $GLOBALS['cfg']['LoginCookieValidity'] + 1);
+        } else {
+            $time = time();
+        }
+        $_SESSION['browser_access_time'][$guid] = $time;
+=======
             $_SESSION['last_access_time'] = time() - min(max(0, intval($_REQUEST['access_time'])), $GLOBALS['cfg']['LoginCookieValidity'] + 1);
         } else {
             $_SESSION['last_access_time'] = time();
         }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      }
 }

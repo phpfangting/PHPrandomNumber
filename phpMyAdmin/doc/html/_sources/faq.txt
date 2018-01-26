@@ -128,9 +128,21 @@ and after execution of your :term:`SQL` commands, removed.
 1.12 I have lost my MySQL root password, what can I do?
 -------------------------------------------------------
 
+<<<<<<< HEAD
+phpMyAdmin does authenticate against MySQL server you're using, so to recover
+from phpMyAdmin password loss, you need to recover at MySQL level.
+
 The MySQL manual explains how to `reset the permissions
 <https://dev.mysql.com/doc/refman/5.7/en/resetting-permissions.html>`_.
 
+If you are using MySQL server installed by your hosting provider, please
+contact their support to recover the password for you.
+
+=======
+The MySQL manual explains how to `reset the permissions
+<https://dev.mysql.com/doc/refman/5.7/en/resetting-permissions.html>`_.
+
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 .. _faq1_13:
 
 1.13 (withdrawn).
@@ -420,12 +432,25 @@ MMCache but upgrading MMCache to version 2.3.21 solves the problem.
 
 .. _faq1_31:
 
+<<<<<<< HEAD
+1.31 Which PHP versions does phpMyAdmin support?
+------------------------------------------------
+
+Since release 4.5, phpMyAdmin supports only PHP 5.5 and newer. Since release
+4.1 phpMyAdmin supports only PHP 5.3 and newer. For PHP 5.2 you can use 4.0.x
+releases.
+
+PHP 7 is supported since phpMyAdmin 4.6, PHP 7.1 is supported since 4.6.5.
+
+phpMyAdmin also works fine with HHVM.
+=======
 1.31 Does phpMyAdmin support PHP 5?
 -----------------------------------
 
 Yes.
 
 Since release 4.5, phpMyAdmin supports only PHP 5.5 and newer. Since release 4.1 phpMyAdmin supports only PHP 5.3 and newer. For PHP 5.2 you can use 4.0.x releases.
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 .. _faq1_32:
 
@@ -1207,6 +1232,12 @@ or one of the host names present in the configuration file. Using
 ``pma_username`` and ``pma_password`` has been tested along with the
 usage of 'cookie' ``auth_type``.
 
+<<<<<<< HEAD
+For example direct login URL can be constructed as
+``https://example.com/phpmyadmin/?pma_username=user&pma_password=password``.
+
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 .. _faqbrowsers:
 
 Browsers or client OS

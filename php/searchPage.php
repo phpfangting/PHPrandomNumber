@@ -95,8 +95,12 @@ $searchParam = [
 var_dump($data);
 //把types当做key  把$searchParam当做值合并返回新的数组
 $paramConfig = array_combine($types, $searchParam);
+<<<<<<< HEAD
+print_r($_GET);EXIT;
+=======
 
 
+>>>>>>> dev
 ?>
 
 <!doctype html>
@@ -307,7 +311,11 @@ $paramConfig = array_combine($types, $searchParam);
             switch (type) {
                 case 1:
                     //type 为1时说明用户点击的是国家标签,那么可以将子类删除
+<<<<<<< HEAD
+//                    $(e).remove();
+=======
 
+>>>>>>> dev
                     $('.search li[type="2"]').remove();
                     _json.contry = '';//国家编号
                     _json.contryName = '';//国家名称

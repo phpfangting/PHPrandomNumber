@@ -87,7 +87,11 @@ function PMA_getColumnsInfo()
         $fields_rs = $GLOBALS['dbi']->query(
             $GLOBALS['dbi']->getColumnsSql(
                 $GLOBALS['db'],
+<<<<<<< HEAD
+                $GLOBALS['PMD_URL']["TABLE_NAME_SMALL"][$i],
+=======
                 $GLOBALS['PMD']["TABLE_NAME_SMALL"][$i],
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 null,
                 true
             ),

@@ -91,7 +91,11 @@ class ExportOds extends ExportPlugin
     {
         $GLOBALS['ods_buffer'] .= '<?xml version="1.0" encoding="utf-8"?' . '>'
             . '<office:document-content '
+<<<<<<< HEAD
+            . OpenDocument::NS . ' office:version="1.0">'
+=======
             . OpenDocument::NS . 'office:version="1.0">'
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             . '<office:automatic-styles>'
             . '<number:date-style style:name="N37"'
             . ' number:automatic-order="true">'

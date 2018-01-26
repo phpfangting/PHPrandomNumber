@@ -11,6 +11,24 @@
 
 namespace Symfony\Component\Cache\Adapter;
 
+<<<<<<< HEAD
+use Symfony\Component\Cache\Traits\ApcuTrait;
+
+class ApcuAdapter extends AbstractAdapter
+{
+    use ApcuTrait;
+
+    /**
+     * @param string      $namespace
+     * @param int         $defaultLifetime
+     * @param string|null $version
+     *
+     * @throws CacheException if APCu is not enabled
+     */
+    public function __construct($namespace = '', $defaultLifetime = 0, $version = null)
+    {
+        $this->init($namespace, $defaultLifetime, $version);
+=======
 use Symfony\Component\Cache\CacheItem;
 use Symfony\Component\Cache\Exception\CacheException;
 
@@ -103,5 +121,6 @@ class ApcuAdapter extends AbstractAdapter
         }
 
         throw $e;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 }

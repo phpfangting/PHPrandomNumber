@@ -101,7 +101,12 @@ function getDropdownValues($dropdown) {
                     ) {
                         primary = data.primary[0];
                     }
+<<<<<<< HEAD
+                    setDropdownValues($columnDd.first(), data.columns, primary);
+                    setDropdownValues($columnDd.slice(1), data.columns);
+=======
                     setDropdownValues($columnDd, data.columns, primary);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 }
             } else {
                 PMA_ajaxShowMessage(data.error, false);

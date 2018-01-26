@@ -346,10 +346,16 @@ class RecentFavoriteTable
         if ($server_id == 0) {
             return '';
         }
+<<<<<<< HEAD
+        $cfgRelation = PMA_getRelationsParam();
+        // Not to show this once list is synchronized.
+        if ($cfgRelation['favoritework'] && ! isset($_SESSION['tmpval']['favorites_synced'][$server_id])) {
+=======
         // Not to show this once list is synchronized.
         $is_synced = isset($_SESSION['tmpval']['favorites_synced'][$server_id]) ?
             true : false;
         if (!$is_synced) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             $params  = array('ajax_request' => true, 'favorite_table' => true,
                 'sync_favorite_tables' => true);
             $url     = 'db_structure.php' . URL::getCommon($params);

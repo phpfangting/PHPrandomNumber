@@ -11,6 +11,22 @@
 
 namespace Symfony\Component\Cache\Adapter;
 
+<<<<<<< HEAD
+use Symfony\Component\Cache\Traits\RedisTrait;
+
+class RedisAdapter extends AbstractAdapter
+{
+    use RedisTrait;
+
+    /**
+     * @param \Redis|\RedisArray|\RedisCluster|\Predis\Client $redisClient     The redis client
+     * @param string                                          $namespace       The default namespace
+     * @param int                                             $defaultLifetime The default lifetime
+     */
+    public function __construct($redisClient, $namespace = '', $defaultLifetime = 0)
+    {
+        $this->init($redisClient, $namespace, $defaultLifetime);
+=======
 use Predis\Connection\Factory;
 use Predis\Connection\Aggregate\PredisCluster;
 use Predis\Connection\Aggregate\RedisCluster;
@@ -307,5 +323,6 @@ class RedisAdapter extends AbstractAdapter
         } finally {
             $this->redis = $redis;
         }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 }

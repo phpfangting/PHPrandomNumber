@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
+/* An autoloader for ReCaptcha\Foo classes. This should be required()
+=======
 /* An autoloader for ReCaptcha\Foo classes. This should be require()d
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
  * by the user before attempting to instantiate any of the ReCaptcha
  * classes.
  */

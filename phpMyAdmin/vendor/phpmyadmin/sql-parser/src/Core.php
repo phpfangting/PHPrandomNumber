@@ -33,9 +33,15 @@ class Core
     /**
      * Creates a new error log.
      *
+<<<<<<< HEAD
+     * @param \Exception $error the error exception
+     *
+     * @throws \Exception throws the exception, if strict mode is enabled
+=======
      * @param Exception $error the error exception
      *
      * @throws Exception throws the exception, if strict mode is enabled
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      */
     public function error($error)
     {

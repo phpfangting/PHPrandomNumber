@@ -798,8 +798,13 @@ function savePrefsToLocalStorage(form)
         type: 'POST',
         data: {
             ajax_request: true,
+<<<<<<< HEAD
+            server: PMA_commonParams.get('server'),
+            token: PMA_commonParams.get('token'),
+=======
             server: $form.find('input[name=server]').val(),
             token: $form.find('input[name=token]').val(),
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             submit_get_json: true
         },
         success: function (data) {
@@ -853,7 +858,12 @@ function offerPrefsAutoimport()
         if ($a.attr('href') == '#no') {
             $cnt.remove();
             $.post('index.php', {
+<<<<<<< HEAD
+                token: PMA_commonParams.get('token'),
+                server: PMA_commonParams.get('server'),
+=======
                 token: $cnt.find('input[name=token]').val(),
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 prefs_autoload: 'hide'
             }, null, 'html');
             return;
@@ -861,7 +871,12 @@ function offerPrefsAutoimport()
             $cnt.remove();
             localStorage.clear();
             $.post('index.php', {
+<<<<<<< HEAD
+                token: PMA_commonParams.get('token'),
+                server: PMA_commonParams.get('server'),
+=======
                 token: $cnt.find('input[name=token]').val(),
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 prefs_autoload: 'hide'
             }, null, 'html');
             return;

@@ -29,6 +29,14 @@ class ErrorHandler
     protected $hide_location = false;
 
     /**
+<<<<<<< HEAD
+     * Initial error reporting state
+     */
+    protected $error_reporting = 0;
+
+    /**
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      * Constructor - set PHP error handler
      *
      */
@@ -43,6 +51,10 @@ class ErrorHandler
         if (!defined('TESTSUITE')) {
             set_error_handler(array($this, 'handleError'));
         }
+<<<<<<< HEAD
+        $this->error_reporting = error_reporting();
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 
     /**
@@ -149,8 +161,19 @@ class ErrorHandler
      */
     public function handleError($errno, $errstr, $errfile, $errline)
     {
+<<<<<<< HEAD
+        /**
+         * Check if Error Control Operator (@) was used, but still show
+         * user errors even in this case.
+         */
+        if (error_reporting() == 0 &&
+            $this->error_reporting != 0 &&
+            ($errno & (E_USER_WARNING | E_USER_ERROR | E_USER_NOTICE)) == 0
+        ) {
+=======
         // check if Error Control Operator (@) was used.
         if (error_reporting() == 0) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             return;
         }
         $this->addError($errstr, $errno, $errfile, $errline, true);
@@ -314,20 +337,28 @@ class ErrorHandler
      */
     public function getDispErrors()
     {
+<<<<<<< HEAD
+=======
         // Not sure why but seen in https://reports.phpmyadmin.net/
         if (empty($GLOBALS['cfg']['SendErrorReports'])) {
             $GLOBALS['cfg']['SendErrorReports'] = 'ask';
         }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         $retval = '';
         // display errors if SendErrorReports is set to 'ask'.
         if ($GLOBALS['cfg']['SendErrorReports'] != 'never') {
             foreach ($this->getErrors() as $error) {
+<<<<<<< HEAD
+                if (! $error->isDisplayed()) {
+                    $retval .= $error->getDisplay();
+=======
                 if ($error instanceof Error) {
                     if (! $error->isDisplayed()) {
                         $retval .= $error->getDisplay();
                     }
                 } else {
                     $retval .= var_export($error, true);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 }
             }
         } else {
@@ -399,7 +430,10 @@ class ErrorHandler
                     $this->errors[$hash] = $error;
                 }
             }
+<<<<<<< HEAD
+=======
             //$this->errors = array_merge($_SESSION['errors'], $this->errors);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
             // delete stored errors
             $_SESSION['errors'] = array();

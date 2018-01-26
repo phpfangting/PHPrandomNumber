@@ -6,7 +6,11 @@
 
 * Project page: http://www.google.com/recaptcha/
 * Repository: https://github.com/google/recaptcha
+<<<<<<< HEAD
+* Version: 1.1.3
+=======
 * Version: 1.1.2
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 * License: BSD, see [LICENSE](LICENSE)
 
 ## Description
@@ -83,6 +87,11 @@ $recaptcha = new \ReCaptcha\ReCaptcha($secret);
 $resp = $recaptcha->verify($gRecaptchaResponse, $remoteIp);
 if ($resp->isSuccess()) {
     // verified!
+<<<<<<< HEAD
+    // if Domain Name Validation turned off don't forget to check hostname field
+    // if($resp->getHostName() === $_SERVER['SERVER_NAME']) {  }
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 } else {
     $errors = $resp->getErrorCodes();
 }

@@ -1,9 +1,17 @@
 <div id="tablestatistics">
     <fieldset>
         <legend><?= __('Information'); ?></legend>
+<<<<<<< HEAD
+        <?php if($showtable['TABLE_COMMENT'] !== '') { ?>
+            <p> <strong> <?= __('Table comments:') ?> </strong>
+                <?= htmlspecialchars($showtable['TABLE_COMMENT']) ;?>
+            </p>
+        <?php } ?>
+=======
         <p> <strong> <?= __('Table comments:') ?> </strong>
             <?= isset($showtable['TABLE_COMMENT']) ? htmlspecialchars($showtable['TABLE_COMMENT']) : '';?>
         </p>
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         <a id="showusage"></a>
 
         <?php if (! $tbl_is_view && ! $db_is_system_schema): ?>
@@ -51,7 +59,11 @@
                             || $tbl_storage_engine == 'ARIA'
                             || $tbl_storage_engine == 'MARIA'
                             || $tbl_storage_engine == 'BDB')): ?>
+<<<<<<< HEAD
+                    <tr class="tblFooters print_ignore">
+=======
                     <tr class="tblFooters">
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                         <td colspan="3" class="center">
                             <a href="sql.php<?= $url_query; ?>&pos=0&amp;sql_query=<?= urlencode(
                                     'OPTIMIZE TABLE ' . PMA\libraries\Util::backquote($GLOBALS['table'])); ?>">

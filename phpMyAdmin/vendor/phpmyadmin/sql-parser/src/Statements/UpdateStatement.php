@@ -6,12 +6,20 @@
 
 namespace PhpMyAdmin\SqlParser\Statements;
 
+<<<<<<< HEAD
+use PhpMyAdmin\SqlParser\Components\Condition;
+=======
 use PhpMyAdmin\SqlParser\Statement;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 use PhpMyAdmin\SqlParser\Components\Expression;
 use PhpMyAdmin\SqlParser\Components\Limit;
 use PhpMyAdmin\SqlParser\Components\OrderKeyword;
 use PhpMyAdmin\SqlParser\Components\SetOperation;
+<<<<<<< HEAD
+use PhpMyAdmin\SqlParser\Statement;
+=======
 use PhpMyAdmin\SqlParser\Components\Condition;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 /**
  * `UPDATE` statement.
@@ -52,6 +60,17 @@ class UpdateStatement extends Statement
      * @var array
      */
     public static $CLAUSES = array(
+<<<<<<< HEAD
+        'UPDATE' => array('UPDATE', 2),
+        // Used for options.
+        '_OPTIONS' => array('_OPTIONS', 1),
+        // Used for updated tables.
+        '_UPDATE' => array('UPDATE', 1),
+        'SET' => array('SET', 3),
+        'WHERE' => array('WHERE', 3),
+        'ORDER BY' => array('ORDER BY', 3),
+        'LIMIT' => array('LIMIT', 3),
+=======
         'UPDATE' => array('UPDATE',      2),
         // Used for options.
         '_OPTIONS' => array('_OPTIONS',    1),
@@ -61,6 +80,7 @@ class UpdateStatement extends Statement
         'WHERE' => array('WHERE',       3),
         'ORDER BY' => array('ORDER BY',    3),
         'LIMIT' => array('LIMIT',       3),
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     );
 
     /**

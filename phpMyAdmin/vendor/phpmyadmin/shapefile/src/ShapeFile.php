@@ -56,7 +56,13 @@ class ShapeFile
     }
 
     /**
+<<<<<<< HEAD
+     * @param int        $shapeType   File shape type, should be same as all records
+     * @param array      $boundingBox File bounding box
+     * @param null|mixed $FileName    File name
+=======
      * @param int $shapeType
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      */
     public function __construct($shapeType, $boundingBox = array('xmin' => 0.0, 'ymin' => 0.0, 'xmax' => 0.0, 'ymax' => 0.0), $FileName = null)
     {
@@ -98,9 +104,15 @@ class ShapeFile
             $this->_closeDBFFile();
 
             return true;
+<<<<<<< HEAD
+        }
+
+        return false;
+=======
         } else {
             return false;
         }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 
     /**
@@ -633,7 +645,11 @@ class ShapeFile
     /**
      * Check whether file contains measure data.
      *
+<<<<<<< HEAD
+     * For some reason this is distinguished by zero bounding box in the
+=======
      * For some reason this is distinguished by zero bouding box in the
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      * specification.
      *
      * @return bool

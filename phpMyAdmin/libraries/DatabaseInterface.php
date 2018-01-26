@@ -280,10 +280,18 @@ class DatabaseInterface
                     'SQL[' . basename($_SERVER['SCRIPT_NAME']) . ']: '
                     . sprintf('%0.3f', $time) . ' > ' . $query
                 );
+<<<<<<< HEAD
+                closelog();
+            }
+        }
+
+        if ($result !== false && Tracker::isActive()) {
+=======
             }
         }
 
         if ((!empty($result)) && (Tracker::isActive())) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             Tracker::handleQuery($query);
         }
 
@@ -318,13 +326,24 @@ class DatabaseInterface
      */
     public function getTables($database, $link = null)
     {
+<<<<<<< HEAD
+        $tables = $this->fetchResult(
+=======
         return $this->fetchResult(
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             'SHOW TABLES FROM ' . Util::backquote($database) . ';',
             null,
             0,
             $link,
             self::QUERY_STORE
         );
+<<<<<<< HEAD
+        if ($GLOBALS['cfg']['NaturalOrder']) {
+            usort($tables, 'strnatcasecmp');
+        }
+        return $tables;
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 
     /**
@@ -2066,9 +2085,15 @@ class DatabaseInterface
         $user = $this->fetchValue('SELECT CURRENT_USER();');
         if ($user !== false) {
             Util::cacheSet('mysql_cur_user', $user);
+<<<<<<< HEAD
+            return $user;
+        }
+        return '@';
+=======
             return Util::cacheGet('mysql_cur_user');
         }
         return '';
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 
     /**
@@ -2273,7 +2298,11 @@ class DatabaseInterface
             // Share the settings if the host is same
             if ($server['host'] == $cfg['Server']['host']) {
                 $shared = array(
+<<<<<<< HEAD
+                    'port', 'socket', 'compress',
+=======
                     'port', 'socket', 'connect_type', 'compress',
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     'ssl', 'ssl_key', 'ssl_cert', 'ssl_ca',
                     'ssl_ca_path',  'ssl_ciphers', 'ssl_verify',
                 );
@@ -2341,6 +2370,13 @@ class DatabaseInterface
         list($user, $password, $server) = $this->getConnectionParams($mode, $server);
 
         if (is_null($user) || is_null($password)) {
+<<<<<<< HEAD
+            if ($mode == DatabaseInterface::CONNECT_USER) {
+                Logging::logUser($user, 'mysql-denied');
+                $GLOBALS['auth_plugin']->authFails();
+            }
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             trigger_error(
                 __('Missing connection parameters!'),
                 E_USER_WARNING
@@ -2757,8 +2793,13 @@ class DatabaseInterface
             return Util::cacheGet('is_amazon_rds');
         }
         $sql = 'SELECT @@basedir';
+<<<<<<< HEAD
+        $result = $this->fetchValue($sql);
+        $rds = (substr($result, 0, 10) == '/rdsdbbin/');
+=======
         $result = $this->fetchResult($sql);
         $rds = ($result[0] == '/rdsdbbin/mysql/');
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         Util::cacheSet('is_amazon_rds', $rds);
 
         return $rds;

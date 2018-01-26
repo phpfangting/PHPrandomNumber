@@ -1,6 +1,18 @@
 CHANGELOG
 =========
 
+<<<<<<< HEAD
+3.3.0
+-----
+
+ * [EXPERIMENTAL] added CacheItem::getPreviousTags() to get bound tags coming from the pool storage if any
+ * added PSR-16 "Simple Cache" implementations for all existing PSR-6 adapters
+ * added Psr6Cache and SimpleCacheAdapter for bidirectional interoperability between PSR-6 and PSR-16
+ * added MemcachedAdapter (PSR-6) and MemcachedCache (PSR-16)
+ * added TraceableAdapter (PSR-6) and TraceableCache (PSR-16)
+
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 3.2.0
 -----
 

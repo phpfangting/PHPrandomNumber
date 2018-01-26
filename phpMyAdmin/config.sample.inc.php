@@ -29,7 +29,10 @@ $i++;
 $cfg['Servers'][$i]['auth_type'] = 'cookie';
 /* Server parameters */
 $cfg['Servers'][$i]['host'] = 'localhost';
+<<<<<<< HEAD
+=======
 $cfg['Servers'][$i]['connect_type'] = 'tcp';
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 $cfg['Servers'][$i]['compress'] = false;
 $cfg['Servers'][$i]['AllowNoPassword'] = false;
 

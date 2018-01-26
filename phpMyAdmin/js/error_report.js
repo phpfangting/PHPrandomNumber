@@ -64,6 +64,10 @@ var ErrorReport = {
             $('#error_report_dialog').remove();
         }
         var $div = $('<div id="error_report_dialog"></div>');
+<<<<<<< HEAD
+        $div.css('z-index', '1000');
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
         var button_options = {};
 
@@ -303,8 +307,14 @@ var ErrorReport = {
 
 };
 
+<<<<<<< HEAD
+AJAX.registerOnload('error_report.js', function(){
+    TraceKit.report.subscribe(ErrorReport.error_handler);
+    ErrorReport.set_up_error_reporting();
+=======
 TraceKit.report.subscribe(ErrorReport.error_handler);
 ErrorReport.set_up_error_reporting();
 $(function () {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     ErrorReport.wrap_global_functions();
 });

@@ -26,6 +26,14 @@ class ProxyAdapter implements AdapterInterface
     private $createCacheItem;
     private $poolHash;
 
+<<<<<<< HEAD
+    /**
+     * @param CacheItemPoolInterface $pool
+     * @param string                 $namespace
+     * @param int                    $defaultLifetime
+     */
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     public function __construct(CacheItemPoolInterface $pool, $namespace = '', $defaultLifetime = 0)
     {
         $this->pool = $pool;

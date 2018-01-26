@@ -860,6 +860,21 @@ function PMA_getDisplayField($db, $table)
     }
 
     /**
+<<<<<<< HEAD
+     * Pick first char field
+     */
+    $columns = $GLOBALS['dbi']->getColumnsFull($db, $table);
+    if ($columns) {
+        foreach ($columns as $column) {
+            if ($GLOBALS['PMA_Types']->getTypeClass($column['DATA_TYPE']) == 'CHAR') {
+                return $column['COLUMN_NAME'];
+            }
+        }
+    }
+
+    /**
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      * No Luck...
      */
     return false;

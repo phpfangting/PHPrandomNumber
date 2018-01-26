@@ -1634,7 +1634,11 @@ function PMA_getHtmlForLoginInformationFields(
         . $hostname_length . '" value="'
         // use default value of '%' to match with the default 'Any host'
         . htmlspecialchars(isset($GLOBALS['hostname']) ? $GLOBALS['hostname'] : '%')
+<<<<<<< HEAD
+        . '" title="' . __('Host name') . '" '
+=======
         . '" title="' . __('Host name')
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         . ((isset($GLOBALS['pred_hostname'])
                 && $GLOBALS['pred_hostname'] == 'userdefined'
             )
@@ -3614,6 +3618,15 @@ function PMA_getHtmlTableBodyForUserRights($db_rights)
                 break;
             } // end switch
 
+<<<<<<< HEAD
+            if (! isset($host['Select_priv'])) {
+                $html_output .= Util::showHint(
+                    __('The selected user was not found in the privilege table.')
+                );
+            }
+
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             $html_output .= '</td>' . "\n";
 
             $html_output .= '<td><code>' . "\n"
@@ -4607,7 +4620,10 @@ function PMA_getHtmlForUserOverview($pmaThemeImage, $text_dir)
             $raw = 'Your privilege table structure seems to be older than'
                 . ' this MySQL version!<br />'
                 . 'Please run the <code>mysql_upgrade</code> command'
+<<<<<<< HEAD
+=======
                 . '(<code>mysql_fix_privilege_tables</code> on older systems)'
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 . ' that should be included in your MySQL server distribution'
                 . ' to solve this problem!';
             $html_output .= Message::rawError($raw)->getDisplay();
@@ -5049,10 +5065,22 @@ function PMA_checkIfMariaDBPwdCheckPluginActive()
         return false;
     }
 
+<<<<<<< HEAD
+    $result = $GLOBALS['dbi']->tryQuery(
+        'SHOW PLUGINS SONAME LIKE \'%_password_check%\''
+    );
+
+    /* Plugins are not working, for example directory does not exists */
+    if ($result === false) {
+        return false;
+    }
+
+=======
     $result = $GLOBALS['dbi']->query(
         'SHOW PLUGINS SONAME LIKE \'%_password_check%\''
     );
 
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     while ($row = $GLOBALS['dbi']->fetchAssoc($result)) {
         if ($row['Status'] === 'ACTIVE') {
             return true;

@@ -32,7 +32,10 @@ $forms['Servers']['Server'] = array('Servers' => array(1 => array(
     'port',
     'socket',
     'ssl',
+<<<<<<< HEAD
+=======
     'connect_type',
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     'compress')));
 $forms['Servers']['Server_auth'] = array('Servers' => array(1 => array(
     'auth_type',
@@ -118,7 +121,10 @@ $forms['Features']['Page_titles'] = array(
     'TitleDatabase',
     'TitleServer');
 $forms['Features']['Warnings'] = array(
+<<<<<<< HEAD
+=======
     'ServerLibraryDifference_DisableWarning',
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     'PmaNoRelation_DisableWarning',
     'SuhosinDisableWarning',
     'LoginCookieValidityDisableWarning');

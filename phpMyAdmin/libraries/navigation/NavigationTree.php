@@ -1263,7 +1263,10 @@ class NavigationTree
             array('dbselector')
         );
         $children = $this->_tree->children;
+<<<<<<< HEAD
+=======
         array_shift($children);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         $url_params = array(
             'server' => $GLOBALS['server'],
         );
@@ -1275,6 +1278,12 @@ class NavigationTree
             . '(' . __('Databases') . ') ...</option>' . "\n";
         $selected = $GLOBALS['db'];
         foreach ($children as $node) {
+<<<<<<< HEAD
+            if ($node->isNew) {
+                continue;
+            }
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             $paths = $node->getPaths();
             if (isset($node->links['text'])) {
                 $title = empty($node->links['title']) ? '' : $node->links['title'];

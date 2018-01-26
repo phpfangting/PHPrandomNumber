@@ -74,6 +74,27 @@ class JoinKeyword extends Component
     public $using;
 
     /**
+<<<<<<< HEAD
+     * Constructor.
+     *
+     * @param string $type Join type
+     * @param Expression $expr Join expression.
+     * @param Condition[] $on Join conditions.
+     * @param ArrayObj $using Columns joined.
+     *
+     * @see JoinKeyword::$JOINS
+     */
+    public function __construct($type = null, $expr = null, $on = null, $using = null)
+    {
+        $this->type = $type;
+        $this->expr = $expr;
+        $this->on = $on;
+        $this->using = $using;
+    }
+
+    /**
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      * @param Parser     $parser  the parser that serves as context
      * @param TokensList $list    the list of tokens that are being parsed
      * @param array      $options parameters for parsing
@@ -133,9 +154,15 @@ class JoinKeyword extends Component
 
             if ($state === 0) {
                 if (($token->type === Token::TYPE_KEYWORD)
+<<<<<<< HEAD
+                    && (!empty(static::$JOINS[$token->keyword]))
+                ) {
+                    $expr->type = static::$JOINS[$token->keyword];
+=======
                     && (!empty(static::$JOINS[$token->value]))
                 ) {
                     $expr->type = static::$JOINS[$token->value];
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     $state = 1;
                 } else {
                     break;
@@ -145,6 +172,19 @@ class JoinKeyword extends Component
                 $state = 2;
             } elseif ($state === 2) {
                 if ($token->type === Token::TYPE_KEYWORD) {
+<<<<<<< HEAD
+                    if ($token->keyword === 'ON') {
+                        $state = 3;
+                    } elseif ($token->keyword === 'USING') {
+                        $state = 4;
+                    } else {
+                        if (($token->type === Token::TYPE_KEYWORD)
+                            && (!empty(static::$JOINS[$token->keyword]))
+                        ) {
+                            $ret[] = $expr;
+                            $expr = new self();
+                            $expr->type = static::$JOINS[$token->keyword];
+=======
                     if ($token->value === 'ON') {
                         $state = 3;
                     } elseif ($token->value === 'USING') {
@@ -156,6 +196,7 @@ class JoinKeyword extends Component
                             $ret[] = $expr;
                             $expr = new self();
                             $expr->type = static::$JOINS[$token->value];
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                             $state = 1;
                         } else {
                             /* Next clause is starting */

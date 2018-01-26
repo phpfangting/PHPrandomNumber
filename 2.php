@@ -10,6 +10,25 @@
 // function build_order_no(){  
 //     return date('ymd').substr(implode(NULL, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, 8);  
 // }  
+<<<<<<< HEAD
+
+// $str="8138136%2C8137071%2C8138103%2C8136998";
+// echo urldecode($str);
+
+// function xrange($start, $end, $step = 1) {  
+//     for ($i = $start; $i <= $end; $i += $step) {  
+//         yield $i;  
+//     }  
+// }  
+
+// foreach (xrange(1, 1000000) as $num) {  
+//     echo $num, "\n";  
+// }  
+
+for ($i=1; $i<1000000 ; ++$i) { 
+	echo $i,"\n";
+}
+=======
 
 // $str="8138136%2C8137071%2C8138103%2C8136998";
 // echo urldecode($str);
@@ -86,3 +105,4 @@ var_dump($paramstr);
 
 
 
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65

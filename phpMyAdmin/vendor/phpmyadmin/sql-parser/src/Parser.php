@@ -69,7 +69,11 @@ class Parser extends Core
         'DO' => '',
         'HANDLER' => '',
         'INSERT' => 'PhpMyAdmin\\SqlParser\\Statements\\InsertStatement',
+<<<<<<< HEAD
+        'LOAD DATA' => 'PhpMyAdmin\\SqlParser\\Statements\\LoadStatement',
+=======
         'LOAD' => '',
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         'REPLACE' => 'PhpMyAdmin\\SqlParser\\Statements\\ReplaceStatement',
         'SELECT' => 'PhpMyAdmin\\SqlParser\\Statements\\SelectStatement',
         'UPDATE' => 'PhpMyAdmin\\SqlParser\\Statements\\UpdateStatement',
@@ -168,7 +172,11 @@ class Parser extends Core
             'options' => array('field' => 'table'),
         ),
         'GROUP BY' => array(
+<<<<<<< HEAD
+            'class' => 'PhpMyAdmin\\SqlParser\\Components\\GroupKeyword',
+=======
             'class' => 'PhpMyAdmin\\SqlParser\\Components\\OrderKeyword',
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             'field' => 'group',
         ),
         'HAVING' => array(
@@ -427,14 +435,24 @@ class Parser extends Core
                 continue;
             }
 
+<<<<<<< HEAD
+            if (($token->keyword === 'UNION') || ($token->keyword === 'UNION ALL') || ($token->keyword === 'UNION DISTINCT')) {
+                $unionType = $token->keyword;
+=======
             if (($token->value === 'UNION') || ($token->value === 'UNION ALL') || ($token->value === 'UNION DISTINCT')) {
                 $unionType = $token->value;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 continue;
             }
 
             // Checking if it is a known statement that can be parsed.
+<<<<<<< HEAD
+            if (empty(static::$STATEMENT_PARSERS[$token->keyword])) {
+                if (!isset(static::$STATEMENT_PARSERS[$token->keyword])) {
+=======
             if (empty(static::$STATEMENT_PARSERS[$token->value])) {
                 if (!isset(static::$STATEMENT_PARSERS[$token->value])) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     // A statement is considered recognized if the parser
                     // is aware that it is a statement, but it does not have
                     // a parser for it yet.
@@ -454,7 +472,11 @@ class Parser extends Core
              *
              * @var string
              */
+<<<<<<< HEAD
+            $class = static::$STATEMENT_PARSERS[$token->keyword];
+=======
             $class = static::$STATEMENT_PARSERS[$token->value];
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
             /**
              * Processed statement.

@@ -23,7 +23,10 @@ $cfg_db = array();
 $cfg_db['Servers'] = array(
     1 => array(
         'port'         => 'integer',
+<<<<<<< HEAD
+=======
         'connect_type' => array('tcp', 'socket'),
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         'auth_type'    => array('config', 'http', 'signon', 'cookie'),
         'AllowDeny'    => array(
             'order' => array('', 'deny,allow', 'allow,deny', 'explicit')

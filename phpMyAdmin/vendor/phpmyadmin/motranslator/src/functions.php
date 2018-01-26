@@ -49,11 +49,25 @@ function _bindtextdomain($domain, $path)
 
 /**
  * Dummy compatibility function, MoTranslator assumes
+<<<<<<< HEAD
+ * everything is using same character set on input and
+ * output.
+ *
+ * Generally it is wise to output in UTF-8 and have
+ * mo files in UTF-8.
+ *
+ * @param mixed $domain  Domain where to set character set
+ * @param mixed $codeset Character set to set
+ */
+function _bind_textdomain_codeset($domain, $codeset)
+{
+=======
  * everything is UTF-8.
  */
 function _bind_textdomain_codeset($domain, $codeset)
 {
     return;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 }
 
 /**

@@ -15,6 +15,10 @@ use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 use Symfony\Component\Cache\CacheItem;
 use Symfony\Component\Cache\Exception\InvalidArgumentException;
+<<<<<<< HEAD
+use Symfony\Component\Cache\Traits\PhpArrayTrait;
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 /**
  * Caches items at warm up time using a PHP array that is stored in shared memory by OPCache since PHP 7.0.
@@ -25,10 +29,16 @@ use Symfony\Component\Cache\Exception\InvalidArgumentException;
  */
 class PhpArrayAdapter implements AdapterInterface
 {
+<<<<<<< HEAD
+    use PhpArrayTrait;
+
+    private $createCacheItem;
+=======
     private $file;
     private $values;
     private $createCacheItem;
     private $fallbackPool;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
     /**
      * @param string           $file         The PHP file were values are cached
@@ -57,14 +67,23 @@ class PhpArrayAdapter implements AdapterInterface
      * stores arrays in its latest versions. This factory method decorates the given
      * fallback pool with this adapter only if the current PHP version is supported.
      *
+<<<<<<< HEAD
+     * @param string                 $file         The PHP file were values are cached
+     * @param CacheItemPoolInterface $fallbackPool Fallback for old PHP versions or opcache disabled
+=======
      * @param string $file The PHP file were values are cached
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      *
      * @return CacheItemPoolInterface
      */
     public static function create($file, CacheItemPoolInterface $fallbackPool)
     {
         // Shared memory is available in PHP 7.0+ with OPCache enabled and in HHVM
+<<<<<<< HEAD
+        if ((\PHP_VERSION_ID >= 70000 && ini_get('opcache.enable')) || defined('HHVM_VERSION')) {
+=======
         if ((PHP_VERSION_ID >= 70000 && ini_get('opcache.enable')) || defined('HHVM_VERSION')) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             if (!$fallbackPool instanceof AdapterInterface) {
                 $fallbackPool = new ProxyAdapter($fallbackPool);
             }
@@ -76,6 +95,8 @@ class PhpArrayAdapter implements AdapterInterface
     }
 
     /**
+<<<<<<< HEAD
+=======
      * Store an array of cached values.
      *
      * @param array $values The cached values
@@ -159,6 +180,7 @@ EOF;
     }
 
     /**
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      * {@inheritdoc}
      */
     public function getItem($key)
@@ -231,6 +253,8 @@ EOF;
     /**
      * {@inheritdoc}
      */
+<<<<<<< HEAD
+=======
     public function clear()
     {
         $this->values = array();
@@ -243,6 +267,7 @@ EOF;
     /**
      * {@inheritdoc}
      */
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     public function deleteItem($key)
     {
         if (!is_string($key)) {
@@ -318,6 +343,8 @@ EOF;
     }
 
     /**
+<<<<<<< HEAD
+=======
      * Load the cache file.
      */
     private function initialize()
@@ -326,6 +353,7 @@ EOF;
     }
 
     /**
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      * Generator for items.
      *
      * @param array $keys
@@ -373,15 +401,25 @@ EOF;
      */
     public static function throwOnRequiredClass($class)
     {
+<<<<<<< HEAD
+        $e = new \ReflectionException("Class $class does not exist");
+=======
         $e = new \ReflectionException(sprintf('Class %s does not exist', $class));
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         $trace = $e->getTrace();
         $autoloadFrame = array(
             'function' => 'spl_autoload_call',
             'args' => array($class),
         );
+<<<<<<< HEAD
+        $i = 1 + array_search($autoloadFrame, $trace, true);
+
+        if (isset($trace[$i]['function']) && !isset($trace[$i]['class'])) {
+=======
         $i = array_search($autoloadFrame, $trace);
 
         if (false !== $i++ && isset($trace[$i]['function']) && !isset($trace[$i]['class'])) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             switch ($trace[$i]['function']) {
                 case 'get_class_methods':
                 case 'get_class_vars':

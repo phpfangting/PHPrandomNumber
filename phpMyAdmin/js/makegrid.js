@@ -946,7 +946,11 @@ function PMA_makegrid(t, enableResize, enableReorder, enableVisib, enableGridEdi
                     // if the data is truncated, get the full data
                     if ($td.is('.truncated')) {
                         post_params.get_full_values = true;
+<<<<<<< HEAD
+                        post_params.where_clause = where_clause;
+=======
                         post_params.where_clause = PMA_urldecode(where_clause);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     }
 
                     g.lastXHR = $.post('sql.php', post_params, function (data) {
@@ -986,7 +990,11 @@ function PMA_makegrid(t, enableResize, enableReorder, enableVisib, enableGridEdi
                         /**
                          * @var sql_query   String containing the SQL query used to retrieve value of truncated/transformed data
                          */
+<<<<<<< HEAD
+                        var sql_query = 'SELECT `' + field_name + '` FROM `' + g.table + '` WHERE ' + where_clause;
+=======
                         var sql_query = 'SELECT `' + field_name + '` FROM `' + g.table + '` WHERE ' + PMA_urldecode(where_clause);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
                         // Make the Ajax call and get the data, wrap it and insert it
                         g.lastXHR = $.post('sql.php', {
@@ -1162,7 +1170,11 @@ function PMA_makegrid(t, enableResize, enableReorder, enableVisib, enableGridEdi
                 if (typeof where_clause === 'undefined') {
                     where_clause = '';
                 }
+<<<<<<< HEAD
+                full_where_clause.push(where_clause);
+=======
                 full_where_clause.push(PMA_urldecode(where_clause));
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 var condition_array = JSON.parse($tr.find('.condition_array').val());
 
                 /**
@@ -1250,7 +1262,10 @@ function PMA_makegrid(t, enableResize, enableReorder, enableVisib, enableGridEdi
                     new_clause += field + ' ' + condition_array[field] + ' AND ';
                 }
                 new_clause = new_clause.substring(0, new_clause.length - 5); // remove the last AND
+<<<<<<< HEAD
+=======
                 new_clause = PMA_urlencode(new_clause);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 $tr.data('new_clause', new_clause);
                 // save condition_array
                 $tr.find('.condition_array').val(JSON.stringify(condition_array));
@@ -1321,8 +1336,13 @@ function PMA_makegrid(t, enableResize, enableReorder, enableVisib, enableGridEdi
                                 var new_clause = $(this).data('new_clause');
                                 var $where_clause = $(this).find('.where_clause');
                                 var old_clause = $where_clause.val();
+<<<<<<< HEAD
+                                var decoded_old_clause = old_clause;
+                                var decoded_new_clause = new_clause;
+=======
                                 var decoded_old_clause = PMA_urldecode(old_clause);
                                 var decoded_new_clause = PMA_urldecode(new_clause);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
                                 $where_clause.val(new_clause);
                                 // update Edit, Copy, and Delete links also
@@ -1446,7 +1466,11 @@ function PMA_makegrid(t, enableResize, enableReorder, enableVisib, enableGridEdi
                     // selection list will always be updated to the edit box
                     this_field_params[field_name] = $(g.cEdit).find('.edit_box').val();
                 } else if ($this_field.hasClass('hex')) {
+<<<<<<< HEAD
+                    if ($(g.cEdit).find('.edit_box').val().match(/^(0x)?[a-f0-9]*$/i) !== null) {
+=======
                     if ($(g.cEdit).find('.edit_box').val().match(/^[a-f0-9]*$/i) !== null) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                         this_field_params[field_name] = $(g.cEdit).find('.edit_box').val();
                     } else {
                         var hexError = '<div class="error">' + PMA_messages.strEnterValidHex + '</div>';
@@ -1770,14 +1794,21 @@ function PMA_makegrid(t, enableResize, enableReorder, enableVisib, enableGridEdi
             if (typeof where_clause === 'undefined') {
                 where_clause = '';
             }
+<<<<<<< HEAD
+=======
             where_clause = PMA_urldecode(where_clause);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             var found = false;
             var $found_row;
             var $prev_row;
             var j = 0;
 
             $this_field.parents('tr').first().parents('tbody').children().each(function(){
+<<<<<<< HEAD
+                if ($(this).find('.where_clause').val() == where_clause) {
+=======
                 if (PMA_urldecode($(this).find('.where_clause').val()) == where_clause) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     found = true;
                     $found_row = $(this);
                 }
@@ -1814,14 +1845,21 @@ function PMA_makegrid(t, enableResize, enableReorder, enableVisib, enableGridEdi
             if (typeof where_clause === 'undefined') {
                 where_clause = '';
             }
+<<<<<<< HEAD
+=======
             where_clause = PMA_urldecode(where_clause);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             var found = false;
             var $found_row;
             var $next_row;
             var j = 0;
             var next_row_found = false;
             $this_field.parents('tr').first().parents('tbody').children().each(function(){
+<<<<<<< HEAD
+                if ($(this).find('.where_clause').val() == where_clause) {
+=======
                 if (PMA_urldecode($(this).find('.where_clause').val()) == where_clause) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     found = true;
                     $found_row = $(this);
                 }
@@ -1862,12 +1900,19 @@ function PMA_makegrid(t, enableResize, enableReorder, enableVisib, enableGridEdi
             if (typeof where_clause === 'undefined') {
                 where_clause = '';
             }
+<<<<<<< HEAD
+=======
             where_clause = PMA_urldecode(where_clause);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             var found = false;
             var $found_row;
             var j = 0;
             $this_field.parents('tr').first().parents('tbody').children().each(function(){
+<<<<<<< HEAD
+                if ($(this).find('.where_clause').val() == where_clause) {
+=======
                 if (PMA_urldecode($(this).find('.where_clause').val()) == where_clause) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     found = true;
                     $found_row = $(this);
                 }
@@ -1904,12 +1949,19 @@ function PMA_makegrid(t, enableResize, enableReorder, enableVisib, enableGridEdi
             if (typeof where_clause === 'undefined') {
                 where_clause = '';
             }
+<<<<<<< HEAD
+=======
             where_clause = PMA_urldecode(where_clause);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             var found = false;
             var $found_row;
             var j = 0;
             $this_field.parents('tr').first().parents('tbody').children().each(function(){
+<<<<<<< HEAD
+                if ($(this).find('.where_clause').val() == where_clause) {
+=======
                 if (PMA_urldecode($(this).find('.where_clause').val()) == where_clause) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     found = true;
                     $found_row = $(this);
                 }
@@ -2084,7 +2136,12 @@ function PMA_makegrid(t, enableResize, enableReorder, enableVisib, enableGridEdi
                 // hide edit cell if the click is not fromDat edit area
                 if ($(e.target).parents().index($(g.cEdit)) == -1 &&
                     !$(e.target).parents('.ui-datepicker-header').length &&
+<<<<<<< HEAD
+                    !$('.browse_foreign_modal.ui-dialog:visible').length &&
+                    !$(e.target).hasClass('error')
+=======
                     !$('.browse_foreign_modal.ui-dialog:visible').length
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 ) {
                     g.hideEditCell();
                 }

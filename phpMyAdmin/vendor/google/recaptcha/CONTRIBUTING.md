@@ -17,7 +17,11 @@ frustration later on.
 
 ### Code reviews
 All submissions, including submissions by project members, require review. We
+<<<<<<< HEAD
+use GitHub pull requests for this purpose.
+=======
 use Github pull requests for this purpose.
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 ### The small print
 Contributions made by corporations are covered by a different agreement than

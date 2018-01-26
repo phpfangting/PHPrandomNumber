@@ -9,6 +9,11 @@
 
 namespace PhpMyAdmin\SqlParser;
 
+<<<<<<< HEAD
+use PhpMyAdmin\SqlParser\Exceptions\LoaderException;
+
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 /**
  * Holds the configuration of the context that is currently used.
  *
@@ -113,7 +118,11 @@ abstract class Context
         ':=' => 8,
 
         // @see Token::FLAG_OPERATOR_SQL
+<<<<<<< HEAD
+        '(' => 16, ')' => 16, '.' => 16, ',' => 16, ';' => 16,
+=======
         '(' => 16, ')' => 16, '.' => 16,  ',' => 16, ';' => 16,
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     );
 
     /**
@@ -131,6 +140,72 @@ abstract class Context
 
     // Compatibility mode for Microsoft's SQL server.
     // This is the equivalent of ANSI_QUOTES.
+<<<<<<< HEAD
+    const SQL_MODE_COMPAT_MYSQL = 2;
+
+    // https://dev.mysql.com/doc/refman/5.0/en/sql-mode.html#sqlmode_allow_invalid_dates
+    const SQL_MODE_ALLOW_INVALID_DATES = 1;
+
+    // https://dev.mysql.com/doc/refman/5.0/en/sql-mode.html#sqlmode_ansi_quotes
+    const SQL_MODE_ANSI_QUOTES = 2;
+
+    // https://dev.mysql.com/doc/refman/5.0/en/sql-mode.html#sqlmode_error_for_division_by_zero
+    const SQL_MODE_ERROR_FOR_DIVISION_BY_ZERO = 4;
+
+    // https://dev.mysql.com/doc/refman/5.0/en/sql-mode.html#sqlmode_high_not_precedence
+    const SQL_MODE_HIGH_NOT_PRECEDENCE = 8;
+
+    // https://dev.mysql.com/doc/refman/5.0/en/sql-mode.html#sqlmode_ignore_space
+    const SQL_MODE_IGNORE_SPACE = 16;
+
+    // https://dev.mysql.com/doc/refman/5.0/en/sql-mode.html#sqlmode_no_auto_create_user
+    const SQL_MODE_NO_AUTO_CREATE_USER = 32;
+
+    // https://dev.mysql.com/doc/refman/5.0/en/sql-mode.html#sqlmode_no_auto_value_on_zero
+    const SQL_MODE_NO_AUTO_VALUE_ON_ZERO = 64;
+
+    // https://dev.mysql.com/doc/refman/5.0/en/sql-mode.html#sqlmode_no_backslash_escapes
+    const SQL_MODE_NO_BACKSLASH_ESCAPES = 128;
+
+    // https://dev.mysql.com/doc/refman/5.0/en/sql-mode.html#sqlmode_no_dir_in_create
+    const SQL_MODE_NO_DIR_IN_CREATE = 256;
+
+    // https://dev.mysql.com/doc/refman/5.0/en/sql-mode.html#sqlmode_no_dir_in_create
+    const SQL_MODE_NO_ENGINE_SUBSTITUTION = 512;
+
+    // https://dev.mysql.com/doc/refman/5.0/en/sql-mode.html#sqlmode_no_field_options
+    const SQL_MODE_NO_FIELD_OPTIONS = 1024;
+
+    // https://dev.mysql.com/doc/refman/5.0/en/sql-mode.html#sqlmode_no_key_options
+    const SQL_MODE_NO_KEY_OPTIONS = 2048;
+
+    // https://dev.mysql.com/doc/refman/5.0/en/sql-mode.html#sqlmode_no_table_options
+    const SQL_MODE_NO_TABLE_OPTIONS = 4096;
+
+    // https://dev.mysql.com/doc/refman/5.0/en/sql-mode.html#sqlmode_no_unsigned_subtraction
+    const SQL_MODE_NO_UNSIGNED_SUBTRACTION = 8192;
+
+    // https://dev.mysql.com/doc/refman/5.0/en/sql-mode.html#sqlmode_no_zero_date
+    const SQL_MODE_NO_ZERO_DATE = 16384;
+
+    // https://dev.mysql.com/doc/refman/5.0/en/sql-mode.html#sqlmode_no_zero_in_date
+    const SQL_MODE_NO_ZERO_IN_DATE = 32768;
+
+    // https://dev.mysql.com/doc/refman/5.0/en/sql-mode.html#sqlmode_only_full_group_by
+    const SQL_MODE_ONLY_FULL_GROUP_BY = 65536;
+
+    // https://dev.mysql.com/doc/refman/5.0/en/sql-mode.html#sqlmode_pipes_as_concat
+    const SQL_MODE_PIPES_AS_CONCAT = 131072;
+
+    // https://dev.mysql.com/doc/refman/5.0/en/sql-mode.html#sqlmode_real_as_float
+    const SQL_MODE_REAL_AS_FLOAT = 262144;
+
+    // https://dev.mysql.com/doc/refman/5.0/en/sql-mode.html#sqlmode_strict_all_tables
+    const SQL_MODE_STRICT_ALL_TABLES = 524288;
+
+    // https://dev.mysql.com/doc/refman/5.0/en/sql-mode.html#sqlmode_strict_trans_tables
+    const SQL_MODE_STRICT_TRANS_TABLES = 1048576;
+=======
     const COMPAT_MYSQL = 2;
 
     // https://dev.mysql.com/doc/refman/5.0/en/sql-mode.html#sqlmode_allow_invalid_dates
@@ -195,13 +270,18 @@ abstract class Context
 
     // https://dev.mysql.com/doc/refman/5.0/en/sql-mode.html#sqlmode_strict_trans_tables
     const STRICT_TRANS_TABLES = 1048576;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
     // Custom modes.
 
     // The table and column names and any other field that must be escaped will
     // not be.
     // Reserved keywords are being escaped regardless this mode is used or not.
+<<<<<<< HEAD
+    const SQL_MODE_NO_ENCLOSING_QUOTES = 1073741824;
+=======
     const NO_ENCLOSING_QUOTES = 1073741824;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
     /*
      * Combination SQL Modes
@@ -307,9 +387,18 @@ abstract class Context
      *
      * @return int the appropriate flag for the comment type
      */
+<<<<<<< HEAD
+    public static function isComment($str, $end=false)
+    {
+        $len = strlen($str);
+        if ($len == 0) {
+            return null;
+        }
+=======
     public static function isComment($str)
     {
         $len = strlen($str);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         if ($str[0] === '#') {
             return Token::FLAG_COMMENT_BASH;
         } elseif (($len > 1) && ($str[0] === '/') && ($str[1] === '*')) {
@@ -321,6 +410,11 @@ abstract class Context
             && ($str[1] === '-') && (static::isWhitespace($str[2]))
         ) {
             return Token::FLAG_COMMENT_SQL;
+<<<<<<< HEAD
+        } elseif (($len == 2) && $end && ($str[0] === '-') && ($str[1] === '-')) {
+            return Token::FLAG_COMMENT_SQL;
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         }
 
         return null;
@@ -374,6 +468,12 @@ abstract class Context
      */
     public static function isSymbol($str)
     {
+<<<<<<< HEAD
+        if (strlen($str) == 0) {
+            return null;
+        }
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         if ($str[0] === '@') {
             return Token::FLAG_SYMBOL_VARIABLE;
         } elseif ($str[0] === '`') {
@@ -395,6 +495,12 @@ abstract class Context
      */
     public static function isString($str)
     {
+<<<<<<< HEAD
+        if (strlen($str) == 0) {
+            return null;
+        }
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         if ($str[0] === '\'') {
             return Token::FLAG_STRING_SINGLE_QUOTES;
         } elseif ($str[0] === '"') {
@@ -432,7 +538,11 @@ abstract class Context
      * @param string $context name of the context or full class name that
      *                        defines the context
      *
+<<<<<<< HEAD
+     * @throws LoaderException if the specified context doesn't exist
+=======
      * @throws \Exception if the specified context doesn't exist
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
      */
     public static function load($context = '')
     {
@@ -444,8 +554,14 @@ abstract class Context
             $context = self::$contextPrefix . $context;
         }
         if (!class_exists($context)) {
+<<<<<<< HEAD
+            throw @new LoaderException(
+                'Specified context ("' . $context . '") does not exist.',
+                $context
+=======
             throw new \Exception(
                 'Specified context ("' . $context . '") does not exist.'
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             );
         }
         self::$loadedContext = $context;
@@ -480,7 +596,11 @@ abstract class Context
             try {
                 // Trying to load the new context.
                 static::load($context);
+<<<<<<< HEAD
+            } catch (LoaderException $e) {
+=======
             } catch (\Exception $e) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 // If it didn't work, we are looking for a new one and skipping
                 // over to the next generation that will try the new context.
                 $context = preg_replace(
@@ -514,7 +634,11 @@ abstract class Context
         }
         $mode = explode(',', $mode);
         foreach ($mode as $m) {
+<<<<<<< HEAD
+            static::$MODE |= constant('static::SQL_MODE_' . $m);
+=======
             static::$MODE |= constant('static::' . $m);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         }
     }
 
@@ -536,13 +660,21 @@ abstract class Context
             return $str;
         }
 
+<<<<<<< HEAD
+        if ((static::$MODE & self::SQL_MODE_NO_ENCLOSING_QUOTES)
+=======
         if ((static::$MODE & self::NO_ENCLOSING_QUOTES)
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             && (!static::isKeyword($str, true))
         ) {
             return $str;
         }
 
+<<<<<<< HEAD
+        if (static::$MODE & self::SQL_MODE_ANSI_QUOTES) {
+=======
         if (static::$MODE & self::ANSI_QUOTES) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             $quote = '"';
         }
 

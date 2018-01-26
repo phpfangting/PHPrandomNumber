@@ -156,9 +156,14 @@ class ThemeManager
         $this->theme_default = $GLOBALS['cfg']['ThemeDefault'];
 
         // check if user have a theme cookie
+<<<<<<< HEAD
+        $cookie_theme = $this->getThemeCookie();
+        if (! $cookie_theme || ! $this->setActiveTheme($cookie_theme)) {
+=======
         if (! $this->getThemeCookie()
             || ! $this->setActiveTheme($this->getThemeCookie())
         ) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             if ($GLOBALS['cfg']['ThemeDefault']) {
                 // otherwise use default theme
                 $this->setActiveTheme($this->theme_default);
@@ -242,8 +247,14 @@ class ThemeManager
      */
     public function getThemeCookie()
     {
+<<<<<<< HEAD
+        $name = $this->getThemeCookieName();
+        if (isset($_COOKIE[$name])) {
+            return $_COOKIE[$name];
+=======
         if (isset($_COOKIE[$this->getThemeCookieName()])) {
             return $_COOKIE[$this->getThemeCookieName()];
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         }
 
         return false;
@@ -367,9 +378,15 @@ class ThemeManager
         $select_box = '';
 
         if ($form) {
+<<<<<<< HEAD
+            $select_box .= '<form name="setTheme" method="post"';
+            $select_box .= ' action="index.php" class="disableAjax">';
+            $select_box .= URL::getHiddenInputs();
+=======
             $select_box .= '<form name="setTheme" method="get"';
             $select_box .= ' action="index.php" class="disableAjax">';
             $select_box .=  URL::getHiddenInputs();
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         }
 
         $theme_preview_path= './themes.php';
@@ -411,7 +428,11 @@ class ThemeManager
         /**
          * load layout file if exists
          */
+<<<<<<< HEAD
+        if (@file_exists($this->theme->getLayoutFile())) {
+=======
         if (file_exists($this->theme->getLayoutFile())) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             include $this->theme->getLayoutFile();
         }
     }
@@ -477,6 +498,8 @@ class ThemeManager
     {
         $tmanager = self::getInstance();
 
+<<<<<<< HEAD
+=======
         // for the theme per server feature
         if (isset($_REQUEST['server']) && ! isset($_REQUEST['set_theme'])) {
             $GLOBALS['server'] = $_REQUEST['server'];
@@ -486,6 +509,7 @@ class ThemeManager
             }
             $tmanager->setActiveTheme($tmp);
         }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         /**
          * @todo move into ThemeManager::__wakeup()
          */

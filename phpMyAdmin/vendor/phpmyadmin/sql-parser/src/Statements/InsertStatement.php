@@ -6,6 +6,16 @@
 
 namespace PhpMyAdmin\SqlParser\Statements;
 
+<<<<<<< HEAD
+use PhpMyAdmin\SqlParser\Components\Array2d;
+use PhpMyAdmin\SqlParser\Components\IntoKeyword;
+use PhpMyAdmin\SqlParser\Components\OptionsArray;
+use PhpMyAdmin\SqlParser\Components\SetOperation;
+use PhpMyAdmin\SqlParser\Parser;
+use PhpMyAdmin\SqlParser\Statement;
+use PhpMyAdmin\SqlParser\Token;
+use PhpMyAdmin\SqlParser\TokensList;
+=======
 use PhpMyAdmin\SqlParser\Parser;
 use PhpMyAdmin\SqlParser\Token;
 use PhpMyAdmin\SqlParser\TokensList;
@@ -14,6 +24,7 @@ use PhpMyAdmin\SqlParser\Components\IntoKeyword;
 use PhpMyAdmin\SqlParser\Components\Array2d;
 use PhpMyAdmin\SqlParser\Components\OptionsArray;
 use PhpMyAdmin\SqlParser\Components\SetOperation;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 /**
  * `INSERT` statement.
@@ -184,6 +195,26 @@ class InsertStatement extends Statement
 
             if ($state === 0) {
                 if ($token->type === Token::TYPE_KEYWORD
+<<<<<<< HEAD
+                    && $token->keyword !== 'INTO'
+                ) {
+                    $parser->error('Unexpected keyword.', $token);
+                    break;
+                }
+
+                ++$list->idx;
+                $this->into = IntoKeyword::parse(
+                    $parser,
+                    $list,
+                    array('fromInsert' => true)
+                );
+
+                $state = 1;
+            } elseif ($state === 1) {
+                if ($token->type === Token::TYPE_KEYWORD) {
+                    if ($token->keyword === 'VALUE'
+                        || $token->keyword === 'VALUES'
+=======
                     && $token->value !== 'INTO'
                 ) {
                     $parser->error('Unexpected keyword.', $token);
@@ -202,15 +233,24 @@ class InsertStatement extends Statement
                 if ($token->type === Token::TYPE_KEYWORD) {
                     if ($token->value === 'VALUE'
                         || $token->value === 'VALUES'
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     ) {
                         ++$list->idx; // skip VALUES
 
                         $this->values = Array2d::parse($parser, $list);
+<<<<<<< HEAD
+                    } elseif ($token->keyword === 'SET') {
+                        ++$list->idx; // skip SET
+
+                        $this->set = SetOperation::parse($parser, $list);
+                    } elseif ($token->keyword === 'SELECT') {
+=======
                     } elseif ($token->value === 'SET') {
                         ++$list->idx; // skip SET
 
                         $this->set = SetOperation::parse($parser, $list);
                     } elseif ($token->value === 'SELECT') {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                         $this->select = new SelectStatement($parser, $list);
                     } else {
                         $parser->error(
@@ -231,6 +271,15 @@ class InsertStatement extends Statement
             } elseif ($state == 2) {
                 $lastCount = $miniState;
 
+<<<<<<< HEAD
+                if ($miniState === 1 && $token->keyword === 'ON') {
+                    ++$miniState;
+                } elseif ($miniState === 2 && $token->keyword === 'DUPLICATE') {
+                    ++$miniState;
+                } elseif ($miniState === 3 && $token->keyword === 'KEY') {
+                    ++$miniState;
+                } elseif ($miniState === 4 && $token->keyword === 'UPDATE') {
+=======
                 if ($miniState === 1 && $token->value === 'ON') {
                     ++$miniState;
                 } elseif ($miniState === 2 && $token->value === 'DUPLICATE') {
@@ -238,6 +287,7 @@ class InsertStatement extends Statement
                 } elseif ($miniState === 3 && $token->value === 'KEY') {
                     ++$miniState;
                 } elseif ($miniState === 4 && $token->value === 'UPDATE') {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     ++$miniState;
                 }
 

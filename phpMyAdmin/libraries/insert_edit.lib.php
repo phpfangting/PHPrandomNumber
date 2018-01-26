@@ -2419,7 +2419,13 @@ function PMA_getCurrentValueForDifferentTypes($possibly_uploaded_val, $key,
                 $current_value = '';
             }
         } elseif ($type === 'hex') {
+<<<<<<< HEAD
+            if (substr($current_value, 0, 2) != '0x') {
+                $current_value = '0x' . $current_value;
+            }
+=======
             $current_value = '0x' . $current_value;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         } elseif ($type == 'bit') {
             $current_value = preg_replace('/[^01]/', '0', $current_value);
             $current_value = "b'" . $GLOBALS['dbi']->escapeString($current_value)
@@ -2485,6 +2491,11 @@ function PMA_verifyWhetherValueCanBeTruncatedAndAppendExtraData(
             || ($meta->type == 'time')
         ) {
             $new_value = PMA\libraries\Util::addMicroseconds($new_value);
+<<<<<<< HEAD
+        } elseif (mb_strpos($meta->flags, 'binary') !== false) {
+            $new_value = '0x' . bin2hex($new_value);
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         }
         $extra_data['isNeedToRecheck'] = true;
         $extra_data['truncatableFieldValue'] = $new_value;

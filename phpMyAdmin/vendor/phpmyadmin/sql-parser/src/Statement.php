@@ -255,7 +255,11 @@ abstract class Statement
             // ON DUPLICATE KEY UPDATE ...
             // has to be parsed in parent statement (INSERT or REPLACE)
             // so look for it and break
+<<<<<<< HEAD
+            if ($this instanceof \PhpMyAdmin\SqlParser\Statements\SelectStatement
+=======
             if (get_class($this) === 'PhpMyAdmin\SqlParser\Statements\SelectStatement'
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 && $token->value === 'ON'
             ) {
                 ++$list->idx; // Skip ON
@@ -312,7 +316,11 @@ abstract class Statement
             }
 
             // Checking if this is the beginning of a clause.
+<<<<<<< HEAD
+            if (!empty(Parser::$KEYWORD_PARSERS[$token->value]) && $list->idx < $list->count) {
+=======
             if (!empty(Parser::$KEYWORD_PARSERS[$token->value])) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 $class = Parser::$KEYWORD_PARSERS[$token->value]['class'];
                 $field = Parser::$KEYWORD_PARSERS[$token->value]['field'];
                 if (!empty(Parser::$KEYWORD_PARSERS[$token->value]['options'])) {
@@ -321,7 +329,11 @@ abstract class Statement
             }
 
             // Checking if this is the beginning of the statement.
+<<<<<<< HEAD
+            if (!empty(Parser::$STATEMENT_PARSERS[$token->keyword])) {
+=======
             if (!empty(Parser::$STATEMENT_PARSERS[$token->value])) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 if ((!empty(static::$CLAUSES)) // Undefined for some statements.
                     && (empty(static::$CLAUSES[$token->value]))
                 ) {
@@ -351,7 +363,11 @@ abstract class Statement
             } elseif ($class === null) {
                 // Handle special end options in Select statement
                 // See Statements\SelectStatement::$END_OPTIONS
+<<<<<<< HEAD
+                if ($this instanceof \PhpMyAdmin\SqlParser\Statements\SelectStatement
+=======
                 if (get_class($this) === 'PhpMyAdmin\SqlParser\Statements\SelectStatement'
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     && ($token->value === 'FOR UPDATE'
                     || $token->value === 'LOCK IN SHARE MODE')
                 ) {
@@ -372,6 +388,14 @@ abstract class Statement
 
             // Parsing this keyword.
             if ($class !== null) {
+<<<<<<< HEAD
+                // We can't parse keyword at the end of statement
+                if ($list->idx >= $list->count) {
+                    $parser->error('Keyword at end of statement.', $token);
+                    continue;
+                }
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 ++$list->idx; // Skipping keyword or last option.
                 $this->$field = $class::parse($parser, $list, $options);
             }
@@ -451,6 +475,28 @@ abstract class Statement
 
         /**
          * For tracking JOIN clauses in a query
+<<<<<<< HEAD
+         *   = 0 - JOIN not found till now
+         *   > 0 - Index of first JOIN clause in the statement.
+         *
+         * @var int
+         */
+        $minJoin = 0;
+
+        /**
+         * For tracking JOIN clauses in a query
+         *   = 0 - JOIN not found till now
+         *   > 0 - Index of last JOIN clause
+         *         (which appears together with other JOINs)
+         *         in the statement.
+         *
+         * @var int
+         */
+        $maxJoin = 0;
+
+        $error = 0;
+        $lastIdx = 0;
+=======
          *   0 - JOIN not found till now
          *   1 - JOIN has been found
          *   2 - A Non-JOIN clause has been found
@@ -461,6 +507,7 @@ abstract class Statement
         $joinStart = 0;
 
         $error = 0;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         foreach ($clauses as $clauseType => $index) {
             $clauseStartIdx = Utils\Query::getClauseStartOffset(
                 $this,
@@ -470,17 +517,31 @@ abstract class Statement
 
             // Handle ordering of Multiple Joins in a query
             if ($clauseStartIdx != -1) {
+<<<<<<< HEAD
+                if ($minJoin === 0 && stripos($clauseType, 'JOIN')) {
+                    // First JOIN clause is detected
+                    $minJoin = $maxJoin = $clauseStartIdx;
+                } elseif ($minJoin !== 0 && !stripos($clauseType, 'JOIN')) {
+                    // After a previous JOIN clause, a non-JOIN clause has been detected
+                    $maxJoin = $lastIdx;
+                } elseif ($maxJoin < $clauseStartIdx && stripos($clauseType, 'JOIN')) {
+=======
                 if ($joinStart == 0 && stripos($clauseType, 'JOIN') !== false) {
                     $joinStart = 1;
                 } elseif ($joinStart == 1 && stripos($clauseType, 'JOIN') === false) {
                     $joinStart = 2;
                 } elseif ($joinStart == 2 && stripos($clauseType, 'JOIN') !== false) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     $error = 1;
                 }
             }
 
             if ($clauseStartIdx != -1 && $clauseStartIdx < $minIdx) {
+<<<<<<< HEAD
+                if ($minJoin === 0 || $error === 1) {
+=======
                 if ($joinStart == 0 || ($joinStart == 2 && $error = 1)) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     $token = $list->tokens[$clauseStartIdx];
                     $parser->error(
                         'Unexpected ordering of clauses.',
@@ -488,12 +549,22 @@ abstract class Statement
                     );
 
                     return false;
+<<<<<<< HEAD
+                }
+                $minIdx = $clauseStartIdx;
+            } elseif ($clauseStartIdx != -1) {
+                $minIdx = $clauseStartIdx;
+            }
+
+            $lastIdx = ($clauseStartIdx !== -1) ? $clauseStartIdx : $lastIdx;
+=======
                 } else {
                     $minIdx = $clauseStartIdx;
                 }
             } elseif ($clauseStartIdx != -1) {
                 $minIdx = $clauseStartIdx;
             }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         }
 
         return true;

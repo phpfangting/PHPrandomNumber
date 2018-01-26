@@ -153,7 +153,11 @@ function PMA_addDatepicker($this_element, type, options)
     else if (type == "time") {
         $this_element.timepicker($.extend(defaultOptions, options));
         // Add a tip regarding entering MySQL allowed-values for TIME data-type
+<<<<<<< HEAD
+        PMA_tooltip($this_element, 'input', PMA_messages.strMysqlAllowedValuesTipTime);
+=======
         PMA_tooltip($this_element, 'input', PMA_messages.strMysqlAllowedValuesTip);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 }
 
@@ -520,7 +524,11 @@ function PMA_current_version(data)
     if (data && data.version && data.date) {
         var current = parseVersionString($('span.version').text());
         var latest = parseVersionString(data.version);
+<<<<<<< HEAD
+        var url = 'https://www.phpmyadmin.net/files/' + escapeHtml(encodeURIComponent(data.version)) + '/';
+=======
         var url = 'https://web.phpmyadmin.net/files/' + escapeHtml(encodeURIComponent(data.version)) + '/';
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         var version_information_message = document.createElement('span');
         version_information_message.className = 'latest';
         var version_information_message_link = document.createElement('a');
@@ -528,7 +536,11 @@ function PMA_current_version(data)
         version_information_message_link.className = 'disableAjax';
         version_information_message_link_text = document.createTextNode(data.version);
         version_information_message_link.appendChild(version_information_message_link_text);
+<<<<<<< HEAD
+        var prefix_message = document.createTextNode(PMA_messages.strLatestAvailable + ' ');
+=======
         var prefix_message = document.createTextNode(PMA_messages.strLatestAvailable);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         version_information_message.appendChild(prefix_message);
         version_information_message.appendChild(version_information_message_link);
         if (latest > current) {
@@ -557,6 +569,12 @@ function PMA_current_version(data)
         if (latest === current) {
             version_information_message = document.createTextNode(' (' + PMA_messages.strUpToDate + ')');
         }
+<<<<<<< HEAD
+        /* Remove extra whitespace */
+        var version_info = $('#li_pma_version').contents().get(2);
+        version_info.textContent = $.trim(version_info.textContent);
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         var $liPmaVersion = $('#li_pma_version');
         $liPmaVersion.find('span.latest').remove();
         $liPmaVersion.append($(version_information_message));
@@ -669,7 +687,11 @@ function confirmLink(theLink, theSqlQuery)
  * This function is called by the 'checkSqlQuery()' js function.
  *
  * @param theForm1 object   the form
+<<<<<<< HEAD
+ * @param sqlQuery1 string  the sql query string
+=======
  * @param sqlQuery1 object  the sql query textarea
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
  *
  * @return boolean  whether to run the query or not
  *
@@ -694,6 +716,17 @@ function confirmQuery(theForm1, sqlQuery1)
     var do_confirm_re_2 = new RegExp('^\\s*DELETE\\s+FROM\\s', 'i');
     var do_confirm_re_3 = new RegExp('^\\s*TRUNCATE\\s', 'i');
 
+<<<<<<< HEAD
+    if (do_confirm_re_0.test(sqlQuery1) ||
+        do_confirm_re_1.test(sqlQuery1) ||
+        do_confirm_re_2.test(sqlQuery1) ||
+        do_confirm_re_3.test(sqlQuery1)) {
+        var message;
+        if (sqlQuery1.length > 100) {
+            message = sqlQuery1.substr(0, 100) + '\n    ...';
+        } else {
+            message = sqlQuery1;
+=======
     if (do_confirm_re_0.test(sqlQuery1.value) ||
         do_confirm_re_1.test(sqlQuery1.value) ||
         do_confirm_re_2.test(sqlQuery1.value) ||
@@ -703,6 +736,7 @@ function confirmQuery(theForm1, sqlQuery1)
             message = sqlQuery1.value.substr(0, 100) + '\n    ...';
         } else {
             message = sqlQuery1.value;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         }
         var is_confirmed = confirm(PMA_sprintf(PMA_messages.strDoYouReally, message));
         // statement is confirmed -> update the
@@ -715,7 +749,10 @@ function confirmQuery(theForm1, sqlQuery1)
         // statement is rejected -> do not submit the form
         else {
             window.focus();
+<<<<<<< HEAD
+=======
             sqlQuery1.focus();
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             return false;
         } // end if (handle confirm box result)
     } // end if (display confirm box)
@@ -743,17 +780,40 @@ function checkSqlQuery(theForm)
     } else {
         sqlQuery = theForm.elements.sql_query.value;
     }
+<<<<<<< HEAD
+=======
     var isEmpty  = 1;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     var space_re = new RegExp('\\s+');
     if (typeof(theForm.elements.sql_file) != 'undefined' &&
             theForm.elements.sql_file.value.replace(space_re, '') !== '') {
         return true;
     }
+<<<<<<< HEAD
+    if (typeof(theForm.elements.id_bookmark) != 'undefined' &&
+=======
     if (isEmpty && typeof(theForm.elements.id_bookmark) != 'undefined' &&
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             (theForm.elements.id_bookmark.value !== null || theForm.elements.id_bookmark.value !== '') &&
             theForm.elements.id_bookmark.selectedIndex !== 0) {
         return true;
     }
+<<<<<<< HEAD
+    var result = false;
+    // Checks for "DROP/DELETE/ALTER" statements
+    if (sqlQuery.replace(space_re, '') !== '') {
+        result = confirmQuery(theForm, sqlQuery);
+    } else {
+        alert(PMA_messages.strFormEmpty);
+    }
+
+    if (codemirror_editor) {
+        codemirror_editor.focus();
+    } else if (codemirror_inline_editor) {
+        codemirror_inline_editor.focus();
+    }
+    return result;
+=======
     // Checks for "DROP/DELETE/ALTER" statements
     if (sqlQuery.replace(space_re, '') !== '') {
         return confirmQuery(theForm, sqlQuery);
@@ -768,6 +828,7 @@ function checkSqlQuery(theForm)
     }
 
     return true;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 } // end of the 'checkSqlQuery()' function
 
 /**
@@ -915,17 +976,40 @@ AJAX.registerOnload('functions.js', function () {
     document.onkeypress = function() {
         _idleSecondsCounter = 0;
     };
+<<<<<<< HEAD
+    function guid() {
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+                .toString(16)
+            .substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+            s4() + '-' + s4() + s4() + s4();
+    }
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
     function SetIdleTime() {
         _idleSecondsCounter++;
     }
     function UpdateIdleTime() {
         var href = 'index.php';
+<<<<<<< HEAD
+        var guid = 'default';
+        if (isStorageSupported('sessionStorage')) {
+            guid = window.sessionStorage.guid;
+        }
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         var params = {
                 'ajax_request' : true,
                 'token' : PMA_commonParams.get('token'),
                 'server' : PMA_commonParams.get('server'),
                 'db' : PMA_commonParams.get('db'),
+<<<<<<< HEAD
+                'guid': guid,
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 'access_time':_idleSecondsCounter
             };
         $.ajax({
@@ -934,6 +1018,30 @@ AJAX.registerOnload('functions.js', function () {
                 data: params,
                 success: function (data) {
                     if (data.success) {
+<<<<<<< HEAD
+                        if (PMA_commonParams.get('LoginCookieValidity') - _idleSecondsCounter < 0) {
+                            /* There is other active window, let's reset counter */
+                            _idleSecondsCounter = 0;
+                        }
+                        var remaining = Math.min(
+                            /* Remaining login validity */
+                            PMA_commonParams.get('LoginCookieValidity') - _idleSecondsCounter,
+                            /* Remaining time till session GC */
+                            PMA_commonParams.get('session_gc_maxlifetime')
+                        );
+                        var interval = 1000;
+                        if (remaining > 5) {
+                            // max value for setInterval() function
+                            interval = Math.min((remaining - 1) * 1000, Math.pow(2, 31) - 1);
+                        }
+                        updateTimeout = window.setTimeout(UpdateIdleTime, interval);
+                    } else { //timeout occurred
+                        clearInterval(IncInterval);
+                        if (isStorageSupported('sessionStorage')){
+                            window.sessionStorage.clear();
+                        }
+                        window.location.reload(true);
+=======
                         var remaining = PMA_commonParams.get('LoginCookieValidity') - _idleSecondsCounter;
                         if (remaining > 5) {
                             // max value for setInterval() function
@@ -949,13 +1057,27 @@ AJAX.registerOnload('functions.js', function () {
                         }
                         window.location.reload(true);
                         clearInterval(IncInterval);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     }
                 }
             });
     }
+<<<<<<< HEAD
+    if (PMA_commonParams.get('logged_in')) {
+        IncInterval = window.setInterval(SetIdleTime, 1000);
+        var session_timeout = Math.min(
+            PMA_commonParams.get('LoginCookieValidity'),
+            PMA_commonParams.get('session_gc_maxlifetime')
+        );
+        if (isStorageSupported('sessionStorage')) {
+            window.sessionStorage.setItem('guid', guid());
+        }
+        var interval = (session_timeout - 5) * 1000;
+=======
     if (PMA_commonParams.get('logged_in') && PMA_commonParams.get('auth_type') == 'cookie') {
         IncInterval = window.setInterval(SetIdleTime, 1000);
         var interval = (PMA_commonParams.get('LoginCookieValidity') - 5) * 1000;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         if (interval > Math.pow(2, 31) - 1) { // max value for setInterval() function
             interval = Math.pow(2, 31) - 1;
         }
@@ -1261,12 +1383,19 @@ function insertValueQuery()
         /* CodeMirror support */
         if (codemirror_editor) {
             codemirror_editor.replaceSelection(columnsList);
+<<<<<<< HEAD
+            codemirror_editor.focus();
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         //IE support
         } else if (document.selection) {
             myQuery.focus();
             var sel = document.selection.createRange();
             sel.text = columnsList;
+<<<<<<< HEAD
+=======
             document.sqlform.insert.focus();
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         }
         //MOZILLA/NETSCAPE support
         else if (document.sqlform.sql_query.selectionStart || document.sqlform.sql_query.selectionStart == "0") {
@@ -1275,6 +1404,10 @@ function insertValueQuery()
             var SqlString = document.sqlform.sql_query.value;
 
             myQuery.value = SqlString.substring(0, startPos) + columnsList + SqlString.substring(endPos, SqlString.length);
+<<<<<<< HEAD
+            myQuery.focus();
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         } else {
             myQuery.value += columnsList;
         }
@@ -1880,7 +2013,10 @@ AJAX.registerOnload('functions.js', function () {
     });
 
     $(document).on('click', "input#sql_query_edit_save", function () {
+<<<<<<< HEAD
+=======
         $(".success").hide();
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         //hide already existing success message
         var sql_query;
         if (codemirror_inline_editor) {
@@ -1901,6 +2037,10 @@ AJAX.registerOnload('functions.js', function () {
         if (! checkSqlQuery($fake_form[0])) {
             return false;
         }
+<<<<<<< HEAD
+        $(".success").hide();
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         $fake_form.appendTo($('body')).submit();
     });
 
@@ -2056,7 +2196,11 @@ function bindCodeMirrorToInlineEditor() {
 
 function catchKeypressesFromSqlInlineEdit(event) {
     // ctrl-enter is 10 in chrome and ie, but 13 in ff
+<<<<<<< HEAD
+    if ((event.ctrlKey || event.metaKey) && (event.keyCode == 13 || event.keyCode == 10)) {
+=======
     if (event.ctrlKey && (event.keyCode == 13 || event.keyCode == 10)) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         $("#sql_query_edit_save").trigger('click');
     }
 }
@@ -2998,7 +3142,11 @@ AJAX.registerOnload('functions.js', function () {
         }
     });
 
+<<<<<<< HEAD
+    $(document).on('change', "input[value=AUTO_INCREMENT]", function() {
+=======
     $("input[value=AUTO_INCREMENT]").change(function(){
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         if (this.checked) {
             var col = /\d/.exec($(this).attr('name'));
             col = col[0];
@@ -3839,8 +3987,12 @@ function indexEditorDialog(url, title, callback_success, callback_failure)
             .append(data.message)
             .dialog({
                 title: title,
+<<<<<<< HEAD
+                width: 'auto',
+=======
                 width: 450,
                 height: 350,
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 open: PMA_verifyColumnsProperties,
                 modal: true,
                 buttons: button_options,
@@ -4193,6 +4345,11 @@ AJAX.registerOnload('functions.js', function () {
                 favorite_tables: (isStorageSupported('localStorage') && typeof window.localStorage.favorite_tables !== 'undefined')
                     ? window.localStorage.favorite_tables
                     : '',
+<<<<<<< HEAD
+                token: PMA_commonParams.get('token'),
+                server: PMA_commonParams.get('server'),
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 no_debug: true
             },
             success: function (data) {
@@ -4539,6 +4696,8 @@ function printPage(){
 }
 
 /**
+<<<<<<< HEAD
+=======
  * Print button
  */
 function copyToClipboard()
@@ -4633,6 +4792,7 @@ function copyToClipboard()
 }
 
 /**
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
  * Unbind all event handlers before tearing down a page
  */
 AJAX.registerTeardown('functions.js', function () {

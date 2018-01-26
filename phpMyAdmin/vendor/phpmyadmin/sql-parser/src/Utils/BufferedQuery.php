@@ -15,8 +15,11 @@ use PhpMyAdmin\SqlParser\Context;
  * that are being buffered. After each statement has been extracted, a lexer or
  * a parser may be used.
  *
+<<<<<<< HEAD
+=======
  * All comments are skipped, with one exception: MySQL commands inside `/*!`.
  *
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
  * @category   Lexer
  *
  * @license    https://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
@@ -228,12 +231,20 @@ class BufferedQuery
                 if ($this->query[$i] === "\n") {
                     $this->status = 0;
                 }
+<<<<<<< HEAD
+                $this->current .= $this->query[$i];
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 continue;
             } elseif ($this->status === static::STATUS_COMMENT_C) {
                 // C-like comments end in */.
                 if (($this->query[$i - 1] === '*') && ($this->query[$i] === '/')) {
                     $this->status = 0;
                 }
+<<<<<<< HEAD
+                $this->current .= $this->query[$i];
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 continue;
             }
 
@@ -259,6 +270,10 @@ class BufferedQuery
              */
             if ($this->query[$i] === '#') {
                 $this->status = static::STATUS_COMMENT_BASH;
+<<<<<<< HEAD
+                $this->current .= $this->query[$i];
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 continue;
             } elseif (($i + 2 < $len)
                 && ($this->query[$i] === '-')
@@ -266,6 +281,10 @@ class BufferedQuery
                 && (Context::isWhitespace($this->query[$i + 2]))
             ) {
                 $this->status = static::STATUS_COMMENT_SQL;
+<<<<<<< HEAD
+                $this->current .= $this->query[$i];
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 continue;
             } elseif (($i + 2 < $len)
                 && ($this->query[$i] === '/')
@@ -273,6 +292,10 @@ class BufferedQuery
                 && ($this->query[$i + 2] !== '!')
             ) {
                 $this->status = static::STATUS_COMMENT_C;
+<<<<<<< HEAD
+                $this->current .= $this->query[$i];
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 continue;
             }
 
@@ -299,7 +322,10 @@ class BufferedQuery
                 && (($this->query[$i + 7] === 'E') || ($this->query[$i + 7] === 'e'))
                 && (($this->query[$i + 8] === 'R') || ($this->query[$i + 8] === 'r'))
                 && (Context::isWhitespace($this->query[$i + 9]))
+<<<<<<< HEAD
+=======
                 && (trim($this->current) === '')
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             ) {
                 // Saving the current index to be able to revert any parsing
                 // done in this block.

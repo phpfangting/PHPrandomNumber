@@ -63,8 +63,11 @@ class URL
             $params['collation_connection'] = $GLOBALS['collation_connection'];
         }
 
+<<<<<<< HEAD
+=======
         $params['token'] = $_SESSION[' PMA_token '];
 
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         if (! is_array($skip)) {
             if (isset($params[$skip])) {
                 unset($params[$skip]);
@@ -114,6 +117,14 @@ class URL
     {
         $fields = '';
 
+<<<<<<< HEAD
+        /* Always include token in plain forms */
+        if ($pre === '') {
+            $values['token'] = $_SESSION[' PMA_token '];
+        }
+
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         foreach ($values as $name => $value) {
             if (! empty($pre)) {
                 $name = $pre . '[' . $name . ']';
@@ -220,7 +231,17 @@ class URL
             $params['collation_connection'] = $GLOBALS['collation_connection'];
         }
 
+<<<<<<< HEAD
+        $query = http_build_query($params, null, $separator);
+
+        if ($divider != '?' || strlen($query) > 0) {
+            return $divider . $query;
+        }
+
+        return '';
+=======
         return $divider . http_build_query($params, null, $separator);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 
     /**

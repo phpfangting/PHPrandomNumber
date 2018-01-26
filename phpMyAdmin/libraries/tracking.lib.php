@@ -199,6 +199,10 @@ function PMA_getHtmlForActivateDeactivateTracking(
 ) {
     $html = '<div>';
     $html .= '<form method="post" action="tbl_tracking.php' . $url_query . '">';
+<<<<<<< HEAD
+    $html .= URL::getHiddenInputs($GLOBALS['db'], $GLOBALS['table']);
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     $html .= '<fieldset>';
     $html .= '<legend>';
 
@@ -420,6 +424,10 @@ function PMA_getSQLResultForSelectableTables()
 function PMA_getHtmlForSelectableTables($selectable_tables_sql_result, $url_query)
 {
     $html = '<form method="post" action="tbl_tracking.php' . $url_query . '">';
+<<<<<<< HEAD
+    $html .= URL::getHiddenInputs($GLOBALS['db'], $GLOBALS['table']);
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     $html .= '<select name="table" class="autosubmit">';
     while ($entries = $GLOBALS['dbi']->fetchArray($selectable_tables_sql_result)) {
         if (Tracker::isTracked($entries['db_name'], $entries['table_name'])) {
@@ -577,6 +585,10 @@ function PMA_getHtmlForTrackingReportExportForm1(
             )
         )
         . '">';
+<<<<<<< HEAD
+    $html .= URL::getHiddenInputs();
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
     $html .= sprintf(
         __('Show %1$s with dates from %2$s to %3$s by user %4$s %5$s'),
@@ -627,6 +639,10 @@ function PMA_getHtmlForTrackingReportExportForm2(
             )
         )
         . '">';
+<<<<<<< HEAD
+    $html .= URL::getHiddenInputs();
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     $html .= sprintf(
         __('Show %1$s with dates from %2$s to %3$s by user %4$s %5$s'),
         $str1, $str2, $str3, $str4, $str5
@@ -639,6 +655,10 @@ function PMA_getHtmlForTrackingReportExportForm2(
             + array('report' => 'true', 'version' => $_REQUEST['version'])
         )
         . '">';
+<<<<<<< HEAD
+    $html .= URL::getHiddenInputs();
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     $html .= '<input type="hidden" name="logtype" value="'
         . htmlspecialchars($_REQUEST['logtype']) . '" />';
     $html .= '<input type="hidden" name="date_from" value="'
@@ -1519,12 +1539,30 @@ function PMA_displayOneUntrackedTable($db, $tablename, $url_query)
 }
 
 /**
+<<<<<<< HEAD
+ * Helper function: Recursive function for getting table names from $table_list
+=======
  * Get untracked tables
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
  *
  * @param string $db current database
  *
  * @return array $untracked_tables
  */
+<<<<<<< HEAD
+function PMA_extractTableNames($table_list, $db, $testing=false) {
+    $untracked_tables = array();
+    $sep = $GLOBALS['cfg']['NavigationTreeTableSeparator'];
+
+    foreach ($table_list as $key => $value) {
+        if (is_array($value) && array_key_exists(('is' . $sep . 'group'), $value)
+            && $value['is' . $sep . 'group']
+        ) {
+            $untracked_tables = array_merge(PMA_extractTableNames($value, $db), $untracked_tables); //Recursion step
+        }
+        else {
+            if (is_array($value) && ($testing || Tracker::getVersion($db, $value['Name']) == -1)) {
+=======
 function PMA_getUntrackedTables($db)
 {
     $untracked_tables = array();
@@ -1556,6 +1594,7 @@ function PMA_getUntrackedTables($db)
             }
         } else { // If $value is a table.
             if (Tracker::getVersion($db, $value['Name']) == -1) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                 $untracked_tables[] = $value['Name'];
             }
         }
@@ -1563,6 +1602,24 @@ function PMA_getUntrackedTables($db)
     return $untracked_tables;
 }
 
+<<<<<<< HEAD
+
+/**
+ * Get untracked tables
+ *
+ * @param string $db current database
+ *
+ * @return array $untracked_tables
+ */
+function PMA_getUntrackedTables($db)
+{
+    $table_list = PMA\libraries\Util::getTableList($db);
+    $untracked_tables = PMA_extractTableNames($table_list, $db);  //Use helper function to get table list recursively.
+    return $untracked_tables;
+}
+
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 /**
  * Display tracked tables
  *

@@ -6,14 +6,24 @@
 
 namespace PhpMyAdmin\SqlParser\Statements;
 
+<<<<<<< HEAD
+=======
 use PhpMyAdmin\SqlParser\Parser;
 use PhpMyAdmin\SqlParser\Token;
 use PhpMyAdmin\SqlParser\TokensList;
 use PhpMyAdmin\SqlParser\Statement;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 use PhpMyAdmin\SqlParser\Components\Array2d;
 use PhpMyAdmin\SqlParser\Components\IntoKeyword;
 use PhpMyAdmin\SqlParser\Components\OptionsArray;
 use PhpMyAdmin\SqlParser\Components\SetOperation;
+<<<<<<< HEAD
+use PhpMyAdmin\SqlParser\Parser;
+use PhpMyAdmin\SqlParser\Statement;
+use PhpMyAdmin\SqlParser\Token;
+use PhpMyAdmin\SqlParser\TokensList;
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 /**
  * `REPLACE` statement.
@@ -87,8 +97,12 @@ class ReplaceStatement extends Statement
      */
     public function build()
     {
+<<<<<<< HEAD
+        $ret = 'REPLACE ' . $this->options . ' INTO ' . $this->into;
+=======
         $ret = 'REPLACE ' . $this->options
             . ' INTO ' . $this->into;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
         if ($this->values != null && count($this->values) > 0) {
             $ret .= ' VALUES ' . Array2d::build($this->values);
@@ -115,6 +129,10 @@ class ReplaceStatement extends Statement
             $list,
             static::$OPTIONS
         );
+<<<<<<< HEAD
+
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         ++$list->idx;
 
         /**
@@ -150,6 +168,19 @@ class ReplaceStatement extends Statement
 
             if ($state === 0) {
                 if ($token->type === Token::TYPE_KEYWORD
+<<<<<<< HEAD
+                    && $token->keyword !== 'INTO'
+                ) {
+                    $parser->error('Unexpected keyword.', $token);
+                    break;
+                }
+                ++$list->idx;
+                $this->into = IntoKeyword::parse(
+                    $parser,
+                    $list,
+                    array('fromReplace' => true)
+                );
+=======
                     && $token->value !== 'INTO'
                 ) {
                     $parser->error('Unexpected keyword.', $token);
@@ -162,21 +193,35 @@ class ReplaceStatement extends Statement
                         array('fromReplace' => true)
                     );
                 }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
                 $state = 1;
             } elseif ($state === 1) {
                 if ($token->type === Token::TYPE_KEYWORD) {
+<<<<<<< HEAD
+                    if ($token->keyword === 'VALUE'
+                        || $token->keyword === 'VALUES'
+=======
                     if ($token->value === 'VALUE'
                         || $token->value === 'VALUES'
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                     ) {
                         ++$list->idx; // skip VALUES
 
                         $this->values = Array2d::parse($parser, $list);
+<<<<<<< HEAD
+                    } elseif ($token->keyword === 'SET') {
+                        ++$list->idx; // skip SET
+
+                        $this->set = SetOperation::parse($parser, $list);
+                    } elseif ($token->keyword === 'SELECT') {
+=======
                     } elseif ($token->value === 'SET') {
                         ++$list->idx; // skip SET
 
                         $this->set = SetOperation::parse($parser, $list);
                     } elseif ($token->value === 'SELECT') {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
                         $this->select = new SelectStatement($parser, $list);
                     } else {
                         $parser->error(

@@ -181,7 +181,11 @@ function PMA_getHtmlForImportCharset()
         $html .= '<label for="charset_of_file">' . __('Character set of the file:')
             . '</label>';
         $html .= '<select id="charset_of_file" name="charset_of_file" size="1">';
+<<<<<<< HEAD
+        foreach (Encoding::listEncodings() as $temp_charset) {
+=======
         foreach ($cfg['AvailableCharsets'] as $temp_charset) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             $html .= '<option value="' . htmlentities($temp_charset) .  '"';
             if ((empty($cfg['Import']['charset']) && $temp_charset == 'utf-8')
                 || $temp_charset == $cfg['Import']['charset']

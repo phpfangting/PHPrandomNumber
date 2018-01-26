@@ -182,8 +182,14 @@ class ArrayObj extends Component
             return implode(', ', $component);
         } elseif (!empty($component->raw)) {
             return '(' . implode(', ', $component->raw) . ')';
+<<<<<<< HEAD
+        }
+
+        return '(' . implode(', ', $component->values) . ')';
+=======
         } else {
             return '(' . implode(', ', $component->values) . ')';
         }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     }
 }

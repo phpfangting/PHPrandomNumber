@@ -77,4 +77,12 @@ span.cm-number {
 }
 .CodeMirror-lint-tooltip {
     z-index: 200;
+<<<<<<< HEAD
+    font-family: inherit;
+}
+.CodeMirror-lint-tooltip code {
+  font-family: monospace;
+  font-weight: bold;
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 }

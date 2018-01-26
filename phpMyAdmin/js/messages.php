@@ -295,6 +295,13 @@ $js_messages['strProfilingResults'] = __('Profiling results');
 $js_messages['strTable'] = _pgettext('Display format', 'Table');
 $js_messages['strChart'] = __('Chart');
 
+<<<<<<< HEAD
+$js_messages['strAliasDatabase'] = _pgettext('Alias', 'Database');
+$js_messages['strAliasTable'] = _pgettext('Alias', 'Table');
+$js_messages['strAliasColumn'] = _pgettext('Alias', 'Column');
+
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 /* l10n: A collection of available filters */
 $js_messages['strFiltersForLogTable'] = __('Log table filter options');
 /* l10n: Filter as in "Start Filtering" */

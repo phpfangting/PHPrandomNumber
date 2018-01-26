@@ -225,8 +225,15 @@ AJAX.registerTeardown('export.js', function () {
     $("input[type='radio'][name='quick_or_custom']").unbind('change');
     $("input[type='radio'][name='allrows']").unbind('change');
     $('#btn_alias_config').off('click');
+<<<<<<< HEAD
+    $('.alias_remove').off('click');
+    $('#db_alias_button').off('click');
+    $('#table_alias_button').off('click');
+    $('#column_alias_button').off('click');
+=======
     $('#db_alias_select').off('change');
     $('.table_alias_select').off('change');
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     $('input[name="table_select[]"]').off('change');
     $('input[name="table_structure[]"]').off('change');
     $('input[name="table_data[]"]').off('change');
@@ -764,6 +771,12 @@ function aliasSelectHandler(event) {
 function createAliasModal(event) {
     event.preventDefault();
     var dlgButtons = {};
+<<<<<<< HEAD
+    dlgButtons[PMA_messages.strSaveAndClose] = function() {
+        $(this).dialog("close");
+        $('#alias_modal').parent().appendTo($('form[name="dump"]'));
+    };
+=======
     dlgButtons[PMA_messages.strResetAll] = function() {
         $(this).find('input[type="text"]').val('');
     };
@@ -781,6 +794,7 @@ function createAliasModal(event) {
         $('#alias_modal').parent().appendTo($('form[name="dump"]'));
     };
     $('#alias_modal').find('input[type="text"]').prop('disabled', false);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     $('#alias_modal').dialog({
         width: Math.min($(window).width() - 100, 700),
         maxHeight: $(window).height(),
@@ -789,11 +803,50 @@ function createAliasModal(event) {
         buttons: dlgButtons,
         create: function() {
             $(this).css('maxHeight', $(window).height() - 150);
+<<<<<<< HEAD
+            var db = PMA_commonParams.get('db');
+            if (db) {
+                var option = $('<option></option>');
+                option.text(db);
+                option.attr('value', db);
+                $('#db_alias_select').append(option).val(db).change();
+            } else {
+                var params = {
+                    ajax_request : true,
+                    token : PMA_commonParams.get('token'),
+                    server : PMA_commonParams.get('server'),
+                    type: 'list-databases'
+                };
+                $.post('ajax.php', params, function (response) {
+                    if (response.success === true) {
+                        $.each(response.databases, function (idx, value) {
+                            var option = $('<option></option>');
+                            option.text(value);
+                            option.attr('value', value);
+                            $('#db_alias_select').append(option);
+                        });
+                    } else {
+                        PMA_ajaxShowMessage(response.error, false);
+                    }
+                });
+            }
+=======
             $('.alias-dialog .ui-dialog-titlebar-close').remove();
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         },
         close: function() {
             var isEmpty = true;
             $(this).find('input[type="text"]').each(function() {
+<<<<<<< HEAD
+                // trim empty input fields on close
+                if ($(this).val()) {
+                    isEmpty = false;
+                } else {
+                    $(this).parents('tr').remove();
+                }
+            });
+            // Toggle checkbox based on aliases
+=======
                 // trim input fields on close
                 $(this).val($(this).val().trim());
                 // check if non empty field present
@@ -801,12 +854,47 @@ function createAliasModal(event) {
                     isEmpty = false;
                 }
             });
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
             $('input#btn_alias_config').prop('checked', !isEmpty);
         },
         position: { my: "center top", at: "center top", of: window }
     });
+<<<<<<< HEAD
+}
+
+function aliasToggleRow(elm) {
+    var inputs = elm.parents('tr').find('input,button');
+    if (elm.val()) {
+        inputs.attr('disabled', false);
+    } else {
+        inputs.attr('disabled', true);
+    }
+}
+
+function addAlias(type, name, field, value) {
+    if (value === '') {
+        return;
+    }
+
+    var row = $('#alias_data tfoot tr').clone();
+    row.find('th').text(type);
+    row.find('td:first').text(name);
+    row.find('input').attr('name', field);
+    row.find('input').val(value);
+    row.find('.alias_remove').on('click', function () {
+        $(this).parents('tr').remove();
+    });
+
+    var matching = $('#alias_data [name="' + $.escapeSelector(field) + '"]');
+    if (matching.length > 0) {
+        matching.parents('tr').remove();
+    }
+
+    $('#alias_data tbody').append(row);
+=======
     // Call change event of .table_alias_select
     $('.table_alias_select:visible').trigger('change');
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 }
 
 AJAX.registerOnload('export.js', function () {
@@ -846,6 +934,104 @@ AJAX.registerOnload('export.js', function () {
 
     // Open Alias Modal Dialog on click
     $('#btn_alias_config').on('click', createAliasModal);
+<<<<<<< HEAD
+    $('.alias_remove').on('click', function () {
+        $(this).parents('tr').remove();
+    });
+    $('#db_alias_select').on('change', function () {
+        aliasToggleRow($(this));
+        var db = $(this).val();
+        var table = PMA_commonParams.get('table');
+        if (table) {
+            var option = $('<option></option>');
+            option.text(table);
+            option.attr('value', table);
+            $('#table_alias_select').append(option).val(table).change();
+        } else {
+            var params = {
+                ajax_request : true,
+                token : PMA_commonParams.get('token'),
+                server : PMA_commonParams.get('server'),
+                db : $(this).val(),
+                type: 'list-tables'
+            };
+            $.post('ajax.php', params, function (response) {
+                if (response.success === true) {
+                    $.each(response.tables, function (idx, value) {
+                        var option = $('<option></option>');
+                        option.text(value);
+                        option.attr('value', value);
+                        $('#table_alias_select').append(option);
+                    });
+                } else {
+                    PMA_ajaxShowMessage(response.error, false);
+                }
+            });
+        }
+    });
+    $('#table_alias_select').on('change', function () {
+        aliasToggleRow($(this));
+        var params = {
+            ajax_request : true,
+            token : PMA_commonParams.get('token'),
+            server : PMA_commonParams.get('server'),
+            db : $('#db_alias_select').val(),
+            table: $(this).val(),
+            type: 'list-columns'
+        };
+        $.post('ajax.php', params, function (response) {
+            if (response.success === true) {
+                $.each(response.columns, function (idx, value) {
+                    var option = $('<option></option>');
+                    option.text(value);
+                    option.attr('value', value);
+                    $('#column_alias_select').append(option);
+                });
+            } else {
+                PMA_ajaxShowMessage(response.error, false);
+            }
+        });
+    });
+    $('#column_alias_select').on('change', function () {
+        aliasToggleRow($(this));
+    });
+    $('#db_alias_button').on('click', function (e) {
+        e.preventDefault();
+        var db = $('#db_alias_select').val();
+        addAlias(
+            PMA_messages.strAliasDatabase,
+            db,
+            'aliases[' + db + '][alias]',
+            $('#db_alias_name').val()
+        );
+        $('#db_alias_name').val('');
+    });
+    $('#table_alias_button').on('click', function (e) {
+        e.preventDefault();
+        var db = $('#db_alias_select').val();
+        var table = $('#table_alias_select').val();
+        addAlias(
+            PMA_messages.strAliasTable,
+            db + '.' + table,
+            'aliases[' + db + '][tables][' + table + '][alias]',
+            $('#table_alias_name').val()
+        );
+        $('#table_alias_name').val('');
+    });
+    $('#column_alias_button').on('click', function (e) {
+        e.preventDefault();
+        var db = $('#db_alias_select').val();
+        var table = $('#table_alias_select').val();
+        var column = $('#column_alias_select').val();
+        addAlias(
+            PMA_messages.strAliasColumn,
+            db + '.' + table + '.' + column,
+            'aliases[' + db + '][tables][' + table + '][colums][' + column + ']',
+            $('#column_alias_name').val()
+        );
+        $('#column_alias_name').val('');
+    });
+=======
 
     // Database alias select on change event
     $('#db_alias_select').on(
@@ -860,4 +1046,5 @@ AJAX.registerOnload('export.js', function () {
         {sel: 'table', type: '_cols'},
         aliasSelectHandler
     );
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 });

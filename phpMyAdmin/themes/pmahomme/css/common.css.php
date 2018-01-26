@@ -542,7 +542,11 @@ button.mult_submit {
 table tbody:first-of-type tr:nth-child(odd),
 table tbody:first-of-type tr:nth-child(odd) th {
     background: #fff;
+<<<<<<< HEAD
+}
+=======
 } 
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
 /* even items 2,4,6,8,... */
 table tbody:first-of-type tr:nth-child(even),
@@ -611,7 +615,10 @@ tr:last-child td.condition {
  */
 td.null {
     font-style: italic;
+<<<<<<< HEAD
+=======
     text-align: <?php echo $right; ?>;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     color: #7d7d7d;
 }
 
@@ -786,6 +793,13 @@ fieldset.confirmation legend {
 
 /* end messageboxes */
 
+<<<<<<< HEAD
+.new_central_col{
+    width: 100%;
+}
+
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 .tblcomment {
     font-size: 70%;
     font-weight: normal;
@@ -2183,7 +2197,11 @@ input#input_import_file {
 /**
  * Indexes
  */
+<<<<<<< HEAD
+#index_frm .index_info input[type="text"],
+=======
 #index_frm .index_info input,
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 #index_frm .index_info select {
     width: 14em;
     margin: 0;
@@ -2976,6 +2994,10 @@ table.show_create td {
     border-right: 1px solid #bbb;
 }
 
+<<<<<<< HEAD
+#alias_modal table {
+    width: 100%;
+=======
 #alias_modal table th {
     vertical-align: middle;
     padding-left: 1em;
@@ -2989,6 +3011,7 @@ table.show_create td {
 #alias_modal select {
     width: 25%;
     margin-right: 2em;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 }
 
 #alias_modal label {

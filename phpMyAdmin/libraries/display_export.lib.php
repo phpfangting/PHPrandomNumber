@@ -11,6 +11,10 @@ use PMA\libraries\Message;
 use PMA\libraries\plugins\ExportPlugin;
 use PMA\libraries\Response;
 use PMA\libraries\Table;
+<<<<<<< HEAD
+use PMA\libraries\Template;
+=======
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 use PMA\libraries\URL;
 
 /**
@@ -638,7 +642,11 @@ function PMA_getHtmlForExportOptionsOutputCharset()
     $html = '        <li><label for="select_charset" class="desc">'
         . __('Character set of the file:') . '</label>' . "\n";
     $html .= '<select id="select_charset" name="charset" size="1">';
+<<<<<<< HEAD
+    foreach (Encoding::listEncodings() as $temp_charset) {
+=======
     foreach ($cfg['AvailableCharsets'] as $temp_charset) {
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
         $html .= '<option value="' . $temp_charset . '"';
         if (isset($_GET['charset'])
             && ($_GET['charset'] != $temp_charset)
@@ -877,13 +885,82 @@ function PMA_getHtmlForExportOptions(
         $html .= PMA_getHtmlForExportOptionsQuickExport();
     }
 
+<<<<<<< HEAD
+    $html .= PMA_getHtmlForAliasModalDialog();
+=======
     $html .= PMA_getHtmlForAliasModalDialog($db, $table);
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     $html .= PMA_getHtmlForExportOptionsOutput($export_type);
     $html .= PMA_getHtmlForExportOptionsFormat($export_list);
     return $html;
 }
 
 /**
+<<<<<<< HEAD
+ * Generate Html For currently defined aliases
+ *
+ * @return string
+ */
+function PMA_getHtmlForCurrentAlias()
+{
+    $result = '<table id="alias_data"><thead><tr><th colspan="4">'
+        . __('Defined aliases')
+        . '</th></tr></thead><tbody>';
+
+    $template = Template::get('export/alias_item');
+    if (isset($_SESSION['tmpval']['aliases'])) {
+        foreach ($_SESSION['tmpval']['aliases'] as $db => $db_data) {
+            if (isset($db_data['alias'])) {
+                $result .= $template->render(array(
+                    'type' => _pgettext('Alias', 'Database'),
+                    'name' => $db,
+                    'field' => 'aliases[' . $db . '][alias]',
+                    'value' => $db_data['alias'],
+                ));
+            }
+            if (! isset($db_data['tables'])) {
+                continue;
+            }
+            foreach ($db_data['tables'] as $table => $table_data) {
+                if (isset($table_data['alias'])) {
+                    $result .= $template->render(array(
+                        'type' => _pgettext('Alias', 'Table'),
+                        'name' => $db . '.' . $table,
+                        'field' => 'aliases[' . $db . '][tables][' . $table . '][alias]',
+                        'value' => $table_data['alias'],
+                    ));
+                }
+                if (! isset($table_data['columns'])) {
+                    continue;
+                }
+                foreach ($table_data['columns'] as $column => $column_name) {
+                    $result .= $template->render(array(
+                        'type' => _pgettext('Alias', 'Column'),
+                        'name' => $db . '.' . $table . '.'. $column,
+                        'field' => 'aliases[' . $db . '][tables][' . $table . '][colums][' . $column . ']',
+                        'value' => $column_name,
+                    ));
+                }
+            }
+        }
+    }
+
+    // Empty row for javascript manipulations
+    $result .= '</tbody><tfoot class="hide">' . $template->render(array(
+        'type' => '', 'name' => '', 'field' => 'aliases_new', 'value' => ''
+    )) . '</tfoot>';
+
+    return $result . '</table>';
+}
+
+/**
+ * Generate Html For Alias Modal Dialog
+ *
+ * @return string
+ */
+function PMA_getHtmlForAliasModalDialog()
+{
+=======
  * Prints Html For Alias Modal Dialog
  *
  * @param String $db    Selected DB
@@ -896,6 +973,7 @@ function PMA_getHtmlForAliasModalDialog($db = '', $table = '')
     if (isset($_SESSION['tmpval']['aliases'])) {
         $aliases = $_SESSION['tmpval']['aliases'];
     }
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
     // In case of server export, the following list of
     // databases are not shown in the list.
     $dbs_not_allowed = array(
@@ -906,6 +984,12 @@ function PMA_getHtmlForAliasModalDialog($db = '', $table = '')
     // Fetch Columns info
     // Server export does not have db set.
     $title = __('Rename exported databases/tables/columns');
+<<<<<<< HEAD
+
+    $html = '<div id="alias_modal" class="hide" title="' . $title . '">';
+    $html .= PMA_getHtmlForCurrentAlias();
+    $html .= Template::get('export/alias_add')->render();
+=======
     if (empty($db)) {
         $databases = $GLOBALS['dbi']->getColumnsFull(
             null, null, null, $GLOBALS['userlink']
@@ -1014,6 +1098,7 @@ function PMA_getHtmlForAliasModalDialog($db = '', $table = '')
     $html .= $db_html;
     $html .= $db_input_html . '<hr/>';
     $html .= $table_html;
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
 
     $html .= '</div>';
     return $html;
