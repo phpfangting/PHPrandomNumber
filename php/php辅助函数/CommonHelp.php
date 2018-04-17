@@ -49,63 +49,7 @@ class CommonHelp
         }
         return $str;
     }
-
-
-    /**
-     * 上传图片
-     * @param $imgs
-     * @param string $dirs
-     * @return mixed
-     */
-    public static function uploadImg($imgs, $dirs = "uploads")
-    {
-        $ds = DIRECTORY_SEPARATOR;
-        $upload = new UploadFile(Yii::$app->params['imageUpload']);
-        $img_str = '';
-        $target_real_path = Yii::$app->params['basePath'] . $ds . $dirs . $ds;//存储上传的图片绝对路径
-        switch (true) {
-            case is_array($imgs):
-                foreach ($imgs as $k => $img) {
-                    $file_name = uniqid('epai') . time();
-                    $upload_file_name = $target_real_path . $file_name . '.jpg';
-                    $file = fopen($upload_file_name, 'wb');
-                    fwrite($file, base64_decode($imgs)); //将图片写入到新创建的文件中
-                    fclose($file); //写完关闭文件
-                    //上传源图片
-                    $result = $upload->uploadFile($upload_file_name);//上传主文件
-                    //将源图片裁剪640X640并
-//                    ImageHelp::compressImgByimagick($upload_file_name, '', 1, 1);
-                    //将压缩的图片进行上传
-//                    $result = $upload->uploadSlaveFile($upload_file_name, $result['path']);
-                    if ($result) {
-                        $img_str .= $result['path'] . ',';
-                    }
-                    @unlink($upload_file_name);
-                }
-
-                break;
-            default:
-                $file_name = uniqid('epai') . time();
-                $upload_file_name = $target_real_path . $file_name . '.jpg';
-                $file = fopen($upload_file_name, 'wb');
-                fwrite($file, base64_decode($imgs)); //将图片写入到新创建的文件中
-                fclose($file); //写完关闭文件
-                //上传源图片
-                $result = $upload->uploadFile($upload_file_name);//上传主文件
-//                //将源图片裁剪640X640并
-//                ImageHelp::compressImgByimagick($upload_file_name, '', 1, 1);
-//                //将压缩的图片进行上传
-//                $result = $upload->uploadSlaveFile($upload_file_name, $result['path']);
-                @unlink($upload_file_name);
-
-                if ($result) {
-                    $img_str = $result['path'];
-                }
-                break;
-        }
-
-        return $img_str ? trim($img_str, ',') : '';
-    }
+    
 
     /**
      * uploadImage
@@ -304,5 +248,85 @@ class CommonHelp
         return $onlyNo;
     }
 
+    /**
+     * 搜索参数拼接
+     * @param array $query [要搜索的参数]
+     * @param string $filed [新增的参数] 'company'|['company']
+     * @param int $key [要查询的ID编号] 1|[1]
+     * @param string $value [视图显示的名称] 'companyName'|['companyName']
+     * @param int $isBatch [同一类别是否批量添加] 1 批量 0 不批量
+     * @return string           [返回处理后的参数]
+     * example 1:同一类别单选调用
+     *          Heplers::buildUrl($query,'company',100,'保利公司')
+     * example 2:多级分类调用
+     *          Heplers::buildUrl($query,['county','city'],[100,200],['中国','北京'])
+     */
+    public static function buildUrl($query = [], $filed = '', $key = 0, $value = '', $isBatch = 0)
+    {
+        unset($query['pageNumber']);
+        if (is_array($filed)) {
+            foreach ($filed as $filedKey => $filedVal) {
+                self::buildParams($query, $filedVal, $key[$filedKey], $value[$filedKey], $isBatch);
+            }
+        } else {
+            self::buildParams($query, $filed, $key, $value, $isBatch);
+        }
+        $query = http_build_query($query);
+        return !empty($query) ? '?' . $query : '';
+    }
+
+    /**
+     * 追加参数
+     * @param $query 原始数组
+     * @param $filed 追加的字段
+     * @param $key   ID
+     * @param $value 名称
+     * @param $isBatch [同一类别是否批量添加] 1 批量 0 不批量
+     */
+    public static function buildParams(&$query, $filed, $key, $value, $isBatch)
+    {
+        $query[$filed] = isset($query[$filed]) ? $query[$filed] : [];
+        if (!empty($isBatch) && (empty($query) || !array_search($value, $query[$filed]))) {
+            $query[$filed][$key] = $value;
+        } elseif (empty($isBatch)) {
+            $query[$filed] = [$key => $value];
+        }
+    }
+
+    /**
+     * 删除指定的搜索参数
+     * @param array $query [要搜索的参数]
+     * @param $filed [删除的参数]    'company'|['company']
+     * @param int $key [删除指定的ID]  'companyId'|['companyId']
+     * @return string            返回删除后的除开结果
+     * example 1:同一类别多选-删除操作,比如删除公司
+     *          Helpers::destroyParams($query,['company'],[100])
+     * example 2:同一类别单选-批量删除(适应于多级分类)操作,比如删除国家标签,子类标签也要删除
+     *          Helpers::destroyParams($query,['country','city'])
+     * example 3:同一类别单选-删除(适用一级分类)操作
+     *          Helpers::destroyParams($query,'company')
+     */
+    public static function destroyParams($query = [], $filed, $key = 0)
+    {
+        unset($query['pageNumber']);
+        //同一类别多选-删除操作
+        if (is_array($filed) && !empty($query) && is_array($key)) {
+            foreach ($filed as $filedKey => $filedVal) {
+                unset($query[$filedVal][$key[$filedKey]]);
+            }
+        }
+        //同一类别单选-批量删除(适应于多级分类)操作
+        if (is_array($filed) && !empty($query) && !is_array($key)) {
+            foreach ($filed as $filedKey => $filedVal) {
+                unset($query[$filedVal]);
+            }
+        }
+        //同一类别单选-删除(适用一级分类)操作
+        if (!is_array($filed) && !empty($query)) {
+            unset($query[$filed]);
+        }
+        $query = http_build_query($query);
+        return !empty($query) ? '?' . $query : '';
+    }
 
 }

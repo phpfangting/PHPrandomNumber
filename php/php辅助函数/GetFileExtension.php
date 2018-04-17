@@ -24,7 +24,7 @@
 // function get_extension($file){
 // 	return pathinfo($file)['extension'];
 // }
-// 
+//
 
 
 //第四种
@@ -67,7 +67,7 @@
 //     return str_replace('.','',strrchr($file,'.'));
 // }
 
-
+//第十种
 $info = new SplFileInfo('foo.txt');
 var_dump($info->getExtension());
 
