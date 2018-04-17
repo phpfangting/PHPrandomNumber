@@ -132,5 +132,5 @@ class Mysql{
 	public function error(){
 		return mysql_error($this->conn);
 	}
-
+	
 }

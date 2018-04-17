@@ -25,6 +25,7 @@
 // $num = 10.2;
 // $arr = explode('.', $num);
 // print_r($arr);
+<<<<<<< HEAD
 // $str = 'name|s:15:"谁是你的谁"';
 
 // echo serialize($str);
@@ -36,3 +37,8 @@ $index = strrpos($jpg, '.');
 if($index !==false){
 	echo substr($jpg, 0,$index);
 }
+=======
+$str = 'name|s:15:"谁是你的谁"';
+
+echo serialize($str);
+>>>>>>> ade65abf0e33ef7c43391325c8e8637a51859c00

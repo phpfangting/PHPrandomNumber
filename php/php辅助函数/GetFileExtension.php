@@ -67,8 +67,10 @@
 //     return str_replace('.','',strrchr($file,'.'));
 // }
 
+
 $info = new SplFileInfo('foo.txt');
 var_dump($info->getExtension());
+
 //暂时想这么多，以后想起来再补充
 
 $file = "http://10.31.63.8:8081/M00/00/09/Ch8_CFaaMLqAO87JAACePvS0ZRk.webp";

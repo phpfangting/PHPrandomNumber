@@ -188,4 +188,5 @@ class Model{
 		return $this->db->getAll($sql);
 	}
 
+
 }

@@ -18,6 +18,7 @@ foreach ($data as $key => $row) {
 // array_multisort($volume, SORT_DESC, $edition, SORT_DESC,$data);
 // print_r($data);
 
+<<<<<<< HEAD
 // $r = range(0,10);
 
 // print_r($r);
@@ -26,3 +27,8 @@ foreach ($data as $key => $row) {
 
 
 var_dump(hash_equals('12345', '12345'));
+=======
+$r = range(0,10);
+
+print_r($r);
+>>>>>>> ade65abf0e33ef7c43391325c8e8637a51859c00

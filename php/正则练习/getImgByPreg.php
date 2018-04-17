@@ -1,5 +1,6 @@
 <?php
 	//抓取图片
+
 		// $str = "<img src='a.jpg' />";
 		// $preg = '/(?<!src=)[^(\'|\")]*\.(jpg|png|gif)/';
 	 //    preg_match_all($preg, $str, $data);
@@ -11,7 +12,7 @@
 	    preg_match_all('/[a-zA-Z]+ (?<!=a)/', $str, $data);
 	    // var_dump($data);
 	//sscanf
-	
+
 	 //    $str = 'sadsdas adada adada  ada ';
 	 //    $preg = '/(?=da)[a-zA-Z]*/';
 		// preg_match_all($preg, $str, $data);
@@ -40,5 +41,4 @@ $img = '<img src="a.png" /> <img src="b.jpg" />';
 $pattern='/(?<=src=)\"\w+\.(jpg|png)\"/';
 preg_match_all($pattern,$img, $data);
 print_r($data);
-
 
