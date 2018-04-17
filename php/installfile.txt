@@ -1,2 +1,0 @@
-http://windows.php.net/downloads/pecl/deps/       imgick
-;;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;D:\Program Files\svn\bin;E:\wamp\php71;D:\Program Files\mysql\bin;E:\wamp\mysql\bin;C:\ProgramData\ComposerSetup\bin;C:\Users\Administrator\AppData\Roaming\Composer\vendor\bin;C:\Users\Administrator\AppData\phpunit-skeleton\vendor\bin;D:\installfile\ImageMagick-6.9.3-7;
