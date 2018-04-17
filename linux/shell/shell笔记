@@ -1,0 +1,36 @@
+1.定义变量
+	b=10
+	c=300
+	使用变量？
+	echo $b,$c
+
+2.变量的+-*/
+	第一种
+	let c=$a+$b or let c=a+b #注意$a与$b之间没有空格
+	let c=$a/$b or let c=a/b #注意$a与$b之间没有空格
+	let c=$a%$b or let c=a%b #注意$a与$b之间没有空格
+	let c=$a-$b or let c=a-b #注意$a与$b之间没有空格
+	echo $c
+
+	第二种
+	c=$[$a+$b]	
+	c=$[$a/$b]
+	c=$[$a%$b]
+	c=$[$a-$b]
+	echo $c
+
+	第三种
+	((c=$a+$b))
+	((c=$a/$b))
+	((c=$a%$b))
+	((c=$a-$b))
+	echo $c
+
+	第四种
+	c=`expr $a + $b` #+两边有空格
+	c=`expr $a - $b`
+	c=`expr $a * $b`
+	c=`expr $a / $b`
+
+
+

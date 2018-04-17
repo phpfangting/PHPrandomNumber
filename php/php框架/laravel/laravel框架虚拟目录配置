@@ -1,0 +1,35 @@
+
+
+#在vhost.conf修改
+
+<VirtualHost *:80>
+
+    DocumentRoot "E:/www/phpweb/laravel/public"
+    ServerName www.phpweb.com
+    <Directory "E:/www/phpweb/laravel/public">
+        #Options Indexes FollowSymLinks
+	 Require all granted
+	 RewriteEngine on
+	 RewriteCond %{REQUEST_FILENAME} !-f
+	 RewriteCond %{REQUEST_FILENAME} !-d
+	 RewriteRule . index.php
+    </Directory>
+      <IfModule alias_module>
+	   Alias /resources "E:/www/phpweb/laravel/resources"
+	   <Directory "E:/www/phpweb/laravel/resources">
+            Require all granted
+     </Directory>
+     </IfModule>
+</VirtualHost>
+
+
+#也可以在.htaccess
+
+<IfModule mod_rewrite.c>
+Options -MultiViews
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [L]
+</IfModule>

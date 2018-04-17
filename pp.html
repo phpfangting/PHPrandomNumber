@@ -1,0 +1,35 @@
+263EM-研发中心-前端部
+张梦欢(zhangmenghuan@epailive.com) 13:49:23
+timeDown:function (endTime,nowTime,serverTime) {
+            var ts = endTime - nowTime;//计算剩余的秒数
+            function tow(n) {
+                return n >= 0 && n < 10 ? '0' + n : '' + n;
+            }
+            var timer = setInterval(function () {
+                ts--;
+                if(ts>=0){
+                    var dd = parseInt(ts / 60 / 60 / 24, 10);//计算剩余的天数
+                    var hh = parseInt(ts / 60 / 60 % 24, 10);//计算剩余的小时数
+                    var mm = parseInt(ts / 60 % 60, 10);//计算剩余的分钟数
+                    var ss = parseInt(ts % 60, 10);//计算剩余的秒数
+
+					if(dd>=1){
+                        return "距开拍还剩：" + '<span>dd</span>' + "日" + '<span>mm</span>' + "分";
+					}else if (hh >= 1 && hh < 24) {
+
+                        return "距开拍还剩：" + '<span>hh</span>' + "小时" + '<span>mm</span>' + "分";
+                    } else if (mm >= 1 && mm < 60) {
+
+                        return "距开拍还剩：" + '<span>mm</span>' + "分" + '<span>ss</span>' + "秒";
+                    } else if (ss >= 1 && ss < 60) {
+
+                        return "距离开拍还剩：" + '<span>ss</span>' + "秒";
+                    } else if (ts <= 0) {
+                        return '正在准备中，稍后开始';
+                    }
+				}else {
+                    clearInterval(timer);
+                    return ;
+                }
+			},1000);
+        },

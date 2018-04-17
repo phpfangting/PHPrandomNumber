@@ -1,0 +1,48 @@
+#函数
+def fn():
+	pass
+
+fn()
+
+def fn2(n):
+	print(n)
+
+fn2(100)	
+
+
+def fn3(*p):
+
+	for x in p:
+		print(x)
+
+
+
+fn3(1,2,3,4,5,6,7)
+
+
+def fn5(*p,**k):
+
+	for x in p:
+		print(x)
+	print(k)	
+
+p=[1,2,3,4,5,6]
+k={'name':'zhangsan','age':18,'weight':120}	
+fn5(*p,**k)				
+
+
+
+#递归
+
+1、递归点
+2、递归出口
+
+def fact(n):
+	if n==1:
+		return 1
+	return n*fact(n-1)
+	
+		
+
+
+

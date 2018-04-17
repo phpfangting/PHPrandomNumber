@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+
+(function (){
+
+		Format = {
+				//数字格式化 number 要格式化得数值 n 小数保留的位数
+				numberFormat:function(number,n){
+
+					var number=String(number);//将数字转换为字符串
+					var index = number.indexOf('.');//查询点出现的位置
+					var decimalNumberStr = index != -1 && number.substring(index+1).split('',n).join('') || 0;//获取小数点后面的数字字符串
+					var intNumberStr = index != -1 && number.substring(0,index)|| number;//获取小数点前面的小数字符串
+					var formatNumber=[];//接收格式化后的数字字符串变量
+					intNumberStr=intNumberStr.split('').reverse();//得到小数点之前的数字
+					//处理千分位
+					for(var i=0,len=intNumberStr.length;i<len;i+=3){
+						formatNumber.push(intNumberStr.slice(i,i+3).join(''));
+					}
+					//处理小数位
+					for(var i=decimalNumberStr.length;i < n;++i){
+							decimalNumberStr +='0';
+					}
+					//返回处理后的千分位数字字符串
+					return formatNumber.join(',').split('').reverse().join('')+'.'+decimalNumberStr;
+				},
+
+				//数字还原	number 要还原的数值
+				numberRevert:function(number){
+
+					return parseFloat(number.replace(/,/g,''));
+				}
+			}
+
+	formatNumber=12345678.1203;
+	//格式化字符串
+	formatNumber=Format.numberFormat(formatNumber,2);
+	console.log(formatNumber);
+	//恢复
+	console.log(Format.numberRevert(formatNumber));
+
+})();
+	
+</script>
+</body>
+</html>

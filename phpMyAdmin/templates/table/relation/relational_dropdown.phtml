@@ -1,0 +1,30 @@
+<select name="<?= $name; ?>" title="<?= $title; ?>">
+    <option value=""></option>
+    <?php $seen_key = false; ?>
+    <?php foreach ($values as $value): ?>
+        <option value="<?= htmlspecialchars($value); ?>"
+<<<<<<< HEAD
+                <?php if ($foreign !== false && $value == $foreign): ?>
+=======
+                <?php if ($foreign && $value == $foreign): ?>
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
+                    selected="selected"
+                    <?php $seen_key = true; ?>
+                <?php endif; ?>>
+            <?= htmlspecialchars($value); ?>
+        </option>
+    <?php endforeach; ?>
+<<<<<<< HEAD
+    <?php if ($foreign !== false && ! $seen_key): ?>
+=======
+    <?php if (is_string($foreign) && ! $seen_key): ?>
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
+        <option value="<?= htmlspecialchars($foreign); ?>" selected="selected">
+            <?= htmlspecialchars($foreign); ?>
+        </option>
+    <?php endif; ?>
+<<<<<<< HEAD
+</select>
+=======
+</select>
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65

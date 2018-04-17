@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>sdfwefd</title>
+	 <script src="./public/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+<select name="char" id="char">
+	<option value='1'>A</option>
+	<option value='2'>B</option>
+	<option value='3'>C</option>
+	<option value='4'>D</option>
+	<option value='5'>E</option>
+</select>
+<script type="text/javascript">
+     
+
+	var that = this;
+	$('#char').bind('change',this,function (e){
+
+		
+
+			console.log(this==e.data);
+
+	})
+
+
+	
+</script>
+</body>
+</html>

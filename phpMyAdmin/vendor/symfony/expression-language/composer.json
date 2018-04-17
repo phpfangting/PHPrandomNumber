@@ -1,0 +1,38 @@
+{
+    "name": "symfony/expression-language",
+    "type": "library",
+    "description": "Symfony ExpressionLanguage Component",
+    "keywords": [],
+    "homepage": "https://symfony.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Fabien Potencier",
+            "email": "fabien@symfony.com"
+        },
+        {
+            "name": "Symfony Community",
+            "homepage": "https://symfony.com/contributors"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "symfony/cache": "~3.1"
+    },
+    "autoload": {
+        "psr-4": { "Symfony\\Component\\ExpressionLanguage\\": "" },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "branch-alias": {
+<<<<<<< HEAD
+            "dev-master": "3.3-dev"
+=======
+            "dev-master": "3.2-dev"
+>>>>>>> 963d7f7adf76dfd7a7dbc54b828074e76cfb4d65
+        }
+    }
+}

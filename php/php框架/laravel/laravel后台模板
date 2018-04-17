@@ -1,0 +1,2 @@
+composer global require "laravel/installer"  #安装laraavel命令
+https://github.com/acacha/adminlte-laravel.git

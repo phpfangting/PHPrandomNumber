@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    function People(name) {
+       this.name = name;
+    }
+    function Student() {
+
+
+    }
+
+    function F() {
+
+    }
+    F.prototype = People.prototype;
+    Student.prototype = new F();
+    Student.prototype.constructor = Student;
+
+    var zhangsan = new Student();
+    alert(zhangsan.__proto__.__proto__ == People.prototype);
+
+
+</script>

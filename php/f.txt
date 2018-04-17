@@ -1,0 +1,7 @@
+aqqqq
+bbbbb
+<<<<<<< HEAD
+hellog
+=======
+cccc
+>>>>>>> 8d0c904a4f8cdea55c5bb69a7e8f6c9c1b2eef00

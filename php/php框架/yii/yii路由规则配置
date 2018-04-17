@@ -1,0 +1,33 @@
+<VirtualHost *:80>
+    ServerName bendi.epaillive.com
+    DocumentRoot "D:/wamp/www/epai_php_auction/app/web"
+	<Directory "D:/wamp/www/epai_php_auction/app/web">
+		Options Indexes FollowSymLinks
+		Require all granted
+		RewriteEngine on
+
+		RewriteCond %{SCRIPT_FILENAME} !-f
+		RewriteCond %{SCRIPT_FILENAME} !-d
+		RewriteRule ^(.*)$ index.php/$1
+	</Directory>
+
+    ErrorLog "logs/bendi.epaillive.com-error.log"
+    CustomLog "logs/bendi.epaillive.com-access.log" common
+</VirtualHost>
+
+
+<VirtualHost *:80>
+	ServerName  vendor.epaillive.com
+    DocumentRoot "D:/wamp/www/epai_php_auction/VendorApp/web"
+	<Directory "D:/wamp/www/epai_php_auction/VendorApp/web">
+		Options Indexes FollowSymLinks
+		Require all granted
+		RewriteEngine on
+		RewriteCond %{SCRIPT_FILENAME} !-f
+		RewriteCond %{SCRIPT_FILENAME} !-d
+		RewriteRule ^(.*)$ index.php/$1
+	</Directory>
+
+    ErrorLog "logs/vendor.epaillive.com-error.log"
+    CustomLog "logs/vendor.epaillive.com-access.log" common
+</VirtualHost>
