@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>倒计时</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        div {
+            width: 100%;
+            height: 35px;
+            line-height: 35px;
+            text-align: left;
+            color: red;
+            padding-left: 100px;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+
+<script type="text/javascript">
+
+
+    var futureTimeStr = "2018/04/10 23:09:00";
+    var div = document.getElementsByTagName("div")[0];
+    countDown(div, futureTimeStr);
+    var futureTimeStr = "2018/04/09 21:55:00";
+    var div = document.getElementsByTagName("div")[1];
+    countDown(div, futureTimeStr);
+    var futureTimeStr = "2018/04/09 11:05:00";
+    var div = document.getElementsByTagName("div")[2];
+    countDown(div, futureTimeStr);
+
+    /**
+     * author music
+     * desc   计时器完美版
+     * @param e 标签对象
+     * @param startTime 开拍时间
+     */
+
+     
+
+    function countDown(e, startTime) {
+
+        var futureTime = new Date(startTime);//开拍时间
+        var nowTime = new Date();//现在时间
+        var lifeime = (futureTime.getTime() - nowTime.getTime()) / 1000;//余下的日子(秒)
+
+        //倒计时
+        var timer = setInterval(function () {
+
+            if (lifeime >= 0) {
+
+            	//活着的时候
+                var day = Math.floor(lifeime / 60 / 60 / 24);//余下的天数
+                var hour = Math.floor(lifeime / 60 / 60 % 24);//余下的小时数
+                var minute = Math.floor(lifeime / 60 % 60);//余下的分钟数
+                var second = Math.floor(lifeime % 60);//余下的秒数
+
+                if (day >= 1) {
+
+                    var m = futureTime.getMonth() + 1;
+                    var d = futureTime.getDate();
+                    var i = futureTime.getMinutes();
+
+                    e.innerHTML = checkTime(m) + '月' + checkTime(d) + '日' + checkTime(i) + '分开拍';
+
+                } else if (hour >= 1 && hour < 24) {
+
+                    e.innerHTML = "距开拍还剩：" + checkTime(hour)+ "时" + checkTime(minute) + "分";
+
+                } else if (minute >= 1 && minute < 60) {
+
+                    e.innerHTML = "距开拍还剩：" +  checkTime(minute) + "分" +  checkTime(second) + "秒";
+
+                } else if (second >= 1 && second < 60) {
+
+                    e.innerHTML = "距开拍还剩：" + checkTime(second) + "秒";
+                }
+
+                --lifeime;
+
+            } else {
+
+            	//.........
+                e.innerHTML = "正在开拍";
+                clearInterval(timer);
+                return ;
+            }
+
+        }, 1000);
+
+
+        //时间个位数补0
+        function  checkTime(t){
+                return t>10?t:0+t;
+        }
+    }
+
+</script>
+
+</body>
+</html>
