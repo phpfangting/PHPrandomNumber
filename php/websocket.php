@@ -1,11 +1,11 @@
 <?php
 // 指明给谁推送，为空表示向所有在线用户推送
-$to_uid = '';
+$to_uid = 789;
 // 推送的url地址，使用自己的服务器地址
 $push_api_url = "http://47.95.250.84:2121/";
 $post_data = array(
    "type" => "publish",
-   "content" => "你已经让我失望一次了",
+   "content" => "你已经让我失望一次了".uniqid('me'),
    "to" => $to_uid, 
 );
 $ch = curl_init ();

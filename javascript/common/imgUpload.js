@@ -1,103 +1,81 @@
-function ImgPrevirewer(config) {
+function ImgUpload(config) {
+
+    this.containerId = config.containerId,//加载图片的容器
+        this.fileId = config.fileId, //文件的ID
+        this.style = config.style;
+    this.fileObject = null;
+    this.containerObject = null;
+    var _this = this;
+
+    this.init = function () {
+        this.fileObject = document.getElementById(this.fileId);
+        this.containerObject = document.getElementById(this.containerId);
+        this.preview()
+    }
 
     /**
-     * The tag ID for upload images.
-     */
-    this.fileId = config.fileId;
-
-    /**
-     * tip for error message.
-     * @type {string}
-     */
-    this.tip = config.tip;
-    /**
-     * The ID for the container which contains img tags.
-     * @type {string}
-     */
-    this.containerId = config.containerId;
-    /**
-     * CSS style for previewing imgs.
-     * @type {string}
-     */
-    this.imgStyle = config.imgStyle;
-
-    /**
-     * 过滤图片格式，可进行相对应的删减操作。
-     * @type {{jpeg: string, gif: string, png: string}}
-     */
-    this.filter = {
-
-        "jpeg": "/9j/4",
-        "gif": "R0lGOD",
-        "png": "iVBORw"
-    };
-
-
-    /**
-     * 开始预览。自动调用原生JavaScript实现相关元素的定位以及渲染。
+     * 图片预览
+     *
      */
     this.preview = function () {
-        var file = document.getElementById(this.fileId);
-        var container = document.getElementById(this.containerId);
-        container.innerHTML = "";
-        /**
-         * 防止内部作用域覆盖问题。
-         * @type {ImgPrevirewer}
-         */
-        var that = this;
-        // HTML5 需要使用FileReader的相关API来读取本地数据。
-        if (window.FileReader) {
-            // 针对多个上传文件批量处理。
 
-            for (var index = 0, f; f = file.files[index]; index++) {
-                var filereader = new FileReader();
-                filereader.onload = function (event) {
-                    var srcpath = event.target.result;
-                    if (!that.validateImg(srcpath)) {
-                        console.log(this.tip);
-                    } else {
-                        that.showPreviewImg(srcpath);
-                    }
-                };
-
-                filereader.readAsDataURL(f);
-            }
-        } else {
-            // 低版本降级处理。
-            if (!/\.jpg$|\.png$|\.gif$/i.test(file.value)) {
-                console.log(this.tip);
+        if (typeof(FileReader) == 'undefined') {
+            if (!/\.jpg$|\.png$|\.gif$/i.test(this.fileObject.value)) {
+                alert('只能上传图片');
             } else {
-                that.showPreviewImg(file.value);
+                _this.showImg(this.fileObject.value);
             }
-        }
-    }
 
+        } else {
+
+            var fileResource = this.fileObject.files;
+
+            for (var i = 0, length = fileResource.length; i < length; i++) {
+                if (this.validate(fileResource[i].type) == false) {
+                    alert('只能上传图片');
+                    continue;
+                } else {
+                    var reader = new FileReader();
+                    reader.readAsDataURL(fileResource[i]);
+                    reader.onload = function (event) {
+                        _this.showImg(event.target.result);
+                    }
+                }
+            }
+
+        }
+        
+    }
 
     /**
-     * 根据图片的base64编码格式查看图片是否符合要求。
-     * @param data 编码后的图片数据。
-     * @returns {*}
+     *删除图片
+     *
      */
-    this.validateImg = function (data) {
-        var pos = data.indexOf(",") + 1;
-        for (var e in this.filter) {
-            if (data.indexOf(this.filter[e]) === pos) {
-                return e;
-            }
-        }
-        return null;
+    destroy = function (e) {
+        _this.containerObject.removeChild(e);
     }
 
     /**
-     * 开始实现对图片的预览，根据this.imgStyle进行相关渲染操作。
-     * @param src
+     * 验证上传文件的格式
+     * @returns {boolean}
      */
-    this.showPreviewImg = function (src) {
-        var img = document.createElement('img');
-        img.src = src;
-        img.style = this.imgStyle;
-        container.appendChild(img);
+    this.validate = function (type) {
+        if (!/image\/\w+/.test(type)) {
+            return false;
+        }
+        return true;
     }
 
+    /**
+     * 追加图片到img
+     * @param result
+     */
+    this.showImg = function (result) {
 
+        var imgObject = document.createElement('img');
+        imgObject.setAttribute('src', result);
+        imgObject.style = this.style;
+        imgObject.setAttribute('onclick', "destroy(this)");
+        this.containerObject.appendChild(imgObject);
+    }
 }

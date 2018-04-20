@@ -12,6 +12,7 @@
     // uid可以是自己网站的用户id，以便针对uid推送以及统计在线人数
     uid = 789;
     // socket连接后以uid登录
+
     socket.on('connect', function(){
     	socket.emit('login', uid);
     });
