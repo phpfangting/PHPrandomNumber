@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- 引入 ECharts 文件 -->
+    <script src="/javascript/common/echarts.min.js"></script>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 800px;height:400px;"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    option = {
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ["2007.6", "2007.12", "2008.6", "2008.12", "2009.6", "2009.12", "2010.6", "2010.12", "2011.6", "2011.12", "2012.6", "2012.12", "2013.6", "2013.12", "2014.6", "2014.12", "2015.6", "2015.12", "2016.6", "2016.12", "2017.6", "2017.12"]
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            data: [100, 123, 116, 107, 117, 151, 201, 241, 322, 351, 292, 316, 372, 368, 360, 371, 321, 280, 284, 244, 304,310],
+            type: 'line',
+            areaStyle: {}
+        }]
+    };
+    option = {
+        title: {
+            text: '动态数据',
+            subtext: '纯属虚构'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+                label: {
+                    backgroundColor: '#283b56'
+                }
+            }
+        },
+        legend: {
+            data:['最新成交价', '预购队列']
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                dataView: {readOnly: false},
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        dataZoom: {
+            show: false,
+            start: 0,
+            end: 100
+        },
+        xAxis: [
+            {
+                type: 'category',
+                boundaryGap: true,
+                data: ["2007.6", "2007.12", "2008.6", "2008.12", "2009.6", "2009.12", "2010.6", "2010.12", "2011.6", "2011.12", "2012.6", "2012.12", "2013.6", "2013.12", "2014.6", "2014.12", "2015.6", "2015.12", "2016.6", "2016.12", "2017.6", "2017.12"],
+            },
+            {
+                type: 'category',
+                boundaryGap: true,
+                data: (function (){
+                    var res = [];
+                    var len = 10;
+                    while (len--) {
+                        res.push(len + 1);
+                    }
+                    return res;
+                })()
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                scale: true,
+                name: '价格',
+                max: 30,
+                min: 0,
+                boundaryGap: [0.2, 0.2]
+            },
+            {
+                type: 'value',
+                scale: true,
+                name: '预购量',
+                max: 1200,
+                min: 0,
+                boundaryGap: [0.2, 0.2]
+            }
+        ],
+        series: [
+            {
+                name:'预购队列',
+                type:'bar',
+                xAxisIndex: 1,
+                yAxisIndex: 1,
+                data:(function (){
+                    var res = [];
+                    var len = 10;
+                    while (len--) {
+                        res.push(Math.round(Math.random() * 1000));
+                    }
+                    return res;
+                })()
+            },
+            {
+                name:'最新成交价',
+                type:'line',
+                data:(function (){
+                    var res = [];
+                    var len = 0;
+                    while (len < 10) {
+                        res.push((Math.random()*10 + 5).toFixed(1) - 0);
+                        len++;
+                    }
+                    return res;
+                })()
+            }
+        ]
+    };
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+
+    app.count = 2;
+    setInterval(function (){
+        axisData = (new Date()).toLocaleTimeString().replace(/^\D*/,'');
+
+        var data0 = option.series[0].data;
+        var data1 = option.series[1].data;
+        data0.shift();
+        data0.push(Math.round(Math.random() * 1000));
+        data1.shift();
+        data1.push((Math.random() * 10 + 5).toFixed(1) - 0);
+
+        option.xAxis[0].data.shift();
+        option.xAxis[0].data.push(axisData);
+        option.xAxis[1].data.shift();
+        option.xAxis[1].data.push(app.count++);
+
+        myChart.setOption(option);
+    }, 2100);
+
+</script>
+</body>
+</html>
