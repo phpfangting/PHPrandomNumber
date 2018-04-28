@@ -35,7 +35,7 @@
 // print_r($data);
 
 //反向查找
-
+header('Location: http//www.baidu.com');
 $img = '<img src="a.png" /> <img src="b.jpg" />';
 
 $pattern='/(?<=src=)\"\w+\.(jpg|png)\"/';

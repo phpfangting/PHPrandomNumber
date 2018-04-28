@@ -75,6 +75,27 @@ var_dump($info->getExtension());
 
 $file = "http://10.31.63.8:8081/M00/00/09/Ch8_CFaaMLqAO87JAACePvS0ZRk.webp";
 
-$data = get_extension($file);
+$info = new SplFileInfo($file);
+var_dump($info->getExtension());
 
-var_export($data);
+
+
+//清除html标签
+
+$str = '<a href="" onclick="">dsfds</a>a<a></a>bbb<div data-id="10" data-attr="20" >scs</div>';
+
+
+$preg = '/<\/?[a-z]{1,10}\s*([a-zA-Z0-9\-_]*\s*=\s*(".*?"|\'.*?\'))*\s*>/';
+
+preg_match_all($preg, $str, $data);
+print_r($data);
+
+$str = preg_replace($preg, '', $str);
+echo $str;
+
+
+$str="fasfas<img  src='a.jpg'><img  src='b.jpg'><img  src='c.jpg'>";
+
+preg_match_all('/(?<=<img)  src=\'([a-z]*\.[a-z]*)*\'>/', $str, $data);
+
+print_r($data);
