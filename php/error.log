@@ -1,0 +1,6 @@
+[16-May-2018 11:14:39 PRC] PHP Notice:  Undefined variable: a in E:\www\echo\php\error.php on line 26
+[16-May-2018 11:14:39 PRC] PHP Stack trace:
+[16-May-2018 11:14:39 PRC] PHP   1. {main}() E:\www\echo\php\error.php:0
+[16-May-2018 11:15:14 PRC] PHP Notice:  Undefined variable: a in E:\www\echo\php\error.php on line 26
+[16-May-2018 11:15:14 PRC] PHP Stack trace:
+[16-May-2018 11:15:14 PRC] PHP   1. {main}() E:\www\echo\php\error.php:0

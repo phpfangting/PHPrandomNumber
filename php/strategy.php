@@ -52,8 +52,12 @@
 		}
 
 	}
-	
+
 $scores = [10,90,80];
 shuffle($scores);
 $key = array_rand($scores);
 Money::getResult("Score_{$scores[$key]}");
+
+
+echo 'hello';
+
