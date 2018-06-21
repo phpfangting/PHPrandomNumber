@@ -34,5 +34,7 @@
 
 <?php  
 
+$redisModel = new Redis();
+print_r($redisModel);
 
 ?>
