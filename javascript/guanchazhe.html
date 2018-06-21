@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 	<meta charset="UTF-8">
+	<title>观察者模式</title>
+	<style type="text/css">
+		*{padding:0;margin: 0;}
+		.wamp{width: 100%;height: auto;}
+		.wamp div{width:600px;height: 500px;border: 1px solid gray;margin-top:10px;}
+	</style>
+</head>
+<body>
+<select name="sel" id='sel'>
+	<option value="1">男</option>
+	<option value="2">女</option>
+</select>
+
+
+<div class="wamp">
+	<div id="ad">
+		
+	</div>
+
+	<div id="study">
+		
+	</div>
+</div>
+<script type="text/javascript">
+	var sel = document.getElementById('sel');
+	 sel.access = {};
+
+	//接收对象
+	sel.attach = function (key,obj){
+		sel.access[key] = obj;
+	}
+
+	sel.onchange = sel.notif = function (){
+
+		for( var key in this.access){
+
+			this.access[key].update(this);
+		}  
+	}
+
+	var adObj = document.getElementById('ad');
+	adObj.update = function (selectObj){
+
+		if(selectObj.value == 1){
+			this.innerHTML = '学习计算机';
+			this.style.background = "lightgray";
+
+		}else if(selectObj.value == 2){
+
+			this.innerHTML = '学习美容';
+			this.style.background = "lightpink";
+		}
+
+	}
+
+	var stuObj = document.getElementById('study');
+	stuObj.update = function (selectObj){
+
+		if(selectObj.value == 1){
+			this.innerHTML = '学习数学';
+			this.style.background = "lightgray";
+
+		}else if(selectObj.value == 2){
+
+			this.innerHTML = '学习英语';
+			this.style.background = "lightpink";
+		}
+
+	}
+
+	sel.attach('ad',adObj);
+	sel.attach('stu',stuObj);
+
+
+
+</script>
+</body>
+</html>
