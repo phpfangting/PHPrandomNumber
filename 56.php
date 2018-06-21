@@ -1,6 +1,7 @@
 <?php
 
 
+
  setcookie('name','zhangsan',time()+3600,'/');
  echo 'hello';
  $a=10;
@@ -20,3 +21,4 @@ echo $c;
 
 
  }
+
