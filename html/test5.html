@@ -18,7 +18,16 @@
             }
         }
     };
-    console.log(data.methods.reverseMessage());
+    Math.formatFloat = function(f, digit) {
+    var m = Math.pow(10, digit);
+    return (parseFloat(f * m) / m).toFixed(digit);
+    }
+
+    var numA = 0.814;
+    var numB = 0.315;
+    rs = Math.formatFloat(numA/numB, 2)
+
+
 </script>
 </body>
 </html>

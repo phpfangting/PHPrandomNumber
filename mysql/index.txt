@@ -1,0 +1,47 @@
+第一种情况 组合索引
+
+index(a,b,c);
+
+亲兄弟手牵手(and),长兄如父不能少-》用到索引 
+
+a and b and c  
+
+a and c and b
+
+b and a and c
+
+c and b and a
+
+a and b
+
+a and c
+
+c and a
+
+b and a
+
+亲兄弟要破裂(or)，长兄也救不了-》用不到索引，
+
+a or b or c   用不到索引
+
+
+
+亲兄弟要破裂(or),小弟寻求他人(and)，他人必须是索引(单列或组合索引首列)
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
