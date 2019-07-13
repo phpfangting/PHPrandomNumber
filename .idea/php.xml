@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/phpMyAdmin/vendor/phpmyadmin/motranslator" />
+      <path value="$PROJECT_DIR$/phpMyAdmin/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/phpMyAdmin/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/phpMyAdmin/vendor/phpmyadmin/shapefile" />
+      <path value="$PROJECT_DIR$/phpMyAdmin/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/phpMyAdmin/vendor/phpmyadmin/sql-parser" />
+      <path value="$PROJECT_DIR$/phpMyAdmin/vendor/tecnickcom/tcpdf" />
+      <path value="$PROJECT_DIR$/phpMyAdmin/vendor/google/recaptcha" />
+      <path value="$PROJECT_DIR$/phpMyAdmin/vendor/symfony/cache" />
+      <path value="$PROJECT_DIR$/phpMyAdmin/vendor/symfony/expression-language" />
+      <path value="$PROJECT_DIR$/phpMyAdmin/vendor/phpseclib/phpseclib" />
+      <path value="$PROJECT_DIR$/phpMyAdmin/vendor/composer" />
+    </include_path>
+  </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7" />
 </project>
